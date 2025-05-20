@@ -3,6 +3,7 @@ const SignInElements = {
   password: "#password",
   signInBtn: "button[type=submit]",
   passwordEyeIcon: 'span[role="img"]',
+  forgotPassword: 'a[href="/auth/admin/forgot-password"]',
 };
 class SignInPage {
   navigate() {
@@ -28,6 +29,13 @@ class SignInPage {
   }
   enterEmail(email: string) {
     cy.get(SignInElements.email).type(email);
+  }
+  clickForgotPassword() {
+    cy.get(SignInElements.forgotPassword).click();
+  }
+  submitForgotPassword(email: string) {
+    cy.get(SignInElements.email).type(email);
+    cy.get(SignInElements.forgotPassword).click();
   }
 }
 export default SignInPage;

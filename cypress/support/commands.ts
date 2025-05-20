@@ -26,7 +26,6 @@ const CommandsElements = {
   email: "#username",
   password: "#password",
   signInBtn: "button[type=submit]",
-  passwordEyeIcon: 'span[role="img"]',
   leftNav: "nav.mantine-AppShell-navbar",
   credentialsError: ".ant-notification-notice-message",
   cancelBtn:
