@@ -2,10 +2,8 @@ import { Given, When, Then } from "@badeball/cypress-cucumber-preprocessor";
 
 import generalTexts from "../../support/generalTexts";
 import SignInPage from "../../support/page-objects/SignInPage";
-import SignUpPage from "../../support/page-objects/SignUpPage";
 
 const signInPage = new SignInPage();
-const signUpPage = new SignUpPage();
 
 //Test-1
 Given("I open the the Sign in page", () => {
