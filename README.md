@@ -1,12 +1,12 @@
-# EnFuego-Cypress
+# Famaga-Cypress
 
-# This is a test project with end to end tests for the EnFuego project
+# This is a test project with end-to-end tests for the EnFuego project
 
 # tests are added in BDD - Cucumber/ with Typescript
 
 # Test runs examples
 
-# Single spec running in a headless mode in chrome browser- yarn cypress run --spec "cypress/e2e/Signin/Signin.feature" --headless --browser chrome
+# Single spec running in a headless mode in Chrome browser- yarn cypress run --spec "cypress/e2e/Signin/Signin.feature" --headless --browser chrome
 
 # All tests running in a headless mode in chrome browser- yarn cypress run --headless --browser chrome
 
