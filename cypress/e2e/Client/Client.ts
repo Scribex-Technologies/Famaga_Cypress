@@ -16,5 +16,5 @@ When("I fill in all fields", () => {
 });
 
 Then("I see the Client successfully added", () => {
-  cy.invalidEmailMsgIsDisplayed(generalTexts.clientSuccessFulMsg);
+  cy.popMessageDisplayed(generalTexts.clientSuccessFulMsg);
 });

@@ -9,8 +9,7 @@ declare namespace Cypress {
      * @example cy.login('username', 'userPassword')
      */
     login(): Chainable<undefined>;
-    invalidCredentialsMsgIsDisplayed(message: string): Chainable<undefined>;
-    invalidEmailMsgIsDisplayed(message: string): Chainable<undefined>;
+    popMessageDisplayed(message: string): Chainable<undefined>;
     checkAccessToken(): Chainable<undefined>;
     checkAccessTokenIsNotStored(): Chainable<undefined>;
     clickCancelBtn(): Chainable<undefined>;
