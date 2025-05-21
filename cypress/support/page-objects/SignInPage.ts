@@ -30,12 +30,5 @@ class SignInPage {
   enterEmail(email: string) {
     cy.get(SignInElements.email).type(email);
   }
-  clickForgotPassword() {
-    cy.get(SignInElements.forgotPassword).click();
-  }
-  submitForgotPassword(email: string) {
-    cy.get(SignInElements.email).type(email);
-    cy.get(SignInElements.forgotPassword).click();
-  }
 }
 export default SignInPage;

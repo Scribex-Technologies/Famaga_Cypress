@@ -28,12 +28,6 @@ const CommandsElements = {
   signInBtn: "button[type=submit]",
   leftNav: "nav.mantine-AppShell-navbar",
   credentialsError: ".ant-notification-notice-message",
-  cancelBtn:
-    ".buildhero-12fdmdc > .buildhero-UnstyledButton-root > .buildhero-1wpc1xj",
-  organizationPageTitle: ".buildhero-1d6tksz > .word-break",
-  createSpaceBtn: ".buildhero-1lwhfgh",
-  orgPage: ".buildhero-Container-root",
-  crossBtn: "button.buildhero-xzexs7",
   errorMsg: ".ant-form-item-explain-error",
   creationWindow:
     ".buildhero-Paper-root.buildhero-Modal-content.buildhero-Modal-content.buildhero-chy3l8",
@@ -71,12 +65,6 @@ Cypress.Commands.add("invalidCredentialsMsgIsDisplayed", (message: string) => {
 });
 Cypress.Commands.add("invalidEmailMsgIsDisplayed", (message: string) => {
   cy.get(CommandsElements.credentialsError).contains(message);
-});
-Cypress.Commands.add("clickCancelBtn", () => {
-  cy.get(CommandsElements.cancelBtn).click();
-});
-Cypress.Commands.add("clickCrossBtn", () => {
-  cy.get(CommandsElements.crossBtn).click();
 });
 Cypress.Commands.add("emptyFieldMsgIsDisplayed", (message: string) => {
   cy.get(CommandsElements.errorMsg).contains(message);

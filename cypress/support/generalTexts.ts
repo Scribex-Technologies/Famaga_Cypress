@@ -6,6 +6,8 @@ const userName = `awesome user-${id}`;
 const generalTexts = {
   invalidCredentialsMsg: "Email or password is invalid!",
   invalidEmailMsg: "Please enter a valid email.",
+  forgotInvalidEmail: "Invalid email address.",
+  forgotEmptyEmail: "Email is required.",
   emptyEmailMsg: "Username/ Email is required.",
   emptyPasswordMsg: "Password is required.",
   accountName: userName,
@@ -16,5 +18,8 @@ const generalTexts = {
     "The link was already used, please request a new one.",
   mainEmail: "tatevik.harutyunyan@scribex.io",
   mainPassword: "Scribex.5555",
+  notExistingEmail: "tat@mer.io",
+  invalidEmail: "tate.com",
+  expiredLinkScreenText: "Invalid or Expired Link",
 };
 export default generalTexts;
