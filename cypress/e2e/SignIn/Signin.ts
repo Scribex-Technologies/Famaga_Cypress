@@ -18,6 +18,7 @@ When(
 Then("I see the user signed in successfully", () => {
   cy.checkAccessToken();
 });
+
 //Test-2
 When(
   "I input valid Email address and invalid Password and click on the Sign in button",

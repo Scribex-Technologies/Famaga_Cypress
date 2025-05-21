@@ -2,6 +2,7 @@ Feature: Forgot Password
 
  Background:
  Given I open the Sign in page
+ 
     @smoke
     Scenario: Check the user with valid email address can request forgot password successfully
         When I add an existing email on the screen and click the button

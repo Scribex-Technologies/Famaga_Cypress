@@ -1,7 +1,7 @@
 //for future implementation
 const uuid = () => Cypress._.random(0, 1e6);
 const id = uuid();
-const userName = `awesome user-${id}`;
+const userName = `Automated User${id}`;
 
 const generalTexts = {
   invalidCredentialsMsg: "Email or password is invalid!",
@@ -21,5 +21,6 @@ const generalTexts = {
   notExistingEmail: "tat@mer.io",
   invalidEmail: "tate.com",
   expiredLinkScreenText: "Invalid or Expired Link",
+  clientSuccessFulMsg: "The client was successfully created.",
 };
 export default generalTexts;

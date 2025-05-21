@@ -27,7 +27,7 @@ const CommandsElements = {
   password: "#password",
   signInBtn: "button[type=submit]",
   leftNav: "nav.mantine-AppShell-navbar",
-  credentialsError: ".ant-notification-notice-message",
+  popMessage: ".ant-notification-notice-message",
   errorMsg: ".ant-form-item-explain-error",
   creationWindow:
     ".buildhero-Paper-root.buildhero-Modal-content.buildhero-Modal-content.buildhero-chy3l8",
@@ -61,10 +61,10 @@ Cypress.on("uncaught:exception", (err, runnable) => {
   return true;
 });
 Cypress.Commands.add("invalidCredentialsMsgIsDisplayed", (message: string) => {
-  cy.get(CommandsElements.credentialsError).contains(message);
+  cy.get(CommandsElements.popMessage).contains(message);
 });
 Cypress.Commands.add("invalidEmailMsgIsDisplayed", (message: string) => {
-  cy.get(CommandsElements.credentialsError).contains(message);
+  cy.get(CommandsElements.popMessage).contains(message);
 });
 Cypress.Commands.add("emptyFieldMsgIsDisplayed", (message: string) => {
   cy.get(CommandsElements.errorMsg).contains(message);
