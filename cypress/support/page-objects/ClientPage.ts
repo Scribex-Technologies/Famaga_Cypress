@@ -1,5 +1,6 @@
 const ClientPageElements = {
   addNewBtn: 'button[type="button"]',
+  addBtn: '[style="row-gap: 20px;"] > .ant-col > .ant-row > .ant-btn-primary',
   clientName: "#name",
   clientCountry: "#mainCountryId",
   clientType: "#clientTypeId",
@@ -10,10 +11,15 @@ const ClientPageElements = {
   contactPersonType: "#type",
   contactPersonValue: "#value",
   contactTypeSubmitBtn:
-    "body > div:nth-child(3) > div > div.ant-modal-wrap.ant-modal-centered > div > div:nth-child(1) > div > div.ant-modal-body > div > form > div > div:nth-child(9) > div > div > div > div:nth-child(2) > div > div:nth-child(2) > button", //Update Later
-  addBtn: 'button[type="button"]',
+    ".ant-btn.css-rrh4gt.ant-btn-primary.ant-btn-color-primary.ant-btn-variant-solid.ant-btn-icon-only",
+  clientOpenEye: ".ant-table-cell-fix-right > .ant-btn > .ant-btn-icon",
+  contactInfoEditBtn: "button[title='Edit']",
 };
 class ClientPage {
+  openClientPage() {
+    cy.get(ClientPageElements.clientOpenEye).eq(0).click();
+  }
+
   addNewClient(randomName: string) {
     cy.get(ClientPageElements.addNewBtn).contains("Add New").click();
     cy.get(ClientPageElements.clientName).type(randomName);
@@ -24,9 +30,69 @@ class ClientPage {
     cy.get(ClientPageElements.contactPersonDepartment).type(randomName);
     cy.get(ClientPageElements.contactPersonRole).type(randomName);
     cy.get(ClientPageElements.contactPersonType).type("Instagram{enter}");
-    cy.get(ClientPageElements.contactTypeSubmitBtn).click();
     cy.get(ClientPageElements.contactPersonValue).type("@tate");
-    cy.get(ClientPageElements.addBtn).eq(19).click();
+    cy.get(ClientPageElements.contactTypeSubmitBtn).click();
+    cy.get(ClientPageElements.addBtn).click();
+  }
+  addNewContactPerson(randomName: string) {
+    cy.get(ClientPageElements.addNewBtn).contains("Add New").click();
+    cy.get(ClientPageElements.contactPersonName).type(randomName);
+    cy.get(ClientPageElements.contactPersonLanguage).type("Italian{enter}");
+    cy.get(ClientPageElements.contactPersonDepartment).type(randomName);
+    cy.get(ClientPageElements.contactPersonRole).type(randomName);
+    cy.get(ClientPageElements.contactPersonType).type("Instagram{enter}");
+    cy.get(ClientPageElements.contactPersonValue).type("@tate");
+    cy.get(ClientPageElements.contactTypeSubmitBtn).click();
+    cy.get(ClientPageElements.contactPersonType).type("Facebook{enter}");
+    cy.get(ClientPageElements.contactPersonValue).type("@tate");
+    cy.get(ClientPageElements.contactTypeSubmitBtn).click();
+    cy.get(ClientPageElements.contactPersonType).type("Viber{enter}");
+    cy.get(ClientPageElements.contactPersonValue).type("+37443000000");
+    cy.get(ClientPageElements.contactTypeSubmitBtn).click();
+    cy.get(ClientPageElements.contactPersonType).type("Linkedin{enter}");
+    cy.get(ClientPageElements.contactPersonValue).type("@tate");
+    cy.get(ClientPageElements.contactTypeSubmitBtn).click();
+    cy.get(ClientPageElements.contactPersonType).type("Fax{enter}");
+    cy.get(ClientPageElements.contactPersonValue).type("+37443000000");
+    cy.get(ClientPageElements.contactTypeSubmitBtn).click();
+    cy.get(ClientPageElements.contactPersonType).type("Mobile{enter}");
+    cy.get(ClientPageElements.contactPersonValue).type("+37443000000");
+    cy.get(ClientPageElements.contactTypeSubmitBtn).click();
+    cy.get(ClientPageElements.contactPersonType).type("Landline{enter}");
+    cy.get(ClientPageElements.contactPersonValue).type("+37443000000");
+    cy.get(ClientPageElements.contactTypeSubmitBtn).click();
+    cy.get(ClientPageElements.contactPersonType).type("Email{enter}");
+    cy.get(ClientPageElements.contactPersonValue).type("client@as.io");
+    cy.get(ClientPageElements.contactTypeSubmitBtn).click();
+    cy.get(ClientPageElements.addBtn).click();
+  }
+  editContactInfo(randomName: string) {
+    cy.get(ClientPageElements.contactInfoEditBtn).click();
+    cy.get(ClientPageElements.contactPersonType).type("Instagram{enter}");
+    cy.get(ClientPageElements.contactPersonValue).type("@tate");
+    cy.get(ClientPageElements.contactTypeSubmitBtn).click();
+    cy.get(ClientPageElements.contactPersonType).type("Facebook{enter}");
+    cy.get(ClientPageElements.contactPersonValue).type("@tate");
+    cy.get(ClientPageElements.contactTypeSubmitBtn).click();
+    cy.get(ClientPageElements.contactPersonType).type("Viber{enter}");
+    cy.get(ClientPageElements.contactPersonValue).type("+37443000000");
+    cy.get(ClientPageElements.contactTypeSubmitBtn).click();
+    cy.get(ClientPageElements.contactPersonType).type("Linkedin{enter}");
+    cy.get(ClientPageElements.contactPersonValue).type("@tate");
+    cy.get(ClientPageElements.contactTypeSubmitBtn).click();
+    cy.get(ClientPageElements.contactPersonType).type("Fax{enter}");
+    cy.get(ClientPageElements.contactPersonValue).type("+37443000000");
+    cy.get(ClientPageElements.contactTypeSubmitBtn).click();
+    cy.get(ClientPageElements.contactPersonType).type("Mobile{enter}");
+    cy.get(ClientPageElements.contactPersonValue).type("+37443000000");
+    cy.get(ClientPageElements.contactTypeSubmitBtn).click();
+    cy.get(ClientPageElements.contactPersonType).type("Landline{enter}");
+    cy.get(ClientPageElements.contactPersonValue).type("+37443000000");
+    cy.get(ClientPageElements.contactTypeSubmitBtn).click();
+    cy.get(ClientPageElements.contactPersonType).type("Email{enter}");
+    cy.get(ClientPageElements.contactPersonValue).type("client@as.io");
+    cy.get(ClientPageElements.contactTypeSubmitBtn).click();
+    cy.get(ClientPageElements.addBtn).click();
   }
 }
 export default ClientPage;

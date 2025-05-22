@@ -22,5 +22,7 @@ const generalTexts = {
   invalidEmail: "tate.com",
   expiredLinkScreenText: "Invalid or Expired Link",
   clientSuccessFulMsg: "The client was successfully created.",
+  contactPersonSuccessfulMsg: "The contact person was successfully created.",
+  contactInfoUpdatedMsg: "Contact Info was successfully updated.",
 };
 export default generalTexts;
