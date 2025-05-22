@@ -28,7 +28,7 @@ When(
 );
 
 Then("I see the validation message displayed for password", () => {
-  cy.popMessageDisplayed(generalTexts.invalidCredentialsMsg);
+  cy.popupMessageDisplayed(generalTexts.invalidCredentialsMsg);
 });
 
 //Test-3
@@ -41,7 +41,7 @@ When(
 Then(
   "I see the user is not signed in and the validation message displayed for email",
   () => {
-    cy.popMessageDisplayed(generalTexts.invalidCredentialsMsg);
+    cy.popupMessageDisplayed(generalTexts.invalidCredentialsMsg);
   }
 );
 

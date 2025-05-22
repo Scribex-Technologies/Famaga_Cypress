@@ -17,3 +17,13 @@ Feature: Client Page
     Scenario: Edit contact info of the Client
         When I fill in all contact info fields and submit
         Then I see the contact info successfully updated
+
+    @smoke
+    Scenario: Edit Contact Person of the Client
+        When I edit the contact person's fields and submit
+        Then I see the contact person successfully updated
+
+    @smoke
+    Scenario: Delete contact contact person of the Client
+        When I delete the contact person
+        Then I see the contact person successfully deleted

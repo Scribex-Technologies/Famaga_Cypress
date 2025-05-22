@@ -16,7 +16,7 @@ When("I fill in all fields and submit", () => {
 });
 
 Then("I see the Client successfully added", () => {
-  cy.popMessageDisplayed(generalTexts.clientSuccessFulMsg);
+  cy.popupMessageDisplayed(generalTexts.clientSuccessFulMsg);
 });
 
 //Test-2
@@ -26,15 +26,35 @@ When("I fill in all contact person's fields and submit", () => {
 });
 
 Then("I see the contact person successfully added", () => {
-  cy.popMessageDisplayed(generalTexts.contactPersonSuccessfulMsg);
+  cy.popupMessageDisplayed(generalTexts.contactPersonSuccessfulMsg);
 });
 
 //Test-3
 When("I fill in all contact info fields and submit", () => {
   clientPage.openClientPage();
-  clientPage.editContactInfo(generalTexts.accountName);
+  clientPage.editContactInfo();
 });
 
 Then("I see the contact info successfully updated", () => {
-  cy.popMessageDisplayed(generalTexts.contactInfoUpdatedMsg);
+  cy.popupMessageDisplayed(generalTexts.contactInfoUpdatedMsg);
+});
+
+//Test-4
+When("I edit the contact person's fields and submit", () => {
+  clientPage.openClientPage();
+  clientPage.editContactPerson();
+});
+
+Then("I see the contact person successfully updated", () => {
+  cy.popupMessageDisplayed(generalTexts.contactPersonUpdatedMsg);
+});
+
+//Test-5
+When("I delete the contact person", () => {
+  clientPage.openClientPage();
+  clientPage.deleteContactPerson();
+});
+
+Then("I see the contact person successfully deleted", () => {
+  cy.popupMessageDisplayed(generalTexts.contactPersonDeletedMsg);
 });

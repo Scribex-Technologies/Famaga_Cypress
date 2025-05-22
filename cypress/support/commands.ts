@@ -60,7 +60,7 @@ Cypress.on("uncaught:exception", (err, runnable) => {
   // Allow other exceptions to fail the test
   return true;
 });
-Cypress.Commands.add("popMessageDisplayed", (message: string) => {
+Cypress.Commands.add("popupMessageDisplayed", (message: string) => {
   cy.get(CommandsElements.popMessage).contains(message);
 });
 Cypress.Commands.add("emptyFieldMsgIsDisplayed", (message: string) => {
