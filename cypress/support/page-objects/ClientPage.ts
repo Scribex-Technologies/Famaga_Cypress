@@ -18,9 +18,11 @@ const ClientPageElements = {
     ":nth-child(1) > .margin-b-20 > [style='row-gap: 4px;'] > :nth-child(1) > .ant-row-space-between > :nth-child(2) > .ant-row > :nth-child(2)",
   ContactPersonDeleteIcon:
     ":nth-child(1) > .margin-b-20 > [style='row-gap: 4px;'] > :nth-child(1) > .ant-row-space-between > :nth-child(2) > .ant-row > :nth-child(1) > .ant-btn-icon > svg",
+  mainLanguage: "#mainLanguageId",
 };
+
 class ClientPage {
-  openClientPage() {
+  openClientDetailsPage() {
     cy.get(ClientPageElements.clientOpenEye).eq(0).click();
   }
 

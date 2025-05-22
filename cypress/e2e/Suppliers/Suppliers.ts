@@ -2,27 +2,28 @@ import { Given, When, Then } from "@badeball/cypress-cucumber-preprocessor";
 
 import generalTexts from "../../support/generalTexts";
 import SignInPage from "../../support/page-objects/SignInPage";
-import ClientPage from "../../support/page-objects/ClientPage";
+import SupplierPage from "../../support/page-objects/SuppliersPage";
 const signInPage = new SignInPage();
-const clientPage = new ClientPage();
+const suppliersPage = new SupplierPage();
 
 //Test-1
 Given("I open the Sign in page and signing in", () => {
   signInPage.navigate();
   signInPage.signIn(generalTexts.mainEmail, generalTexts.mainPassword);
+  suppliersPage.openSupplierPage();
 });
 When("I fill in all fields and submit", () => {
-  clientPage.addNewClient(generalTexts.accountName);
+  suppliersPage.addNewSupplier(generalTexts.accountName);
 });
 
-Then("I see the Client successfully added", () => {
-  cy.popupMessageDisplayed(generalTexts.clientSuccessFulMsg);
+Then("I see the Supplier successfully added", () => {
+  cy.popupMessageDisplayed(generalTexts.supplierSuccessfulMsg);
 });
 
 //Test-2
 When("I fill in all contact person's fields and submit", () => {
-  clientPage.openClientPage();
-  clientPage.addNewContactPerson(generalTexts.accountName);
+  suppliersPage.openSupplierDetailsPage();
+  suppliersPage.addNewContactPerson(generalTexts.accountName);
 });
 
 Then("I see the contact person successfully added", () => {
@@ -30,29 +31,19 @@ Then("I see the contact person successfully added", () => {
 });
 
 //Test-3
-When("I fill in all contact info fields and submit", () => {
-  clientPage.openClientPage();
-  clientPage.editContactInfo();
-});
-
-Then("I see the contact info successfully updated", () => {
-  cy.popupMessageDisplayed(generalTexts.contactInfoUpdatedMsg);
-});
-
-//Test-4
 When("I edit the contact person's fields and submit", () => {
-  clientPage.openClientPage();
-  clientPage.editContactPerson();
+  suppliersPage.openSupplierDetailsPage();
+  suppliersPage.editContactPerson();
 });
 
 Then("I see the contact person successfully updated", () => {
   cy.popupMessageDisplayed(generalTexts.contactPersonUpdatedMsg);
 });
 
-//Test-5
+//Test-4
 When("I delete the contact person", () => {
-  clientPage.openClientPage();
-  clientPage.deleteContactPerson();
+  suppliersPage.openSupplierDetailsPage();
+  suppliersPage.deleteContactPerson();
 });
 
 Then("I see the contact person successfully deleted", () => {
