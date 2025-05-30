@@ -62,7 +62,8 @@ class PurchasePage {
     cy.get(PurchasePageElements.addBtn).click();
   } //update
   addLeadWeight() {
-    cy.get(PurchasePageElements.minLeadTime).clear().type("1{enter}");
+    cy.wait(1000);
+    cy.get(PurchasePageElements.minLeadTime).type("1{enter}");
     cy.get("body").click(0, 0).wait(1000);
     cy.get(PurchasePageElements.maxLeadTime).clear().type("3{enter}");
     cy.get("body").click(0, 0).wait(1000);
