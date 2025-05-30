@@ -7,7 +7,7 @@ const signInPage = new SignInPage();
 const suppliersPage = new SupplierPage();
 
 //Test-1
-Given("I open the Sign in page and signing in", () => {
+Given("I open the suppliers page", () => {
   signInPage.navigate();
   signInPage.signIn(generalTexts.mainEmail, generalTexts.mainPassword);
   suppliersPage.openSupplierPage();

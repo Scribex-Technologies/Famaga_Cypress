@@ -1,7 +1,7 @@
 Feature: Suppliers Page
 
  Background:
- Given I open the Sign in page and signing in
+ Given I open the suppliers page
     @skip
     @smoke
     Scenario: Add a new Supplier to the page

@@ -7,7 +7,7 @@ const signInPage = new SignInPage();
 const clientPage = new ClientPage();
 
 //Test-1
-Given("I open the Sign in page and signing in", () => {
+Given("I open the clients page", () => {
   signInPage.navigate();
   signInPage.signIn(generalTexts.mainEmail, generalTexts.mainPassword);
 });

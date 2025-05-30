@@ -27,5 +27,8 @@ const generalTexts = {
   contactPersonUpdatedMsg: "The contact person was successfully updated.",
   contactPersonDeletedMsg: "The contact person was successfully deleted.",
   supplierSuccessfulMsg: "Supplier was successfully created.",
+  successfulSupplierOfferCreationMsg:
+    "Supplier Offer was successfully created.",
+  deletionSupplierOfferMs: "Supplier Offer was successfully deleted.",
 };
 export default generalTexts;

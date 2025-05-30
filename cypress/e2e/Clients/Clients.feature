@@ -1,7 +1,7 @@
 Feature: Client Page
 
  Background:
- Given I open the Sign in page and signing in
+ Given I open the clients page
     @skip
     @smoke
     Scenario: Add a new Client to the page
