@@ -35,5 +35,7 @@ const generalTexts = {
     "Lead status was successfully changed to processing.",
   leadConvertStatus: "Converted",
   leadStatusConvertedMSg: "Lead status was successfully changed to converted.",
+  markedUnavailableMsg: "Item was successfully marked as Not Available.",
+  markAvailableMsg: "Item was successfully marked as Available.",
 };
 export default generalTexts;

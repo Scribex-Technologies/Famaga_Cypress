@@ -1,3 +1,5 @@
+import { waitForDebugger } from "inspector";
+
 const PurchasePageElements = {
   purchasesPage: 'a[href="/admin/purchase-request"]',
   tabs: ".ant-col.ant-col-24.css-rrh4gt",
@@ -26,6 +28,28 @@ const PurchasePageElements = {
   clearanceFee: "#fee_customsClearance",
   minOrderFee: "#fee_minimumOrder",
   itemSku: "#sku",
+  //update
+  addRowBtn:
+    "#root > div > div > div > div > div.ant-col.styles_content_bar__XHMPB.css-rrh4gt > div > div:nth-child(2) > div > div:nth-child(2) > div.ant-row.css-rrh4gt > button",
+  itemDescription: "#description",
+  itemQuantity: "#quantity",
+  itemPurchaseRequestPrice: "#purchasePricePerPiece",
+  itemDiscount: "#discount",
+  itemShippingCost: "#shippingCost",
+  itemNotes: "#notes",
+  //update
+  settingsIcon: ".ant-row-bottom > .ant-btn > .ant-btn-icon > svg",
+  settingsCheckbox:
+    "body > div:nth-child(3) > div > div > ul > li:nth-child(1) > span > div",
+  //update
+  itemThreeDots:
+    "#root > div > div > div > div > div.ant-col.styles_content_bar__XHMPB.css-rrh4gt > div > div:nth-child(2) > div > div:nth-child(2) > div.ant-table-wrapper.styles_table__8Mrw8.css-rrh4gt > div > div > div > div > div > table > tbody > tr:nth-child(2) > td.ant-table-cell.ant-table-cell-fix-left.ant-table-cell-fix-left-last > button",
+  itemDotMenu:
+    ".ant-dropdown-menu.ant-dropdown-menu-root.ant-dropdown-menu-vertical.ant-dropdown-menu-light.custom-dropdown-menu.css-rrh4gt",
+  //update
+  itemUploadFIle:
+    "body > div:nth-child(4) > div > div.ant-modal-wrap.ant-modal-centered > div > div:nth-child(1) > div > div.ant-modal-body > form > div > div > div:nth-child(1) > div > div > div.ant-col.ant-form-item-control.css-rrh4gt > div > div > span > div.css-rrh4gt.ant-upload.ant-upload-drag > span > div > div",
+  itemTable: ".ant-table-content",
 };
 class PurchasePage {
   openPurchasePage() {
@@ -39,6 +63,76 @@ class PurchasePage {
   }
   clickAddBtn() {
     cy.get(PurchasePageElements.btn).contains("Add New").click();
+  }
+  //update
+  clickAllCheckbox() {
+    cy.get(PurchasePageElements.settingsIcon).click();
+
+    // Wait for checkboxes to appear (instead of hard wait)
+    cy.get(PurchasePageElements.settingsCheckbox)
+      .should("have.length.greaterThan", 0) // optional
+      .eq(0)
+      .click();
+  }
+  fillInItemsTableFields() {
+    cy.get(PurchasePageElements.itemDescription).eq(0).click();
+    cy.get(PurchasePageElements.itemDescription)
+      .should("be.visible")
+      .type("Automated Test does their best{enter}");
+    cy.get("body").click(0, 0);
+    cy.get(PurchasePageElements.itemQuantity).eq(0).click();
+    cy.get(PurchasePageElements.itemQuantity)
+      .should("be.visible")
+      .type("1{enter}");
+    cy.get("body").click(0, 0);
+    cy.get(PurchasePageElements.itemPurchaseRequestPrice).eq(0).click();
+    cy.get(PurchasePageElements.itemPurchaseRequestPrice)
+      .should("be.visible")
+      .type("100{enter}");
+    cy.get("body").click(0, 0);
+    cy.get(PurchasePageElements.itemDiscount).click();
+    cy.get(PurchasePageElements.itemDiscount).should("be.visible").type("1");
+    cy.get("body").click(0, 0);
+    //cy.get(PurchasePageElements.itemNotes).click();
+    // cy.get(PurchasePageElements.itemNotes)
+    //  .should("be.visible")
+    //   .type("Note is Automated{enter}");
+    //  cy.get("body").click(0, 0);
+  }
+  uploadFileToItem() {
+    cy.get(PurchasePageElements.itemThreeDots).click();
+    cy.get(PurchasePageElements.itemDotMenu).contains("Upload File").click();
+    cy.get(PurchasePageElements.itemUploadFIle).attachFile("AutomatedFile.pdf");
+    cy.get(PurchasePageElements.attachmentType).type("Option 1{enter}");
+    cy.get(PurchasePageElements.attachmentTypeSubmitBtn).click();
+    cy.get(PurchasePageElements.addBtn).click();
+  }
+  addSubstitute() {
+    cy.get(PurchasePageElements.itemThreeDots).click();
+    cy.get(PurchasePageElements.itemDotMenu).contains("Add Substitute").click();
+  }
+  addAlternative() {
+    cy.get(PurchasePageElements.itemThreeDots).click();
+    cy.get(PurchasePageElements.itemDotMenu)
+      .contains("Add Alternative")
+      .click();
+  }
+  markItemAvailable() {
+    cy.get(PurchasePageElements.itemThreeDots).click();
+    cy.get(PurchasePageElements.itemDotMenu)
+      .contains("Add Alternative")
+      .click();
+    cy.get(PurchasePageElements.btn).contains("Confirm").click();
+  }
+  markItemNotAvailable() {
+    cy.get(PurchasePageElements.itemThreeDots).click();
+    cy.get(PurchasePageElements.itemDotMenu)
+      .contains("Mark Not Available")
+      .click();
+    cy.get(PurchasePageElements.btn).contains("Confirm").click();
+  }
+  addShippingIfGlobalIsNotProvide() {
+    cy.get(PurchasePageElements.itemShippingCost).type("10{enter}");
   }
   createSupplierOffer() {
     cy.get(PurchasePageElements.btn).contains("Add New").click();
@@ -88,8 +182,13 @@ class PurchasePage {
     cy.get("body").click(0, 0).wait(1000);
   }
   addItemToTheTable() {
-    cy.get(PurchasePageElements.btn).contains("Add Row").click();
-    cy.get(PurchasePageElements.attachmentType).type("Supplier Offer{enter}");
+    cy.get(PurchasePageElements.addRowBtn).click({ force: true });
+    cy.get(PurchasePageElements.itemSku).type("Supplier Offer 1{enter}");
+    cy.get("body").click(0, 0).wait(1000);
+    cy.get(PurchasePageElements.addRowBtn).click({ force: true });
+    cy.get(PurchasePageElements.itemSku).type("Supplier Offer 2{enter}");
+    cy.get("body").click(0, 0).wait(1000);
+    cy.get(PurchasePageElements.addRowBtn);
   }
   deleteSupplierOffer() {
     cy.get(PurchasePageElements.supplierCard)
@@ -101,6 +200,53 @@ class PurchasePage {
   }
   openSupplierOffer() {
     cy.get(PurchasePageElements.btn).contains("View Offer").click();
+  }
+  checkItemsAddedToTheTable() {
+    cy.get(PurchasePageElements.itemTable).contains("Supplier Offer 1");
+    cy.get(PurchasePageElements.itemTable).contains("Supplier Offer 2");
+  }
+  verifyLeadShippingFeesDataIsSaved() {
+    cy.reload();
+    cy.wait(2000); // give time for the page to load and data to restore
+
+    // Lead weight fields
+    cy.get(PurchasePageElements.minLeadTime).should("have.value", "1");
+    cy.get(PurchasePageElements.maxLeadTime).should("have.value", "3");
+    cy.get(PurchasePageElements.leadDayWeek).should("contain.text", "Day");
+    cy.get(PurchasePageElements.weightField).should("have.value", "34");
+
+    // Shipping cost fields
+    cy.get(PurchasePageElements.shippingCost).should("have.value", "10");
+    cy.get(PurchasePageElements.packagingCost).should("have.value", "10");
+
+    // Fee and charge fields
+    cy.get(PurchasePageElements.dutyFee).should("have.value", "10");
+    cy.get(PurchasePageElements.bankTransferFee).should("have.value", "10");
+    cy.get(PurchasePageElements.clearanceFee).should("have.value", "10");
+    cy.get(PurchasePageElements.minOrderFee).should("have.value", "10");
+  }
+  verifyItemsTableFieldsSaved() {
+    cy.reload();
+    cy.get(PurchasePageElements.settingsIcon).click();
+    cy.get(PurchasePageElements.settingsCheckbox).eq(0).click();
+    // Description
+    // cy.get(PurchasePageElements.itemDescription)
+    // .eq(0)
+    // .wait(1000)
+    // .should("have.value", "Automated Test does their best");
+
+    // Quantity
+    cy.get(PurchasePageElements.itemQuantity).eq(0).should("have.value", "1");
+
+    // Purchase request price
+    cy.get(PurchasePageElements.itemPurchaseRequestPrice)
+      .eq(0)
+      .should("have.value", "100");
+
+    // Discount note
+    // cy.get(PurchasePageElements.itemDiscount).should(
+    //  "have.value"
+    //   "Note is Automated  );
   }
 }
 export default PurchasePage;
