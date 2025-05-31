@@ -30,5 +30,10 @@ const generalTexts = {
   successfulSupplierOfferCreationMsg:
     "Supplier Offer was successfully created.",
   deletionSupplierOfferMs: "Supplier Offer was successfully deleted.",
+  leadSuccessfulMsg: "The Lead was successfully added.",
+  leadStatusProcessingMSg:
+    "Lead status was successfully changed to processing.",
+  leadConvertStatus: "Converted",
+  leadStatusConvertedMSg: "Lead status was successfully changed to converted.",
 };
 export default generalTexts;

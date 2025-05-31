@@ -26,7 +26,6 @@ const PurchasePageElements = {
   clearanceFee: "#fee_customsClearance",
   minOrderFee: "#fee_minimumOrder",
   itemSku: "#sku",
-  clickArea: ".ant-col.ant-col-12.css-rrh4gt",
 };
 class PurchasePage {
   openPurchasePage() {
