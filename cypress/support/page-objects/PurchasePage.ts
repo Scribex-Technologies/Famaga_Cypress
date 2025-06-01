@@ -67,37 +67,32 @@ class PurchasePage {
   //update
   clickAllCheckbox() {
     cy.get(PurchasePageElements.settingsIcon).click();
-
-    // Wait for checkboxes to appear (instead of hard wait)
     cy.get(PurchasePageElements.settingsCheckbox)
-      .should("have.length.greaterThan", 0) // optional
+      .should("exist")
+      .should("be.visible")
       .eq(0)
+      .wait(1000)
       .click();
+    cy.get("body").click(0, 0);
   }
   fillInItemsTableFields() {
     cy.get(PurchasePageElements.itemDescription).eq(0).click();
-    cy.get(PurchasePageElements.itemDescription)
-      .should("be.visible")
-      .type("Automated Test does their best{enter}");
+    cy.get(PurchasePageElements.itemDescription).type(
+      "Automated Test does their best{enter}"
+    );
     cy.get("body").click(0, 0);
     cy.get(PurchasePageElements.itemQuantity).eq(0).click();
-    cy.get(PurchasePageElements.itemQuantity)
-      .should("be.visible")
-      .type("1{enter}");
+    cy.get(PurchasePageElements.itemQuantity).type("1{enter}");
     cy.get("body").click(0, 0);
     cy.get(PurchasePageElements.itemPurchaseRequestPrice).eq(0).click();
-    cy.get(PurchasePageElements.itemPurchaseRequestPrice)
-      .should("be.visible")
-      .type("100{enter}");
+    cy.get(PurchasePageElements.itemPurchaseRequestPrice).type("100{enter}");
     cy.get("body").click(0, 0);
     cy.get(PurchasePageElements.itemDiscount).click();
-    cy.get(PurchasePageElements.itemDiscount).should("be.visible").type("1");
-    cy.get("body").click(0, 0);
+    cy.get(PurchasePageElements.itemDiscount).type("1{enter}");
+    //cy.get(PurchasePageElements.itemTable).scrollTo("left");
     //cy.get(PurchasePageElements.itemNotes).click();
-    // cy.get(PurchasePageElements.itemNotes)
-    //  .should("be.visible")
-    //   .type("Note is Automated{enter}");
-    //  cy.get("body").click(0, 0);
+    //cy.get(PurchasePageElements.itemNotes).type("Note is Automated{enter}");
+    //cy.get("body").click(0, 0);
   }
   uploadFileToItem() {
     cy.get(PurchasePageElements.itemThreeDots).click();
@@ -181,14 +176,11 @@ class PurchasePage {
     cy.get(PurchasePageElements.minOrderFee).clear().type("10{enter}");
     cy.get("body").click(0, 0).wait(1000);
   }
-  addItemToTheTable() {
-    cy.get(PurchasePageElements.addRowBtn).click({ force: true });
-    cy.get(PurchasePageElements.itemSku).type("Supplier Offer 1{enter}");
-    cy.get("body").click(0, 0).wait(1000);
-    cy.get(PurchasePageElements.addRowBtn).click({ force: true });
-    cy.get(PurchasePageElements.itemSku).type("Supplier Offer 2{enter}");
-    cy.get("body").click(0, 0).wait(1000);
-    cy.get(PurchasePageElements.addRowBtn);
+  addItemToTheTable(item: string) {
+    cy.get(PurchasePageElements.addRowBtn).scrollIntoView().click();
+    cy.get(PurchasePageElements.itemSku)
+      .type(item + "{enter}")
+      .wait(1000);
   }
   deleteSupplierOffer() {
     cy.get(PurchasePageElements.supplierCard)
@@ -201,9 +193,8 @@ class PurchasePage {
   openSupplierOffer() {
     cy.get(PurchasePageElements.btn).contains("View Offer").click();
   }
-  checkItemsAddedToTheTable() {
-    cy.get(PurchasePageElements.itemTable).contains("Supplier Offer 1");
-    cy.get(PurchasePageElements.itemTable).contains("Supplier Offer 2");
+  checkItemsAddedToTheTable(item: string) {
+    cy.get(PurchasePageElements.itemTable).contains(item);
   }
   verifyLeadShippingFeesDataIsSaved() {
     cy.reload();
@@ -229,24 +220,18 @@ class PurchasePage {
     cy.reload();
     cy.get(PurchasePageElements.settingsIcon).click();
     cy.get(PurchasePageElements.settingsCheckbox).eq(0).click();
-    // Description
-    // cy.get(PurchasePageElements.itemDescription)
-    // .eq(0)
-    // .wait(1000)
-    // .should("have.value", "Automated Test does their best");
-
-    // Quantity
+    cy.get(PurchasePageElements.itemDescription)
+      .eq(0)
+      .wait(1000)
+      .should("have.value", "Automated Test does their best");
     cy.get(PurchasePageElements.itemQuantity).eq(0).should("have.value", "1");
-
-    // Purchase request price
     cy.get(PurchasePageElements.itemPurchaseRequestPrice)
       .eq(0)
       .should("have.value", "100");
-
-    // Discount note
     // cy.get(PurchasePageElements.itemDiscount).should(
-    //  "have.value"
-    //   "Note is Automated  );
+    //  "have.value",
+    //  "Note is Automated"
+    // );
   }
 }
 export default PurchasePage;

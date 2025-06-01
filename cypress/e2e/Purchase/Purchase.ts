@@ -35,10 +35,12 @@ Then("I see the changes are saved after reload", () => {
 When("I add items to the table", () => {
   purchasePage.openSupplierOffersTab();
   purchasePage.openSupplierOffer();
-  purchasePage.addItemToTheTable();
+  purchasePage.addItemToTheTable(generalTexts.item1);
+  purchasePage.addItemToTheTable(generalTexts.item2);
 });
 Then("I see the items are saved after reload", () => {
-  purchasePage.checkItemsAddedToTheTable();
+  purchasePage.checkItemsAddedToTheTable(generalTexts.item1);
+  purchasePage.checkItemsAddedToTheTable(generalTexts.item2);
 });
 //Test-4
 When("I fill in items fields on the table", () => {

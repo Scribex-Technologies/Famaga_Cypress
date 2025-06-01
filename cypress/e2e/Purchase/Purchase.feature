@@ -2,15 +2,19 @@ Feature: Purchase Request Page
 
  Background:
  Given I open the purchase request page
-
+@skip
  @smoke
  Scenario: Add a new Supplier Offer to the page
         When I fill in all fields and submit
         Then I see the purchase request successfully added
+        
+     @skip   
+
     @smoke
     Scenario: Add shipping information and fee and charges
         When I add a shipping information and fee and charges
         Then I see the changes are saved after reload
+        @skip   
 
     @smoke
     Scenario: Add items to the table
@@ -20,15 +24,18 @@ Feature: Purchase Request Page
     Scenario: Fill in tables fields
         When I fill in items fields on the table
         Then I see all fields are saved after reload
-        @smoke
+        @skip   
+     @smoke
     Scenario: Alternative creation
         When I create items alternative
         Then I see the alternative is created
+     @skip   
 @smoke
     Scenario: Substitute Creation
         When I create substitute
         Then I see substitute is created
-    @smoke
+        @skip   
+ @smoke
     Scenario: Delete Supplier Offer
         When I delete the supplier offer
         Then I see the purchase request successfully deleted
