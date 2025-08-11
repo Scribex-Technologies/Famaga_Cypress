@@ -2,7 +2,7 @@ import { Given, When, Then } from "@badeball/cypress-cucumber-preprocessor";
 
 import generalTexts from "../../support/generalTexts";
 import SignInPage from "../../support/page-objects/SignInPage";
-import PurchasePage from "../../support/page-objects/PurchasePage";
+import PurchasePage from "../../support/page-objects/PurchaseRequestsPage";
 const signInPage = new SignInPage();
 const purchasePage = new PurchasePage();
 
@@ -14,6 +14,9 @@ Given("I open the purchase request page", () => {
   purchasePage.openPurchaseDetailsPage();
 });
 When("I fill in all fields and submit", () => {
+  //const numberOfOffers = 3; // how many to create
+
+  //for (let i = 0; i < numberOfOffers; i++) {
   purchasePage.openSupplierOffersTab();
   purchasePage.createSupplierOffer();
 });

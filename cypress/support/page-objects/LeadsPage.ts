@@ -1,3 +1,5 @@
+import { getRandomValues } from "crypto";
+
 const LeadsPageElements = {
   leadsPage: 'a[href="/admin/leads"]',
   tabs: ".ant-col.ant-col-24.css-rrh4gt",
@@ -10,7 +12,7 @@ const LeadsPageElements = {
   offerNumberField: "#offerNumber",
   emlFileUpload: "#emailFile",
   attachmentUpload: "#file",
-  attachmentType: "#rc_select_4",
+  attachmentType: ".ant-select-selection-search-input",
   supplierCard: ".ant-col.ant-col-24.styles_main__VEyp6.css-rrh4gt",
   generalIcon: ".ant-btn-icon",
   checkmarkToSubmit:
@@ -18,6 +20,7 @@ const LeadsPageElements = {
   leadsOpenEye: ".ant-table-cell-fix-right > .ant-btn > .ant-btn-icon",
   itemSku: "#sku",
   leadStatus: 'li[role="menuitem"]',
+  clientReqNumber: "#clientRequestNumber",
 };
 class LeadsPage {
   openLeadsPage() {
@@ -42,15 +45,21 @@ class LeadsPage {
     cy.get(LeadsPageElements.emlFileUpload).attachFile("EmlFileAutotest.eml");
     cy.get(LeadsPageElements.clientDropdown)
       .should("be.visible")
-      .type("Client for the Purchase{enter}");
-    cy.get(LeadsPageElements.contactPersonDropdown).type(
-      "Purchase Contact Person{enter}"
-    );
+      .type("Client for the Purchase");
+    cy.contains("Client for the Purchase").click();
+    cy.get(LeadsPageElements.contactPersonDropdown)
+      .should("be.visible")
+      .type("Purchase Contact Person");
+    cy.contains("Purchase Contact Person").click();
+    cy.get(LeadsPageElements.clientReqNumber).type("req_55");
     cy.get(LeadsPageElements.brandDropdown).type(
       "Brand For The Purchase{enter}"
     );
     cy.get(LeadsPageElements.checkmarkToSubmit).eq(0).click();
-    cy.get(LeadsPageElements.attachmentType).type("Option 1{enter}");
+    cy.get(LeadsPageElements.attachmentType)
+      .eq(5)
+      .click()
+      .type("Option 1{enter}");
     cy.get(LeadsPageElements.attachmentUpload).attachFile("AutomatedFile.pdf");
     cy.get(LeadsPageElements.checkmarkToSubmit).eq(1).click();
     cy.get(LeadsPageElements.addBtn).scrollIntoView().click();

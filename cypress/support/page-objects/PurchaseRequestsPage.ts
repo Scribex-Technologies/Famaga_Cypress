@@ -4,14 +4,14 @@ const PurchasePageElements = {
   purchasesPage: 'a[href="/admin/purchase-request"]',
   tabs: ".ant-col.ant-col-24.css-rrh4gt",
   btn: 'button[type="button"]',
-  addBtn: '[style="row-gap: 20px;"] > .ant-col > .ant-row > .ant-btn-primary',
+  addBtn: ".ant-row > .ant-btn-primary",
   supplierDropdown: "#supplierId",
   sourceDropdown: "#source",
   contactPersonDropdown: "#contactPersonId",
   offerNumberField: "#offerNumber",
   emlFileUpload: "#emailFile",
   attachmentUpload: "#file",
-  attachmentType: "#rc_select_4",
+  attachmentType: ".ant-select-selection-search-input",
   supplierCard: ".ant-col.ant-col-24.styles_main__VEyp6.css-rrh4gt",
   generalIcon: ".ant-btn-icon",
   attachmentTypeSubmitBtn:
@@ -98,16 +98,19 @@ class PurchasePage {
     cy.get(PurchasePageElements.itemThreeDots).click();
     cy.get(PurchasePageElements.itemDotMenu).contains("Upload File").click();
     cy.get(PurchasePageElements.itemUploadFIle).attachFile("AutomatedFile.pdf");
-    cy.get(PurchasePageElements.attachmentType).type("Option 1{enter}");
+    cy.get(PurchasePageElements.attachmentType)
+      .eq(4)
+      .click()
+      .type("Option 1{enter}");
     cy.get(PurchasePageElements.attachmentTypeSubmitBtn).click();
     cy.get(PurchasePageElements.addBtn).click();
   }
   addSubstitute() {
-    cy.get(PurchasePageElements.itemThreeDots).click();
+    cy.get(PurchasePageElements.itemThreeDots).should("be.visible").click();
     cy.get(PurchasePageElements.itemDotMenu).contains("Add Substitute").click();
   }
   addAlternative() {
-    cy.get(PurchasePageElements.itemThreeDots).click();
+    cy.get(PurchasePageElements.itemThreeDots).should("be.visible").click();
     cy.get(PurchasePageElements.itemDotMenu)
       .contains("Add Alternative")
       .click();
@@ -131,22 +134,26 @@ class PurchasePage {
   }
   createSupplierOffer() {
     cy.get(PurchasePageElements.btn).contains("Add New").click();
-    cy.get(PurchasePageElements.emlFileUpload).attachFile(
-      "EmlFileAutotest.eml"
-    );
-    cy.get(PurchasePageElements.supplierDropdown).type(
-      "Purchase Supplier{enter}"
-    );
-    cy.get(PurchasePageElements.contactPersonDropdown).type(
-      "Purchase Contact{enter}"
-    );
+    cy.get(PurchasePageElements.supplierDropdown)
+      .should("be.visible")
+      .type("Purchase Supplier{enter}");
+    cy.get(PurchasePageElements.contactPersonDropdown)
+      .should("be.visible")
+      .type("Purchase Contact Person{enter}");
     cy.get(PurchasePageElements.sourceDropdown).type("Email{enter}");
     cy.get(PurchasePageElements.offerNumberField).type("AutoTest-1233");
     cy.get(PurchasePageElements.attachmentUpload).attachFile(
       "AutomatedFile.pdf"
     );
-    cy.get(PurchasePageElements.attachmentType).type("Option 1{enter}");
+    cy.get(PurchasePageElements.attachmentType)
+      .eq(4)
+      .click()
+      .type("Option 1{enter}");
     cy.get(PurchasePageElements.attachmentTypeSubmitBtn).click();
+    cy.get(PurchasePageElements.emlFileUpload).attachFile(
+      "EmlFileAutotest.eml"
+    );
+    cy.wait(1000);
     cy.get(PurchasePageElements.addBtn).click();
   } //update
   addLeadWeight() {
@@ -177,10 +184,9 @@ class PurchasePage {
     cy.get("body").click(0, 0).wait(1000);
   }
   addItemToTheTable(item: string) {
-    cy.get(PurchasePageElements.addRowBtn).scrollIntoView().click();
-    cy.get(PurchasePageElements.itemSku)
-      .type(item + "{enter}")
-      .wait(1000);
+    cy.get(PurchasePageElements.addRowBtn).scrollIntoView().wait(1000).click();
+    cy.get(PurchasePageElements.itemSku).should("be.visible").type(item);
+    cy.contains(item).click().wait(1000);
   }
   deleteSupplierOffer() {
     cy.get(PurchasePageElements.supplierCard)
