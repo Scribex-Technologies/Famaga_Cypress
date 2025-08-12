@@ -18,7 +18,7 @@ const generalTexts = {
     "The link was already used, please request a new one.",
   mainEmail: "tatevik.harutyunyan@scribex.io",
   mainPassword: "Scribex.5555",
-  notExistingEmail: "tat@mer.io",
+  notExistingEmail: "tatevik@mer.io",
   invalidEmail: "tate.com",
   expiredLinkScreenText: "Invalid or Expired Link",
   clientSuccessFulMsg: "The client was successfully created.",
@@ -39,5 +39,8 @@ const generalTexts = {
   markAvailableMsg: "Item was successfully marked as Available.",
   item1: "Offer Item",
   item2: "Supplier Item",
+  supplierOfferPublishedMsg: "Supplier Offer was successfully published.",
+  purchaseRequestStatusChangeMsg:
+    "The purchase request status was successfully changed.",
 };
 export default generalTexts;

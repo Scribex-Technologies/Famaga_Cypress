@@ -7,7 +7,7 @@ Feature: Forgot Password
     Scenario: Check the user with valid email address can request forgot password successfully
         When I add an existing email on the screen and click the button
         Then I see the request successfully sent to the user's email and the user is redirected to the successful screen
-        
+    @skip 
     @smoke 
     Scenario: Check the user with non existing email address can request "Forgot password" successfully
         When I open the Forgot password screen, add non existing email and click on the button

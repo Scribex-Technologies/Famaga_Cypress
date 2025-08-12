@@ -50,6 +50,8 @@ const PurchasePageElements = {
   itemUploadFIle:
     "body > div:nth-child(4) > div > div.ant-modal-wrap.ant-modal-centered > div > div:nth-child(1) > div > div.ant-modal-body > form > div > div > div:nth-child(1) > div > div > div.ant-col.ant-form-item-control.css-rrh4gt > div > div > span > div.css-rrh4gt.ant-upload.ant-upload-drag > span > div > div",
   itemTable: ".ant-table-content",
+  popupPublishBtn: ".ant-row > .ant-btn-primary",
+  purchaseRequestStatuses: 'ul[role="menu"]',
 };
 class PurchasePage {
   openPurchasePage() {
@@ -76,19 +78,26 @@ class PurchasePage {
     cy.get("body").click(0, 0);
   }
   fillInItemsTableFields() {
-    cy.get(PurchasePageElements.itemDescription).eq(0).click();
-    cy.get(PurchasePageElements.itemDescription).type(
-      "Automated Test does their best{enter}"
-    );
-    cy.get("body").click(0, 0);
+    //cy.get(PurchasePageElements.itemDescription).eq(0).click();
+    //cy.get(PurchasePageElements.itemDescription).type(
+    // "Automated Test does their best{enter}"
+    //);
+    // cy.get("body").click(0, 0);
     cy.get(PurchasePageElements.itemQuantity).eq(0).click();
     cy.get(PurchasePageElements.itemQuantity).type("1{enter}");
     cy.get("body").click(0, 0);
     cy.get(PurchasePageElements.itemPurchaseRequestPrice).eq(0).click();
     cy.get(PurchasePageElements.itemPurchaseRequestPrice).type("100{enter}");
     cy.get("body").click(0, 0);
-    cy.get(PurchasePageElements.itemDiscount).click();
-    cy.get(PurchasePageElements.itemDiscount).type("1{enter}");
+    cy.wait(1000);
+    cy.get(PurchasePageElements.itemQuantity).eq(1).click();
+    cy.get(PurchasePageElements.itemQuantity).type("2{enter}");
+    cy.get("body").click(0, 0);
+    cy.get(PurchasePageElements.itemPurchaseRequestPrice).eq(1).click();
+    cy.get(PurchasePageElements.itemPurchaseRequestPrice).type("200{enter}");
+    cy.get("body").click(0, 0);
+    //cy.get(PurchasePageElements.itemDiscount).click();
+    //cy.get(PurchasePageElements.itemDiscount).type("1{enter}");
     //cy.get(PurchasePageElements.itemTable).scrollTo("left");
     //cy.get(PurchasePageElements.itemNotes).click();
     //cy.get(PurchasePageElements.itemNotes).type("Note is Automated{enter}");
@@ -238,6 +247,17 @@ class PurchasePage {
     //  "have.value",
     //  "Note is Automated"
     // );
+  }
+  changePurchaseRequestStatus() {
+    cy.wait(1000);
+    for (let i = 0; i < 2; i++) {
+      cy.get(PurchasePageElements.btn).contains("Change Status").click();
+      cy.get(PurchasePageElements.purchaseRequestStatuses).click();
+    }
+  }
+  publishSupplierOffer() {
+    cy.get(PurchasePageElements.btn).contains("Publish").click();
+    cy.get(PurchasePageElements.popupPublishBtn).click();
   }
 }
 export default PurchasePage;

@@ -14,9 +14,6 @@ Given("I open the purchase request page", () => {
   purchasePage.openPurchaseDetailsPage();
 });
 When("I fill in all fields and submit", () => {
-  //const numberOfOffers = 3; // how many to create
-
-  //for (let i = 0; i < numberOfOffers; i++) {
   purchasePage.openSupplierOffersTab();
   purchasePage.createSupplierOffer();
 });
@@ -45,32 +42,49 @@ Then("I see the items are saved after reload", () => {
   purchasePage.checkItemsAddedToTheTable(generalTexts.item1);
   purchasePage.checkItemsAddedToTheTable(generalTexts.item2);
 });
+
 //Test-4
 When("I fill in items fields on the table", () => {
   purchasePage.openSupplierOffersTab();
   purchasePage.openSupplierOffer();
-  purchasePage.clickAllCheckbox();
   purchasePage.fillInItemsTableFields();
 });
 Then("I see all fields are saved after reload", () => {
   //purchasePage.verifyItemsTableFieldsSaved();
 });
+//Test-5
+When("I publish the Supplier offer", () => {
+  purchasePage.openSupplierOffersTab();
+  purchasePage.publishSupplierOffer();
+});
+Then("I see the offer published and the success message", () => {
+  cy.popupMessageDisplayed(generalTexts.supplierOfferPublishedMsg);
+});
 
-//Test-4
+//Test-6
+When("I change the Supplier offer status", () => {
+  purchasePage.openSupplierOffersTab();
+  purchasePage.changePurchaseRequestStatus();
+});
+Then("I see the status changed and the success message", () => {
+  cy.popupMessageDisplayed(generalTexts.purchaseRequestStatusChangeMsg);
+});
+
+//Test-7
 When("I create items alternative", () => {
   purchasePage.openSupplierOffersTab();
   purchasePage.openSupplierOffer();
   purchasePage.addAlternative();
 });
 Then("I see the alternative is created", () => {});
-//Test-4
+//Test-8
 When("I create substitute", () => {
   purchasePage.openSupplierOffersTab();
   purchasePage.openSupplierOffer();
   purchasePage.addSubstitute();
 });
 Then("I see substitute is created", () => {});
-//Test-5
+//Test-9
 When("I delete the supplier offer", () => {
   purchasePage.openSupplierOffersTab();
   purchasePage.deleteSupplierOffer();

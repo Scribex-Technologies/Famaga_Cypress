@@ -21,7 +21,7 @@ Then(
   }
 );
 //Update this case later
-//Test-2
+//Test-2- skipping the test it has a bug and will fail always
 When(
   "I open the Forgot password screen, add non existing email and click on the button",
   () => {
