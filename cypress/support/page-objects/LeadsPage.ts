@@ -15,7 +15,7 @@ const LeadsPageElements = {
   attachmentType: ".ant-select-selection-search-input",
   supplierCard: ".ant-col.ant-col-24.styles_main__VEyp6.css-rrh4gt",
   generalIcon: ".ant-btn-icon",
-  checkmarkToSubmit:
+  checkMarkToSubmit:
     ".ant-btn.css-rrh4gt.ant-btn-primary.ant-btn-color-primary.ant-btn-variant-solid.ant-btn-icon-only",
   leadsOpenEye: ".ant-table-cell-fix-right > .ant-btn > .ant-btn-icon",
   itemSku: "#sku",
@@ -55,13 +55,13 @@ class LeadsPage {
     cy.get(LeadsPageElements.brandDropdown).type(
       "Brand For The Purchase{enter}"
     );
-    cy.get(LeadsPageElements.checkmarkToSubmit).eq(0).click();
+    cy.get(LeadsPageElements.checkMarkToSubmit).eq(0).click();
     cy.get(LeadsPageElements.attachmentType)
       .eq(5)
       .click()
       .type("Option 1{enter}");
     cy.get(LeadsPageElements.attachmentUpload).attachFile("AutomatedFile.pdf");
-    cy.get(LeadsPageElements.checkmarkToSubmit).eq(1).click();
+    cy.get(LeadsPageElements.checkMarkToSubmit).eq(1).click();
     cy.get(LeadsPageElements.addBtn).scrollIntoView().click();
   }
   addItemToTheTable() {

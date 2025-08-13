@@ -11,7 +11,7 @@ Feature: Purchase Request Page
 Examples:
   | run |
   | 1   |
-@skip        
+
 @smoke
     Scenario: Add shipping information and fee and charges
         When I add a shipping information and fee and charges
@@ -20,7 +20,6 @@ Examples:
     Scenario: Add items to the table
         When I add items to the table
         Then I see the items are saved after reload
-
 @smoke
     Scenario: Fill in tables fields
         When I fill in items fields on the table
@@ -29,7 +28,6 @@ Examples:
     Scenario: Publish the Supplier Offer
         When I publish the Supplier offer
         Then I see the offer published and the success message
-@skip
 @smoke
     Scenario: Change the Purchase request status
         When I change the Supplier offer status
@@ -44,6 +42,7 @@ Examples:
     Scenario: Substitute Creation
         When I create substitute
         Then I see substitute is created
+ @skip       
  @smoke
     Scenario: Delete Supplier Offer
         When I delete the supplier offer

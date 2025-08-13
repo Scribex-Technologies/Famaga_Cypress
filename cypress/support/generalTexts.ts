@@ -42,5 +42,6 @@ const generalTexts = {
   supplierOfferPublishedMsg: "Supplier Offer was successfully published.",
   purchaseRequestStatusChangeMsg:
     "The purchase request status was successfully changed.",
+  commercialOfferSuccessMsg: "Commercial Offer was successfully created.",
 };
 export default generalTexts;

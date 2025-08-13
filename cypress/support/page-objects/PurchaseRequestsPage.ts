@@ -52,6 +52,7 @@ const PurchasePageElements = {
   itemTable: ".ant-table-content",
   popupPublishBtn: ".ant-row > .ant-btn-primary",
   purchaseRequestStatuses: 'ul[role="menu"]',
+  parentDeal: "a.underline-button",
 };
 class PurchasePage {
   openPurchasePage() {
@@ -219,7 +220,7 @@ class PurchasePage {
   }
   changePurchaseRequestStatus() {
     cy.wait(1000);
-    for (let i = 0; i < 2; i++) {
+    for (let i = 0; i < 3; i++) {
       cy.get(PurchasePageElements.btn).contains("Change Status").click();
       cy.get(PurchasePageElements.purchaseRequestStatuses).click();
     }
@@ -264,6 +265,9 @@ class PurchasePage {
       .eq(1)
       .type("200{enter}");
     cy.get("body").click(0, 0);
+  }
+  openParentDeal() {
+    cy.get(PurchasePageElements.parentDeal).contains("Parent Deal").click();
   }
 }
 export default PurchasePage;
