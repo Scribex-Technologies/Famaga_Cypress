@@ -32,8 +32,8 @@ const PurchasePageElements = {
   addRowBtn:
     "#root > div > div > div > div > div.ant-col.styles_content_bar__XHMPB.css-rrh4gt > div > div:nth-child(2) > div > div:nth-child(2) > div.ant-row.css-rrh4gt > button",
   itemDescription: "#description",
-  itemQuantity: "#quantity",
-  itemPurchaseRequestPrice: "#purchasePricePerPiece",
+  itemQuantity: "//*[@id='quantity']",
+  itemPurchaseRequestPrice: '//*[@id="purchasePricePerPiece"]',
   itemDiscount: "#discount",
   itemShippingCost: "#shippingCost",
   itemNotes: "#notes",
@@ -76,32 +76,6 @@ class PurchasePage {
       .wait(1000)
       .click();
     cy.get("body").click(0, 0);
-  }
-  fillInItemsTableFields() {
-    //cy.get(PurchasePageElements.itemDescription).eq(0).click();
-    //cy.get(PurchasePageElements.itemDescription).type(
-    // "Automated Test does their best{enter}"
-    //);
-    // cy.get("body").click(0, 0);
-    cy.get(PurchasePageElements.itemQuantity).eq(0).click();
-    cy.get(PurchasePageElements.itemQuantity).type("1{enter}");
-    cy.get("body").click(0, 0);
-    cy.get(PurchasePageElements.itemPurchaseRequestPrice).eq(0).click();
-    cy.get(PurchasePageElements.itemPurchaseRequestPrice).type("100{enter}");
-    cy.get("body").click(0, 0);
-    cy.wait(1000);
-    cy.get(PurchasePageElements.itemQuantity).eq(1).click();
-    cy.get(PurchasePageElements.itemQuantity).type("2{enter}");
-    cy.get("body").click(0, 0);
-    cy.get(PurchasePageElements.itemPurchaseRequestPrice).eq(1).click();
-    cy.get(PurchasePageElements.itemPurchaseRequestPrice).type("200{enter}");
-    cy.get("body").click(0, 0);
-    //cy.get(PurchasePageElements.itemDiscount).click();
-    //cy.get(PurchasePageElements.itemDiscount).type("1{enter}");
-    //cy.get(PurchasePageElements.itemTable).scrollTo("left");
-    //cy.get(PurchasePageElements.itemNotes).click();
-    //cy.get(PurchasePageElements.itemNotes).type("Note is Automated{enter}");
-    //cy.get("body").click(0, 0);
   }
   uploadFileToItem() {
     cy.get(PurchasePageElements.itemThreeDots).click();
@@ -192,11 +166,6 @@ class PurchasePage {
     cy.get(PurchasePageElements.minOrderFee).clear().type("10{enter}");
     cy.get("body").click(0, 0).wait(1000);
   }
-  addItemToTheTable(item: string) {
-    cy.get(PurchasePageElements.addRowBtn).scrollIntoView().wait(1000).click();
-    cy.get(PurchasePageElements.itemSku).should("be.visible").type(item);
-    cy.contains(item).click().wait(1000);
-  }
   deleteSupplierOffer() {
     cy.get(PurchasePageElements.supplierCard)
       .first()
@@ -258,6 +227,43 @@ class PurchasePage {
   publishSupplierOffer() {
     cy.get(PurchasePageElements.btn).contains("Publish").click();
     cy.get(PurchasePageElements.popupPublishBtn).click();
+  }
+  addItemToTheTable(item: string) {
+    cy.get(PurchasePageElements.addRowBtn).scrollIntoView().wait(1000).click();
+    cy.get(PurchasePageElements.itemSku).should("be.visible").type(item);
+    cy.contains(item).click().wait(1000);
+  }
+  fillInItemsTableFields() {
+    //cy.get(PurchasePageElements.itemDescription).eq(0).click();
+    //cy.get(PurchasePageElements.itemDescription).type(
+    // "Automated Test does their best{enter}"
+    //);
+    // cy.get("body").click(0, 0);
+    //cy.get(PurchasePageElements.itemDiscount).click();
+    //cy.get(PurchasePageElements.itemDiscount).type("1{enter}");
+    //cy.get(PurchasePageElements.itemTable).scrollTo("left");
+    //cy.get(PurchasePageElements.itemNotes).click();
+    //cy.get(PurchasePageElements.itemNotes).type("Note is Automated{enter}");
+    //cy.get("body").click(0, 0);
+    cy.xpath(PurchasePageElements.itemQuantity).eq(0).click();
+    cy.xpath(PurchasePageElements.itemQuantity).eq(0).type("1{enter}");
+    cy.get("body").click(0, 0);
+    cy.wait(1000);
+    cy.xpath(PurchasePageElements.itemPurchaseRequestPrice).eq(0).click();
+    cy.xpath(PurchasePageElements.itemPurchaseRequestPrice)
+      .eq(0)
+      .type("100{enter}");
+    cy.get("body").click(0, 0);
+    cy.wait(1000);
+    cy.xpath(PurchasePageElements.itemQuantity).eq(1).click();
+    cy.xpath(PurchasePageElements.itemQuantity).eq(1).type("2{enter}");
+    cy.get("body").click(0, 0);
+    cy.wait(1000);
+    cy.xpath(PurchasePageElements.itemPurchaseRequestPrice).eq(1).click();
+    cy.xpath(PurchasePageElements.itemPurchaseRequestPrice)
+      .eq(1)
+      .type("200{enter}");
+    cy.get("body").click(0, 0);
   }
 }
 export default PurchasePage;
