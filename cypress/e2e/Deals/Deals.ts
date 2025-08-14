@@ -20,5 +20,60 @@ When("I open Commercial offer tab and add a new offer", () => {
   dealsPage.addCommercialOffer();
 });
 Then("I see the commercial offer is successfully added", () => {
-  //cy.popupMessageDisplayed(generalTexts.leadSuccessfulMsg);
+  cy.popupMessageDisplayed(generalTexts.commercialOfferSuccessMsg);
+});
+
+//Test-2
+When("I click actions button and generate the Offer", () => {
+  dealsPage.openDealsDetailsPage();
+  dealsPage.openCommercialOfferTab();
+  dealsPage.chooseAction("draft", "Generate Commercial Offer");
+});
+Then("I see the commercial offer Pdf is successfully generated", () => {
+  cy.popupMessageDisplayed(generalTexts.commercialOfferPdfGeneratedMsg);
+});
+
+//Test-3
+When("I click actions button and choose the Send Offer option", () => {
+  dealsPage.openDealsDetailsPage();
+  dealsPage.openCommercialOfferTab();
+  dealsPage.chooseAction("Commercial Offer Generated", "Send Commercial Offer");
+});
+When("I add a contact person and send a commercial offer", () => {
+  cy.sendOffer();
+});
+Then("I see the commercial offer was sent successfully", () => {
+  cy.popupMessageDisplayed(generalTexts.commercialOfferSentMsg);
+});
+
+//Test-3
+When("I click actions button and choose the Request Price option", () => {
+  dealsPage.openDealsDetailsPage();
+  dealsPage.openCommercialOfferTab();
+  dealsPage.chooseAction("Negotiate: First Call", "Request Price Confirmation");
+});
+Then("I see the price requested successfully", () => {
+  cy.popupMessageDisplayed(generalTexts.commercialOfferPriceRequestedMsg);
+});
+
+//Test-4
+When("I open the purchase request tab", () => {
+  dealsPage.openDealsDetailsPage();
+  dealsPage.openPurchase();
+});
+Then("I confirm the Purchase Price", () => {
+  dealsPage.changePurchaseRequestStatus();
+});
+
+//Test-5
+When("I click actions button and choose the Send Pre Invoice option", () => {
+  dealsPage.openDealsDetailsPage();
+  dealsPage.openCommercialOfferTab();
+  dealsPage.chooseAction("Price Confirmed", "Send Pre-Invoice");
+});
+When("I add a contact person and send a Pre Invoice", () => {
+  cy.sendOffer();
+});
+Then("I see the Pre Invoice was sent successfully", () => {
+  cy.popupMessageDisplayed(generalTexts.commercialOfferSentMsg);
 });

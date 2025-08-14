@@ -11,6 +11,7 @@ declare namespace Cypress {
     login(): Chainable<undefined>;
     popupMessageDisplayed(message: string): Chainable<undefined>;
     checkAccessToken(): Chainable<undefined>;
+    sendOffer(): Chainable<undefined>;
     checkAccessTokenIsNotStored(): Chainable<undefined>;
     clickCancelBtn(): Chainable<undefined>;
     clickCrossBtn(): Chainable<undefined>;

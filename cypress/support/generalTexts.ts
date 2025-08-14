@@ -43,5 +43,8 @@ const generalTexts = {
   purchaseRequestStatusChangeMsg:
     "The purchase request status was successfully changed.",
   commercialOfferSuccessMsg: "Commercial Offer was successfully created.",
+  commercialOfferSentMsg: "Commercial Offer was successfully sent.",
+  commercialOfferPriceRequestedMsg: "Requesting price confirmation for offer",
+  commercialOfferPdfGeneratedMsg: "Generating commercial offer for offer ",
 };
 export default generalTexts;

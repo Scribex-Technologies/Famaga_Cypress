@@ -42,6 +42,8 @@ const CommandsElements = {
   editTrashIconsOnImage: "span > .buildhero-UnstyledButton-root",
   image: ".buildhero-Avatar-root img.buildhero-Avatar-image",
   titleOnSiteSettings: "#title",
+  contactPerson: "#contactPersonId",
+  btn: 'button[type="button"]',
 };
 Cypress.Commands.add("login", () => {
   cy.session("login", () => {
@@ -98,16 +100,16 @@ Cypress.Commands.add("checkUpdatedData", (text: string) => {
 Cypress.Commands.add("checkAccessTokenIsNotStored", () => {
   cy.get(CommandsElements.signInBtn).should("be.visible");
   cy.window().then((win) => {
-    const accessToken = win.localStorage.getItem("buildhero-access-token");
-    const refreshToken = win.localStorage.getItem("buildhero-refresh-token");
+    const accessToken = win.localStorage.getItem("access-token");
+    const refreshToken = win.localStorage.getItem("refresh-token");
     expect(accessToken).to.be.null;
     expect(refreshToken).to.be.null;
   });
 });
 Cypress.Commands.add("checkAccessToken", () => {
   cy.window().then((win) => {
-    const accessToken = win.localStorage.getItem("buildhero-access-token");
-    const refreshToken = win.localStorage.getItem("buildhero-refresh-token");
+    const accessToken = win.localStorage.getItem("access-token");
+    const refreshToken = win.localStorage.getItem("refresh-token");
     if (accessToken) {
       cy.log("Access Token:", accessToken);
       cy.log("Refresh Token:", refreshToken);
@@ -153,6 +155,11 @@ Cypress.Commands.add("clickTrashIconOnImage", () => {
       cy.log("No matching elements found");
     }
   });
+});
+Cypress.Commands.add("sendOffer", () => {
+  cy.get(CommandsElements.contactPerson).type("Purchase Contact Person{enter}");
+  cy.wait(1000);
+  cy.get(CommandsElements.btn).contains("Send").scrollIntoView().click();
 });
 Cypress.Commands.add("checkTheUpdatedImage", (imageType) => {
   cy.get(CommandsElements.image)
