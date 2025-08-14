@@ -18,7 +18,7 @@ const generalTexts = {
     "The link was already used, please request a new one.",
   mainEmail: "tatevik.harutyunyan@scribex.io",
   mainPassword: "Scribex.5555",
-  notExistingEmail: "tat@mer.io",
+  notExistingEmail: "tatevik@mer.io",
   invalidEmail: "tate.com",
   expiredLinkScreenText: "Invalid or Expired Link",
   clientSuccessFulMsg: "The client was successfully created.",
@@ -27,5 +27,21 @@ const generalTexts = {
   contactPersonUpdatedMsg: "The contact person was successfully updated.",
   contactPersonDeletedMsg: "The contact person was successfully deleted.",
   supplierSuccessfulMsg: "Supplier was successfully created.",
+  successfulSupplierOfferCreationMsg:
+    "Supplier Offer was successfully created.",
+  deletionSupplierOfferMs: "Supplier Offer was successfully deleted.",
+  leadSuccessfulMsg: "The Lead was successfully added.",
+  leadStatusProcessingMSg:
+    "Lead status was successfully changed to processing.",
+  leadConvertStatus: "Converted",
+  leadStatusConvertedMSg: "Lead status was successfully changed to converted.",
+  markedUnavailableMsg: "Item was successfully marked as Not Available.",
+  markAvailableMsg: "Item was successfully marked as Available.",
+  item1: "Offer Item",
+  item2: "Supplier Item",
+  supplierOfferPublishedMsg: "Supplier Offer was successfully published.",
+  purchaseRequestStatusChangeMsg:
+    "The purchase request status was successfully changed.",
+  commercialOfferSuccessMsg: "Commercial Offer was successfully created.",
 };
 export default generalTexts;

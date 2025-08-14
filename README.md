@@ -1,18 +1,18 @@
 # Famaga-Cypress
 
-# This is a test project with end-to-end tests for the EnFuego project
+# This is a test project with end-to-end tests for the Famaga project
 
 # tests are added in BDD - Cucumber/ with Typescript
 
 # Test runs examples
 
-# Single spec running in a headless mode in Chrome browser- yarn cypress run --spec "cypress/e2e/Signin/Signin.feature" --headless --browser chrome
+# Single spec running in a headless mode in Chrome browser- yarn cypress run --spec "cypress/e2e/SignIn/SignIn.feature" --headless --browser chrome
 
 # All tests running in a headless mode in chrome browser- yarn cypress run --headless --browser chrome
 
 # All tests running in a headed mode in chrome browser - yarn cypress run --headed --browser chrome
 
-# Single spec running in a headed mode in chrome browser - yarn cypress run --spec "cypress/e2e/Signin/Signin.feature" --headed --browser chrome
+# Single spec running in a headed mode in chrome browser - yarn cypress run --spec "cypress/e2e/SignIn/SignIn.feature" --headed --browser chrome
 
 # Cypress latest install - yarn add -D cypress@latest
 
