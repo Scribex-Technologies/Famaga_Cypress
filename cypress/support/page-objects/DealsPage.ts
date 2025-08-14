@@ -74,6 +74,10 @@ class DealsPage {
     cy.get(DealsPageElements.btn).contains("Actions").eq(0).click();
     cy.get(DealsPageElements.actionsMenu).contains("Negotiate").click();
   }
+  copyOffer() {
+    cy.get(DealsPageElements.btn).contains("Create a Copy").eq(0).click();
+    cy.wait(1000);
+  }
   openPurchase() {
     cy.contains("Purchase Request");
     cy.contains("tr", "Price Confirmation Requested").within(() => {

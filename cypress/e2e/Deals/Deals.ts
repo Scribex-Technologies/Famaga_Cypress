@@ -24,6 +24,16 @@ Then("I see the commercial offer is successfully added", () => {
 });
 
 //Test-2
+When("I open Commercial offer tab and copy offer", () => {
+  dealsPage.openDealsDetailsPage();
+  dealsPage.openCommercialOfferTab();
+  dealsPage.copyOffer();
+});
+Then("I see the commercial offer is copied successfully", () => {
+  //cy.popupMessageDisplayed(generalTexts.commercialOfferSuccessMsg);
+});
+
+//test-3
 When("I click actions button and generate the Offer", () => {
   dealsPage.openDealsDetailsPage();
   dealsPage.openCommercialOfferTab();
@@ -33,7 +43,7 @@ Then("I see the commercial offer Pdf is successfully generated", () => {
   cy.popupMessageDisplayed(generalTexts.commercialOfferPdfGeneratedMsg);
 });
 
-//Test-3
+//Test-4
 When("I click actions button and choose the Send Offer option", () => {
   dealsPage.openDealsDetailsPage();
   dealsPage.openCommercialOfferTab();
@@ -46,7 +56,7 @@ Then("I see the commercial offer was sent successfully", () => {
   cy.popupMessageDisplayed(generalTexts.commercialOfferSentMsg);
 });
 
-//Test-3
+//Test-5
 When("I click actions button and choose the Request Price option", () => {
   dealsPage.openDealsDetailsPage();
   dealsPage.openCommercialOfferTab();
@@ -56,7 +66,7 @@ Then("I see the price requested successfully", () => {
   cy.popupMessageDisplayed(generalTexts.commercialOfferPriceRequestedMsg);
 });
 
-//Test-4
+//Test-6
 When("I open the purchase request tab", () => {
   dealsPage.openDealsDetailsPage();
   dealsPage.openPurchase();
@@ -65,7 +75,7 @@ Then("I confirm the Purchase Price", () => {
   dealsPage.changePurchaseRequestStatus();
 });
 
-//Test-5
+//Test-7
 When("I click actions button and choose the Send Pre Invoice option", () => {
   dealsPage.openDealsDetailsPage();
   dealsPage.openCommercialOfferTab();
