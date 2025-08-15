@@ -21,13 +21,36 @@ const LeadsPageElements = {
   itemSku: "#sku",
   leadStatus: 'li[role="menuitem"]',
   clientReqNumber: "#clientRequestNumber",
+  mainTableRows: "tr.ant-table-row",
 };
 class LeadsPage {
   openLeadsPage() {
     cy.get(LeadsPageElements.leadsPage).click();
   }
   openLeadsDetailsPage() {
-    cy.get(LeadsPageElements.leadsOpenEye).eq(0).click();
+    cy.get(LeadsPageElements.mainTableRows)
+      .filter((_, row) => {
+        const cells = row.querySelectorAll("td");
+        const statusText = cells[6]?.innerText
+          .replace(/\s+/g, " ")
+          .trim()
+          .toLowerCase(); // 7th cell for status
+        return statusText.includes("manual review");
+      })
+      .first() // Take only the first match
+      .then(($row) => {
+        if ($row.length) {
+          cy.wrap($row)
+            .find("button") // Eye icon button
+            .first()
+            .scrollIntoView()
+            .click({ force: true });
+
+          cy.log('Opened record with status "Manual review"');
+        } else {
+          cy.log('No record found with status "Manual review"');
+        }
+      });
   }
   openCommunicationTab() {
     cy.get(LeadsPageElements.tabs).contains("Communication Hub").click();

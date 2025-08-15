@@ -1,7 +1,7 @@
 //for future implementation
-const uuid = () => Cypress._.random(0, 1e6);
+const uuid = () => Cypress._.random(0, 9999);
 const id = uuid();
-const userName = `Auto Generated Record${id}`;
+const userName = `Cypress Unicorn|${id}`;
 
 const generalTexts = {
   invalidCredentialsMsg: "Email or password is invalid!",

@@ -9,9 +9,14 @@ Feature: Client Page
         Then I see the Client successfully added
 
     @smoke
-    Scenario: Add a new Contact Person to the Client
+    Scenario Outline: Add a new Contact Person to the Client
         When I fill in all contact person's fields and submit
         Then I see the contact person successfully added
+    
+    Examples:
+    | run |
+    | 1   |
+    | 2   | 
 
     @smoke
     Scenario: Edit contact info of the Client

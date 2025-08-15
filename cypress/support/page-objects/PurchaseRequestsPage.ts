@@ -51,15 +51,43 @@ const PurchasePageElements = {
     "body > div:nth-child(4) > div > div.ant-modal-wrap.ant-modal-centered > div > div:nth-child(1) > div > div.ant-modal-body > form > div > div > div:nth-child(1) > div > div > div.ant-col.ant-form-item-control.css-rrh4gt > div > div > span > div.css-rrh4gt.ant-upload.ant-upload-drag > span > div > div",
   itemTable: ".ant-table-content",
   popupPublishBtn: ".ant-row > .ant-btn-primary",
-  purchaseRequestStatuses: 'ul[role="menu"]',
   parentDeal: "a.underline-button",
+  statusMenuItem: "li[role='menuitem']",
+  currentStatus:
+    "[style='margin-left: -4px; margin-right: -4px;'] > :nth-child(1) > .ant-row",
+  mainTableRows: "tr.ant-table-row",
+  supplierCardPrice:
+    "span.ant-typography.font-size-30.font-weight-700.css-rrh4gt",
 };
 class PurchasePage {
   openPurchasePage() {
     cy.get(PurchasePageElements.purchasesPage).click();
   }
   openPurchaseDetailsPage() {
-    cy.get(PurchasePageElements.purchaseOpenEye).eq(0).click();
+    cy.get(PurchasePageElements.mainTableRows)
+      .filter((_, row) => {
+        // Normalize the status text
+        const statusText = row
+          .querySelectorAll("td")[8]
+          ?.innerText.replace(/\s+/g, " ")
+          .trim()
+          .toLowerCase();
+        return statusText === "new"; // change this if you want another status
+      })
+      .first()
+      .then(($row) => {
+        if ($row.length) {
+          cy.wrap($row)
+            .find("td")
+            .last()
+            .find("button")
+            .scrollIntoView()
+            .click();
+          cy.log('Opened details for row with status "New"');
+        } else {
+          cy.log('No table row found with status "New"');
+        }
+      });
   }
   openSupplierOffersTab() {
     cy.get(PurchasePageElements.tabs).contains("Supplier Offers").click();
@@ -168,12 +196,24 @@ class PurchasePage {
     cy.get("body").click(0, 0).wait(1000);
   }
   deleteSupplierOffer() {
-    cy.get(PurchasePageElements.supplierCard)
-      .first()
-      .find(PurchasePageElements.generalIcon)
-      .eq(1)
-      .click();
-    cy.get(PurchasePageElements.btn).contains("Delete").click();
+    cy.get(PurchasePageElements.supplierCard).each(($card) => {
+      const hasNA =
+        $card
+          .find("span.ant-typography.font-size-30.font-weight-700.css-rrh4gt")
+          .text()
+          .trim() === "N/A";
+
+      if (hasNA) {
+        cy.wrap($card).find(PurchasePageElements.generalIcon).eq(1).click();
+
+        cy.get(PurchasePageElements.btn).contains("Delete").click();
+
+        cy.log("Deleted first supplier card with N/A");
+
+        // stop looping further
+        return false;
+      }
+    });
   }
   openSupplierOffer() {
     cy.get(PurchasePageElements.btn).contains("View Offer").click();
@@ -219,12 +259,21 @@ class PurchasePage {
     // );
   }
   changePurchaseRequestStatus() {
-    cy.wait(1000);
-    for (let i = 0; i < 3; i++) {
+    const clicks = 3; // number of status changes needed
+    const waitTime = 500; // milliseconds to wait between clicks
+
+    for (let i = 0; i < clicks; i++) {
       cy.get(PurchasePageElements.btn).contains("Change Status").click();
-      cy.get(PurchasePageElements.purchaseRequestStatuses).click();
+
+      cy.get(PurchasePageElements.statusMenuItem).click();
+
+      cy.wait(waitTime); // wait between clicks
     }
+
+    // Verify final status
+    cy.get(PurchasePageElements.currentStatus).contains("Sourced");
   }
+
   publishSupplierOffer() {
     cy.get(PurchasePageElements.btn).contains("Publish").click();
     cy.get(PurchasePageElements.popupPublishBtn).click();

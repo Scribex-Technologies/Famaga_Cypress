@@ -11,6 +11,7 @@ Feature: Purchase Request Page
 Examples:
   | run |
   | 1   |
+  | 2   | 
 
 @smoke
     Scenario: Add shipping information and fee and charges
@@ -42,7 +43,7 @@ Examples:
     Scenario: Substitute Creation
         When I create substitute
         Then I see substitute is created
- @skip       
+               
  @smoke
     Scenario: Delete Supplier Offer
         When I delete the supplier offer

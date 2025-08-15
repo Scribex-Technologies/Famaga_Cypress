@@ -1,6 +1,6 @@
 const ClientPageElements = {
   btn: 'button[type="button"]',
-  addBtn: '[style="row-gap: 20px;"] > .ant-col > .ant-row > .ant-btn-primary',
+  addBtn: ".ant-row > .ant-btn-primary",
   clientName: "#name",
   clientCountry: "#mainCountryId",
   clientType: "#clientTypeId",
@@ -32,17 +32,19 @@ class ClientPage {
 
   addNewClient(randomName: string) {
     cy.get(ClientPageElements.btn).contains("Add New").click();
-    cy.get(ClientPageElements.clientName).type(randomName);
-    cy.get(ClientPageElements.clientType).type("Retail{enter}");
-    cy.get(ClientPageElements.clientCountry).type("Armenia{enter}");
+    cy.get(ClientPageElements.clientName).type(randomName).wait(500);
+    cy.get(ClientPageElements.clientType).type("Retail{enter}").wait(500);
+    cy.get(ClientPageElements.clientCountry).type("Italy{enter}");
     cy.get(ClientPageElements.contactPersonName).type(randomName);
     cy.get(ClientPageElements.contactPersonLanguage).type("Arabic{enter}");
     cy.get(ClientPageElements.contactPersonDepartment).type(randomName);
     cy.get(ClientPageElements.contactPersonRole).type(randomName);
-    cy.get(ClientPageElements.contactPersonType).type("Instagram{enter}");
-    cy.get(ClientPageElements.contactPersonValue).type("@tate");
+    cy.get(ClientPageElements.contactPersonType).type("Email{enter}");
+    cy.get(ClientPageElements.contactPersonValue).type(
+      "tatevik.harutyunyan@scribex.io"
+    );
     cy.get(ClientPageElements.contactTypeSubmitBtn).click();
-    cy.get(ClientPageElements.addBtn).click();
+    cy.get(ClientPageElements.addBtn).contains(/^Add$/).click();
   }
   addNewContactPerson(randomName: string) {
     cy.get(ClientPageElements.btn).contains("Add New").click();

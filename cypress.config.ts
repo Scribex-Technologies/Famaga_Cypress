@@ -14,7 +14,7 @@ export default defineConfig({
     stageEnv: "comingsoon",
   },
   e2e: {
-    specPattern: ["cypress/e2e/**/*.{feature,features}"],
+    specPattern: "cypress/e2e/**/*.feature",
     baseUrl: "https://dev-famaga-web.scribex.io/",
     supportFile: "cypress/support/e2e.ts",
     setupNodeEvents(on, config) {

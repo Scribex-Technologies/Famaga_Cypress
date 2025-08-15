@@ -9,9 +9,14 @@ Feature: Suppliers Page
         Then I see the Supplier successfully added
 
     @smoke
-    Scenario: Add a new Contact Person to the Supplier
+    Scenario Outline: Add a new Contact Person to the Supplier
         When I fill in all contact person's fields and submit
         Then I see the contact person successfully added
+
+    Examples:
+    | run |
+    | 1   |
+    | 2   | 
 
     @smoke
     Scenario: Edit Contact Person of the Supplier
