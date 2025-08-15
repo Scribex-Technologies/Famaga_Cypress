@@ -3,7 +3,7 @@ import browserify from "@badeball/cypress-cucumber-preprocessor/browserify";
 import { defineConfig } from "cypress";
 
 export default defineConfig({
-  projectId: "4g1xhq",
+  projectId: "4ex5co",
   chromeWebSecurity: false,
   viewportWidth: 1280,
   viewportHeight: 720,

@@ -1,6 +1,7 @@
 const ClientPageElements = {
   btn: 'button[type="button"]',
-  addBtn: ".ant-row > .ant-btn-primary",
+  addNewBtn: ".ant-row > .ant-btn-primary",
+  addBtn: "[style='row-gap: 20px;'] > .ant-col > .ant-row > .ant-btn-primary",
   clientName: "#name",
   clientCountry: "#mainCountryId",
   clientType: "#clientTypeId",
@@ -33,8 +34,8 @@ class ClientPage {
   addNewClient(randomName: string) {
     cy.get(ClientPageElements.btn).contains("Add New").click();
     cy.get(ClientPageElements.clientName).type(randomName).wait(500);
-    cy.get(ClientPageElements.clientType).type("Retail{enter}").wait(500);
-    cy.get(ClientPageElements.clientCountry).type("Italy{enter}");
+    cy.get(ClientPageElements.clientType).type("Corporate{enter}").wait(1000);
+    cy.get(ClientPageElements.clientCountry).type("Germany{enter}").wait(1000);
     cy.get(ClientPageElements.contactPersonName).type(randomName);
     cy.get(ClientPageElements.contactPersonLanguage).type("Arabic{enter}");
     cy.get(ClientPageElements.contactPersonDepartment).type(randomName);
@@ -46,6 +47,7 @@ class ClientPage {
     cy.get(ClientPageElements.contactTypeSubmitBtn).click();
     cy.get(ClientPageElements.addBtn).contains(/^Add$/).click();
   }
+
   addNewContactPerson(randomName: string) {
     cy.get(ClientPageElements.btn).contains("Add New").click();
     cy.get(ClientPageElements.contactPersonName).type(randomName);
@@ -76,7 +78,7 @@ class ClientPage {
     cy.get(ClientPageElements.contactPersonType).type("Email{enter}");
     cy.get(ClientPageElements.contactPersonValue).type("client@as.io");
     cy.get(ClientPageElements.contactTypeSubmitBtn).click();
-    cy.get(ClientPageElements.addBtn).click();
+    cy.get(ClientPageElements.addNewBtn).click();
   }
   editContactInfo() {
     cy.get(ClientPageElements.contactInfoEditBtn).click();
@@ -104,7 +106,7 @@ class ClientPage {
     cy.get(ClientPageElements.contactPersonType).type("Email{enter}");
     cy.get(ClientPageElements.contactPersonValue).type("client@as.io");
     cy.get(ClientPageElements.contactTypeSubmitBtn).click();
-    cy.get(ClientPageElements.addBtn).click();
+    cy.get(ClientPageElements.addNewBtn).click();
   }
   editContactPerson() {
     cy.get(ClientPageElements.contactPersonEditIcon).click();
@@ -114,7 +116,7 @@ class ClientPage {
     cy.get(ClientPageElements.contactPersonType).type("Facebook{enter}");
     cy.get(ClientPageElements.contactPersonValue).type("@tate");
     cy.get(ClientPageElements.contactTypeSubmitBtn).click();
-    cy.get(ClientPageElements.addBtn).click();
+    cy.get(ClientPageElements.addNewBtn).click();
   }
   deleteContactPerson() {
     cy.get(ClientPageElements.ContactPersonDeleteIcon).click();
