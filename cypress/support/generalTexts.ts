@@ -46,5 +46,6 @@ const generalTexts = {
   commercialOfferSentMsg: "Commercial Offer was successfully sent.",
   commercialOfferPriceRequestedMsg: "Requesting price confirmation for offer",
   commercialOfferPdfGeneratedMsg: "Generating commercial offer for offer ",
+  orderStatusChangeMsg: "The order status was successfully changed.",
 };
 export default generalTexts;
