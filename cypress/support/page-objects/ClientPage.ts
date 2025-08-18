@@ -21,6 +21,8 @@ const ClientPageElements = {
     ":nth-child(1) > .margin-b-20 > [style='row-gap: 4px;'] > :nth-child(1) > .ant-row-space-between > :nth-child(2) > .ant-row > :nth-child(1) > .ant-btn-icon > svg",
   mainLanguage: "#mainLanguageId",
   clientsPage: 'a[href="/admin/clients"]',
+  antDropDown: ".ant-select-dropdown",
+  antSelectItem: ".ant-select-item",
 };
 
 class ClientPage {
@@ -33,19 +35,46 @@ class ClientPage {
 
   addNewClient(randomName: string) {
     cy.get(ClientPageElements.btn).contains("Add New").click();
-    cy.get(ClientPageElements.clientName).type(randomName).wait(500);
-    cy.get(ClientPageElements.clientType).type("Corporate{enter}").wait(1000);
-    cy.get(ClientPageElements.clientCountry).type("Germany{enter}").wait(1000);
-    cy.get(ClientPageElements.contactPersonName).type(randomName);
-    cy.get(ClientPageElements.contactPersonLanguage).type("Arabic{enter}");
+    cy.get(ClientPageElements.clientName).type(randomName);
+    cy.get(ClientPageElements.clientType)
+      .should("be.visible")
+      .type("Corporate");
+    cy.get(ClientPageElements.antDropDown).should("be.visible");
+    cy.get(ClientPageElements.antDropDown)
+      .find(ClientPageElements.antSelectItem)
+      .contains("Corporate")
+      .click();
+    cy.get(ClientPageElements.clientCountry).should("be.visible").type("Italy");
+    cy.get(ClientPageElements.antDropDown).should("be.visible");
+    cy.get(ClientPageElements.antDropDown)
+      .find(ClientPageElements.antSelectItem)
+      .contains("Italy")
+      .should("be.visible")
+      .click();
+    // Contact person info
+    cy.get(ClientPageElements.contactPersonName)
+      .should("be.visible")
+      .type(randomName);
+    cy.get(ClientPageElements.contactPersonLanguage)
+      .should("be.visible")
+      .type("Arabic");
+    cy.contains("Arabic").click();
     cy.get(ClientPageElements.contactPersonDepartment).type(randomName);
     cy.get(ClientPageElements.contactPersonRole).type(randomName);
-    cy.get(ClientPageElements.contactPersonType).type("Email{enter}");
+    cy.get(ClientPageElements.contactPersonType)
+      .should("be.visible")
+      .type("Email");
+    cy.contains("Email").click();
     cy.get(ClientPageElements.contactPersonValue).type(
       "tatevik.harutyunyan@scribex.io"
     );
     cy.get(ClientPageElements.contactTypeSubmitBtn).click();
+
+    // Save client
     cy.get(ClientPageElements.addBtn).contains(/^Add$/).click();
+
+    // Verification: ensure client got created
+    cy.contains(randomName).should("exist");
   }
 
   addNewContactPerson(randomName: string) {

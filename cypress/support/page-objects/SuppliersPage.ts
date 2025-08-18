@@ -23,6 +23,8 @@ const SupplierPageElements = {
     ":nth-child(1) > .margin-b-20 > [style='row-gap: 4px;'] > :nth-child(1) > .ant-row-space-between > :nth-child(2) > .ant-row > :nth-child(1) > .ant-btn-icon > svg",
   websiteField: "#webSite",
   verifiedCheckbox: ".ant-checkbox-label > .ant-typography",
+  antDropDown: ".ant-select-dropdown",
+  antSelectItem: ".ant-select-item",
 };
 class SupplierPage {
   openSupplierPage() {
@@ -31,17 +33,56 @@ class SupplierPage {
   openSupplierDetailsPage() {
     cy.get(SupplierPageElements.supplierOpenEye).eq(0).click();
   }
-
   addNewSupplier(randomName: string) {
     cy.get(SupplierPageElements.btn).contains("Add New").click();
-    cy.get(SupplierPageElements.supplierName).type(randomName);
-    cy.get(SupplierPageElements.websiteField).type("example.com");
-    cy.get(SupplierPageElements.mainLanguage).type("Arabic{enter}");
-    cy.get(SupplierPageElements.supplierType).type("DISTRIBUTOR{enter}");
-    cy.get(SupplierPageElements.supplierIndustry).type("Fintech{enter}");
-    cy.get(SupplierPageElements.supplierCountry).type("Brazil{enter}");
+    cy.get(SupplierPageElements.supplierName)
+      .should("be.visible")
+      .type(randomName);
+    cy.get(SupplierPageElements.websiteField)
+      .should("be.visible")
+      .type("example.com");
+    // Main Language
+    cy.get(SupplierPageElements.mainLanguage)
+      .should("be.visible")
+      .type("Arabic");
+    cy.get(SupplierPageElements.antDropDown)
+      .should("be.visible")
+      .find(SupplierPageElements.antSelectItem)
+      .contains("Arabic")
+      .should("be.visible")
+      .click();
+    //Supplier Cuuntry
+    cy.get(SupplierPageElements.supplierCountry)
+      .should("be.visible")
+      .type("Brazil");
+    cy.get(SupplierPageElements.antDropDown)
+      .find(SupplierPageElements.antSelectItem)
+      .contains("Brazil")
+      .should("be.visible")
+      .click();
+    // Supplier Type
+    cy.get(SupplierPageElements.supplierType)
+      .should("be.visible")
+      .type("DISTRIBUTOR");
+    cy.get(SupplierPageElements.antDropDown)
+      .should("be.visible")
+      .find(SupplierPageElements.antSelectItem)
+      .contains("DISTRIBUTOR")
+      .should("be.visible")
+      .click();
+    // Supplier Industry
+    cy.get(SupplierPageElements.supplierIndustry)
+      .should("be.visible")
+      .type("Retail & E-commerce");
+    cy.get(SupplierPageElements.antDropDown)
+      .should("be.visible")
+      .find(SupplierPageElements.antSelectItem)
+      .contains("Retail & E-commerce")
+      .click();
     cy.get(SupplierPageElements.verifiedCheckbox).click();
-    cy.get(SupplierPageElements.addBtn).click();
+    cy.get(SupplierPageElements.addBtn).contains(/^Add$/).click();
+    // Verification
+    cy.contains(randomName, { timeout: 5000 }).should("exist");
   }
   addNewContactPerson(randomName: string) {
     cy.get(SupplierPageElements.btn).contains("Add New").click();

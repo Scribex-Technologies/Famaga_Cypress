@@ -86,7 +86,7 @@ class DealsPage {
   }
   changePurchaseRequestStatus() {
     cy.wait(1000);
-    for (let i = 0; i < 2; i++) {
+    for (let i = 0; i < 3; i++) {
       cy.get(DealsPageElements.btn).contains("Change Status").click();
       cy.get(DealsPageElements.purchaseRequestStatuses).click();
     }
