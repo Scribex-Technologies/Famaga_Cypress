@@ -25,6 +25,10 @@ Examples:
     Scenario: Fill in tables fields
         When I fill in items fields on the table
         Then I see all fields are saved after reload
+ @smoke
+    Scenario: Delete Supplier Offer
+        When I delete the supplier offer
+        Then I see the purchase request successfully deleted
 @smoke
     Scenario: Publish the Supplier Offer
         When I publish the Supplier offer
@@ -43,8 +47,3 @@ Examples:
     Scenario: Substitute Creation
         When I create substitute
         Then I see substitute is created
-               
- @smoke
-    Scenario: Delete Supplier Offer
-        When I delete the supplier offer
-        Then I see the purchase request successfully deleted

@@ -52,7 +52,17 @@ When("I fill in items fields on the table", () => {
 Then("I see all fields are saved after reload", () => {
   //purchasePage.verifyItemsTableFieldsSaved();
 });
+
 //Test-5
+When("I delete the supplier offer", () => {
+  purchasePage.openSupplierOffersTab();
+  purchasePage.deleteSupplierOffer();
+});
+Then("I see the purchase request successfully deleted", () => {
+  cy.popupMessageDisplayed(generalTexts.deletionSupplierOfferMs);
+});
+
+//Test-6
 When("I publish the Supplier offer", () => {
   purchasePage.openSupplierOffersTab();
   purchasePage.publishSupplierOffer();
@@ -61,7 +71,7 @@ Then("I see the offer published and the success message", () => {
   cy.popupMessageDisplayed(generalTexts.supplierOfferPublishedMsg);
 });
 
-//Test-6
+//Test-7
 When("I change the Supplier offer status", () => {
   purchasePage.openSupplierOffersTab();
   purchasePage.changePurchaseRequestStatus();
@@ -70,25 +80,18 @@ Then("I see the status changed and the success message", () => {
   cy.popupMessageDisplayed(generalTexts.purchaseRequestStatusChangeMsg);
 });
 
-//Test-7
+//Test-8
 When("I create items alternative", () => {
   purchasePage.openSupplierOffersTab();
   purchasePage.openSupplierOffer();
   purchasePage.addAlternative();
 });
 Then("I see the alternative is created", () => {});
-//Test-8
+
+//Test-9
 When("I create substitute", () => {
   purchasePage.openSupplierOffersTab();
   purchasePage.openSupplierOffer();
   purchasePage.addSubstitute();
 });
 Then("I see substitute is created", () => {});
-//Test-9
-When("I delete the supplier offer", () => {
-  purchasePage.openSupplierOffersTab();
-  purchasePage.deleteSupplierOffer();
-});
-Then("I see the purchase request successfully deleted", () => {
-  cy.popupMessageDisplayed(generalTexts.deletionSupplierOfferMs);
-});

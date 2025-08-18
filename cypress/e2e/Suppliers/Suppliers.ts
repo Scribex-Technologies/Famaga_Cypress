@@ -13,7 +13,7 @@ Given("I open the suppliers page", () => {
   suppliersPage.openSupplierPage();
 });
 When("I fill in all fields and submit", () => {
-  suppliersPage.addNewSupplier(generalTexts.accountName);
+  suppliersPage.addNewSupplier(generalTexts.genRecordName);
 });
 
 Then("I see the Supplier successfully added", () => {
@@ -23,7 +23,7 @@ Then("I see the Supplier successfully added", () => {
 //Test-2
 When("I fill in all contact person's fields and submit", () => {
   suppliersPage.openSupplierDetailsPage();
-  suppliersPage.addNewContactPerson(generalTexts.accountName);
+  suppliersPage.addNewContactPerson(generalTexts.genRecordName);
 });
 
 Then("I see the contact person successfully added", () => {

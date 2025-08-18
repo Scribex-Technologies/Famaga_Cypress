@@ -13,7 +13,7 @@ Given("I open the clients page", () => {
   clientPage.openClientsPage();
 });
 When("I fill in all fields and submit", () => {
-  clientPage.addNewClient(generalTexts.accountName);
+  clientPage.addNewClient(generalTexts.genRecordName);
 });
 Then("I see the Client successfully added", () => {
   cy.popupMessageDisplayed(generalTexts.clientSuccessFulMsg);
@@ -22,7 +22,7 @@ Then("I see the Client successfully added", () => {
 //Test-2
 When("I fill in all contact person's fields and submit", () => {
   clientPage.openClientDetailsPage();
-  clientPage.addNewContactPerson(generalTexts.accountName);
+  clientPage.addNewContactPerson(generalTexts.genRecordName);
 });
 Then("I see the contact person successfully added", () => {
   cy.popupMessageDisplayed(generalTexts.contactPersonSuccessfulMsg);

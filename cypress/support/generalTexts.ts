@@ -1,7 +1,8 @@
 //for future implementation
 const uuid = () => Cypress._.random(0, 9999);
 const id = uuid();
-const userName = `Cypress Unicorn|${id}`;
+const genRecordName = `Cypress Unicorn|${id}`;
+const secondGenRecordName = `Cypress Tater Tot|${id}`;
 
 const generalTexts = {
   invalidCredentialsMsg: "Email or password is invalid!",
@@ -10,7 +11,8 @@ const generalTexts = {
   forgotEmptyEmail: "Email is required.",
   emptyEmailMsg: "Username/ Email is required.",
   emptyPasswordMsg: "Password is required.",
-  accountName: userName,
+  genRecordName: genRecordName,
+  secondGenRecordName: secondGenRecordName,
   accountUpdatedMessage: "Success! Your account information has been updated.",
   successForgotPasswordMessage:
     "We’ve sent a link to <email>, please follow the link to reset your password",

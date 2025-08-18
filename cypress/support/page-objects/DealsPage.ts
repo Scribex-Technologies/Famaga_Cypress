@@ -86,7 +86,7 @@ class DealsPage {
   }
   changePurchaseRequestStatus() {
     const clicks = 2; // number of status changes needed
-    const waitTime = 500; // milliseconds to wait between clicks
+    const waitTime = 1000; // milliseconds to wait between clicks
     for (let i = 0; i < clicks; i++) {
       cy.get(DealsPageElements.btn).contains("Change Status").click();
       cy.get(DealsPageElements.purchaseRequestStatuses).click();
