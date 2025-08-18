@@ -48,7 +48,7 @@ class ClientPage {
     cy.get(ClientPageElements.antDropDown).should("be.visible");
     cy.get(ClientPageElements.antDropDown)
       .find(ClientPageElements.antSelectItem)
-      .contains("Italy")
+      .contains("Brazil")
       .should("be.visible")
       .click();
     // Contact person info
