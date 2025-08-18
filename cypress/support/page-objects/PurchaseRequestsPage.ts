@@ -280,7 +280,7 @@ class PurchasePage {
     cy.get(PurchasePageElements.itemSku).should("be.visible").type(item);
     cy.contains(item).click().wait(1000);
   }
-  fillInItemsTableFields() {
+  fillInItemsTableFields(price: number) {
     //cy.get(PurchasePageElements.itemDescription).eq(0).click();
     //cy.get(PurchasePageElements.itemDescription).type(
     // "Automated Test does their best{enter}"
@@ -299,7 +299,7 @@ class PurchasePage {
     cy.xpath(PurchasePageElements.itemPurchaseRequestPrice).eq(0).click();
     cy.xpath(PurchasePageElements.itemPurchaseRequestPrice)
       .eq(0)
-      .type("100{enter}");
+      .type(price + "{enter}");
     cy.get("body").click(0, 0);
     cy.wait(1000);
     cy.xpath(PurchasePageElements.itemQuantity).eq(1).click();
@@ -309,7 +309,7 @@ class PurchasePage {
     cy.xpath(PurchasePageElements.itemPurchaseRequestPrice).eq(1).click();
     cy.xpath(PurchasePageElements.itemPurchaseRequestPrice)
       .eq(1)
-      .type("200{enter}");
+      .type(price + "{enter}");
     cy.get("body").click(0, 0);
   }
   openParentDeal() {

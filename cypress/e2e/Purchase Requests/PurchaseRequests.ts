@@ -47,7 +47,7 @@ Then("I see the items are saved after reload", () => {
 When("I fill in items fields on the table", () => {
   purchasePage.openSupplierOffersTab();
   purchasePage.openSupplierOffer();
-  purchasePage.fillInItemsTableFields();
+  purchasePage.fillInItemsTableFields(generalTexts.randomPrice);
 });
 Then("I see all fields are saved after reload", () => {
   //purchasePage.verifyItemsTableFieldsSaved();
