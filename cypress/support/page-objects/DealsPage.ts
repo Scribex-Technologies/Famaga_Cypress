@@ -1,5 +1,3 @@
-import { getRandomValues } from "crypto";
-
 const DealsPageElements = {
   dealsPage: 'a[href="/admin/deals"]',
   tabs: ".ant-col.ant-col-24.css-rrh4gt",
@@ -16,6 +14,8 @@ const DealsPageElements = {
   statusBadge: ".ant-tag.ant-tag-default.css-rrh4gt",
   offerCard: ".styles_card__rgtQT",
   purchaseRequestStatuses: 'ul[role="menu"]',
+  currentStatus:
+    "[style='margin-left: -4px; margin-right: -4px;'] > :nth-child(1) > .ant-row",
 };
 
 class DealsPage {
@@ -85,11 +85,15 @@ class DealsPage {
     });
   }
   changePurchaseRequestStatus() {
-    cy.wait(1000);
-    for (let i = 0; i < 3; i++) {
+    const clicks = 2; // number of status changes needed
+    const waitTime = 500; // milliseconds to wait between clicks
+    for (let i = 0; i < clicks; i++) {
       cy.get(DealsPageElements.btn).contains("Change Status").click();
       cy.get(DealsPageElements.purchaseRequestStatuses).click();
+      cy.wait(waitTime); // wait between clicks
     }
+    // Verify final status
+    cy.get(DealsPageElements.currentStatus).contains("Price Confirmed");
   }
 }
 export default DealsPage;

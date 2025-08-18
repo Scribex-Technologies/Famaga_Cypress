@@ -1,5 +1,3 @@
-import { getRandomValues } from "crypto";
-
 const OrderPageElements = {
   orderPage: 'a[href="/admin/orders"]',
   tabs: ".ant-col.ant-col-24.css-rrh4gt",

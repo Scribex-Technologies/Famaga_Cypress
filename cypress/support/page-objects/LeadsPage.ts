@@ -1,5 +1,3 @@
-import { getRandomValues } from "crypto";
-
 const LeadsPageElements = {
   leadsPage: 'a[href="/admin/leads"]',
   tabs: ".ant-col.ant-col-24.css-rrh4gt",

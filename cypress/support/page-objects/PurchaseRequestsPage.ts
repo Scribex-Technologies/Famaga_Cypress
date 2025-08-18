@@ -264,12 +264,9 @@ class PurchasePage {
 
     for (let i = 0; i < clicks; i++) {
       cy.get(PurchasePageElements.btn).contains("Change Status").click();
-
       cy.get(PurchasePageElements.statusMenuItem).click();
-
       cy.wait(waitTime); // wait between clicks
     }
-
     // Verify final status
     cy.get(PurchasePageElements.currentStatus).contains("Sourced");
   }
