@@ -11,7 +11,7 @@ Feature: Purchase Request Page
 Examples:
   | run |
   | 1   |
-@skip
+
 @smoke
     Scenario: Add shipping information and fee and charges
         When I add a shipping information and fee and charges

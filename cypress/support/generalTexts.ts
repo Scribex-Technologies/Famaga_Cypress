@@ -51,5 +51,7 @@ const generalTexts = {
   commercialOfferPriceRequestedMsg: "Requesting price confirmation for offer",
   commercialOfferPdfGeneratedMsg: "Generating commercial offer for offer ",
   orderStatusChangeMsg: "The order status was successfully changed.",
+  brandUpdateSuccessMessage: "The brand details were successfully updated.",
+  brandSuccessMsg: "The brand was successfully created.",
 };
 export default generalTexts;

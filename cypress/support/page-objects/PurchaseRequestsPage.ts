@@ -295,17 +295,17 @@ class PurchasePage {
     cy.xpath(PurchasePageElements.itemQuantity).eq(0).click();
     cy.xpath(PurchasePageElements.itemQuantity).eq(0).type("1{enter}");
     cy.get("body").click(0, 0);
-    cy.wait(1000);
+    cy.wait(2000);
     cy.xpath(PurchasePageElements.itemPurchaseRequestPrice).eq(0).click();
     cy.xpath(PurchasePageElements.itemPurchaseRequestPrice)
       .eq(0)
       .type(price + "{enter}");
     cy.get("body").click(0, 0);
-    cy.wait(1000);
+    cy.wait(2000);
     cy.xpath(PurchasePageElements.itemQuantity).eq(1).click();
     cy.xpath(PurchasePageElements.itemQuantity).eq(1).type("2{enter}");
     cy.get("body").click(0, 0);
-    cy.wait(1000);
+    cy.wait(2000);
     cy.xpath(PurchasePageElements.itemPurchaseRequestPrice).eq(1).click();
     cy.xpath(PurchasePageElements.itemPurchaseRequestPrice)
       .eq(1)

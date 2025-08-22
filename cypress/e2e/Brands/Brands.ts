@@ -17,5 +17,5 @@ When("I fill in all fields and submit", () => {
 });
 
 Then("I see the Brand successfully added", () => {
-  // cy.popupMessageDisplayed(generalTexts.supplierSuccessfulMsg);
+  cy.popupMessageDisplayed(generalTexts.brandSuccessMsg);
 });
