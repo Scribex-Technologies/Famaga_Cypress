@@ -17,7 +17,7 @@ Given("I open the Deals page", () => {
 When("I open Commercial offer tab and add a new offer", () => {
   dealsPage.openDealsDetailsPage();
   dealsPage.openCommercialOfferTab();
-  dealsPage.addCommercialOffer();
+  dealsPage.addCommercialOffer(generalTexts.genRecordName);
 });
 Then("I see the commercial offer is successfully added", () => {
   cy.popupMessageDisplayed(generalTexts.commercialOfferSuccessMsg);

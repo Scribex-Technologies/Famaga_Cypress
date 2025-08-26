@@ -58,6 +58,8 @@ const PurchasePageElements = {
   mainTableRows: "tr.ant-table-row",
   supplierCardPrice:
     "span.ant-typography.font-size-30.font-weight-700.css-rrh4gt",
+  contactPersonDropdownMenuItems: ":nth-child(6) > .ant-select-dropdown",
+  antSelectDropdown: ".ant-select-dropdown",
 };
 class PurchasePage {
   openPurchasePage() {
@@ -144,16 +146,27 @@ class PurchasePage {
   addShippingIfGlobalIsNotProvide() {
     cy.get(PurchasePageElements.itemShippingCost).type("10{enter}");
   }
-  createSupplierOffer() {
+  createSupplierOffer(randomRecord: string) {
+    const prefix = randomRecord.slice(0, 7);
     cy.get(PurchasePageElements.btn).contains("Add New").click();
     cy.get(PurchasePageElements.supplierDropdown)
       .should("be.visible")
-      .type("Purchase Supplier{enter}");
+      .click()
+      .type(prefix);
+    cy.get(PurchasePageElements.antSelectDropdown)
+      .contains(prefix)
+      .eq(0)
+      .click();
     cy.get(PurchasePageElements.contactPersonDropdown)
       .should("be.visible")
-      .type("Purchase Contact Person{enter}");
+      .click()
+      .type(prefix);
+    cy.get(PurchasePageElements.contactPersonDropdownMenuItems)
+      .contains(prefix)
+      .eq(0)
+      .click();
     cy.get(PurchasePageElements.sourceDropdown).type("Email{enter}");
-    cy.get(PurchasePageElements.offerNumberField).type("AutoTest-1233");
+    cy.get(PurchasePageElements.offerNumberField).type(prefix);
     cy.get(PurchasePageElements.attachmentUpload).attachFile(
       "AutomatedFile.pdf"
     );
@@ -275,12 +288,13 @@ class PurchasePage {
     cy.get(PurchasePageElements.btn).contains("Publish").click();
     cy.get(PurchasePageElements.popupPublishBtn).click();
   }
-  addItemToTheTable(item: string) {
+  addItemToTheTable(randomRecord: string) {
+    const prefix = randomRecord.slice(0, 7);
     cy.get(PurchasePageElements.addRowBtn).scrollIntoView().wait(1000).click();
-    cy.get(PurchasePageElements.itemSku).should("be.visible").type(item);
-    cy.contains(item).click().wait(1000);
+    cy.get(PurchasePageElements.itemSku).should("be.visible").type(prefix);
+    cy.contains(prefix).click().wait(1000);
   }
-  fillInItemsTableFields(price: number) {
+  fillInItemsTableFields(randomPrice: number, randomQuantity: string) {
     //cy.get(PurchasePageElements.itemDescription).eq(0).click();
     //cy.get(PurchasePageElements.itemDescription).type(
     // "Automated Test does their best{enter}"
@@ -293,23 +307,27 @@ class PurchasePage {
     //cy.get(PurchasePageElements.itemNotes).type("Note is Automated{enter}");
     //cy.get("body").click(0, 0);
     cy.xpath(PurchasePageElements.itemQuantity).eq(0).click();
-    cy.xpath(PurchasePageElements.itemQuantity).eq(0).type("1{enter}");
+    cy.xpath(PurchasePageElements.itemQuantity)
+      .eq(0)
+      .type(randomQuantity + "{enter}");
     cy.get("body").click(0, 0);
     cy.wait(2000);
     cy.xpath(PurchasePageElements.itemPurchaseRequestPrice).eq(0).click();
     cy.xpath(PurchasePageElements.itemPurchaseRequestPrice)
       .eq(0)
-      .type(price + "{enter}");
+      .type(randomPrice + "{enter}");
     cy.get("body").click(0, 0);
     cy.wait(2000);
     cy.xpath(PurchasePageElements.itemQuantity).eq(1).click();
-    cy.xpath(PurchasePageElements.itemQuantity).eq(1).type("2{enter}");
+    cy.xpath(PurchasePageElements.itemQuantity)
+      .eq(1)
+      .type(randomQuantity + "{enter}");
     cy.get("body").click(0, 0);
     cy.wait(2000);
     cy.xpath(PurchasePageElements.itemPurchaseRequestPrice).eq(1).click();
     cy.xpath(PurchasePageElements.itemPurchaseRequestPrice)
       .eq(1)
-      .type(price + "{enter}");
+      .type(randomPrice + "{enter}");
     cy.get("body").click(0, 0);
   }
   openParentDeal() {

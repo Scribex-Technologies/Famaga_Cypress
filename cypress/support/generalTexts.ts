@@ -1,8 +1,16 @@
 //for future implementation
+const generateRandomNames = () => {
+  const id1 = Cypress._.random(0, 9999);
+  const id2 = Cypress._.random(0, 9999); // different id for second name
+  return {
+    itemFirstName: `Cypress Unicorn|${id1}`,
+    itemSecondName: `Cypress Tater|${id2}`,
+  };
+};
 const uuid = () => Cypress._.random(0, 9999);
 const id = uuid();
 const genRecordName = `Cypress Unicorn|${id}`;
-const secondGenRecordName = `Cypress Tater Tot|${id}`;
+const secondGenRecordName = `Cypress Tater|${id}`;
 const randomPrice = Math.floor(Math.random() * 9999) + 1;
 const randomQuantity = Math.floor(Math.random() * 10) + 1;
 
@@ -13,6 +21,7 @@ const generalTexts = {
   forgotEmptyEmail: "Email is required.",
   emptyEmailMsg: "Username/ Email is required.",
   emptyPasswordMsg: "Password is required.",
+  generateRandomNames: generateRandomNames,
   genRecordName: genRecordName,
   randomPrice: randomPrice,
   randomQuantity: randomQuantity,
@@ -43,8 +52,6 @@ const generalTexts = {
   leadStatusConvertedMSg: "Lead status was successfully changed to converted.",
   markedUnavailableMsg: "Item was successfully marked as Not Available.",
   markAvailableMsg: "Item was successfully marked as Available.",
-  item1: "Offer Item",
-  item2: "Supplier Item",
   supplierOfferPublishedMsg: "Supplier Offer was successfully published.",
   purchaseRequestStatusChangeMsg:
     "The purchase request status was successfully changed.",
@@ -55,5 +62,6 @@ const generalTexts = {
   orderStatusChangeMsg: "The order status was successfully changed.",
   brandUpdateSuccessMessage: "The brand details were successfully updated.",
   brandSuccessMsg: "The brand was successfully created.",
+  itemsSuccessMsg: "The item was successfully added",
 };
 export default generalTexts;

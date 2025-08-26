@@ -15,7 +15,7 @@ Given("I open the purchase request page", () => {
 });
 When("I fill in all fields and submit", () => {
   purchasePage.openSupplierOffersTab();
-  purchasePage.createSupplierOffer();
+  purchasePage.createSupplierOffer(generalTexts.genRecordName);
 });
 Then("I see the purchase request successfully added", () => {
   cy.popupMessageDisplayed(generalTexts.successfulSupplierOfferCreationMsg);
@@ -33,21 +33,26 @@ Then("I see the changes are saved after reload", () => {
 });
 //Test-3
 When("I add items to the table", () => {
+  const { itemFirstName, itemSecondName } = generalTexts.generateRandomNames();
   purchasePage.openSupplierOffersTab();
   purchasePage.openSupplierOffer();
-  purchasePage.addItemToTheTable(generalTexts.item1);
-  purchasePage.addItemToTheTable(generalTexts.item2);
+  purchasePage.addItemToTheTable(itemFirstName);
+  purchasePage.addItemToTheTable(itemSecondName);
 });
 Then("I see the items are saved after reload", () => {
-  purchasePage.checkItemsAddedToTheTable(generalTexts.item1);
-  purchasePage.checkItemsAddedToTheTable(generalTexts.item2);
+  const { itemFirstName, itemSecondName } = generalTexts.generateRandomNames();
+  purchasePage.checkItemsAddedToTheTable(itemFirstName);
+  purchasePage.checkItemsAddedToTheTable(itemSecondName);
 });
 
 //Test-4
 When("I fill in items fields on the table", () => {
   purchasePage.openSupplierOffersTab();
   purchasePage.openSupplierOffer();
-  purchasePage.fillInItemsTableFields(generalTexts.randomPrice);
+  purchasePage.fillInItemsTableFields(
+    generalTexts.randomPrice,
+    generalTexts.secondGenRecordName
+  );
 });
 Then("I see all fields are saved after reload", () => {
   //purchasePage.verifyItemsTableFieldsSaved();

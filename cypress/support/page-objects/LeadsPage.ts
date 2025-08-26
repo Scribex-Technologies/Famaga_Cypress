@@ -63,7 +63,7 @@ class LeadsPage {
     cy.get(LeadsPageElements.btn).contains("Convert").click();
   }
   createNewLead(randomRecord: string) {
-    const prefix = randomRecord.slice(0, 6); // f
+    const prefix = randomRecord.slice(0, 6);
     cy.get(LeadsPageElements.btn).contains("Add New").click();
     cy.get(LeadsPageElements.emlFileUpload).attachFile("EmlFileAutotest.eml");
     cy.get(LeadsPageElements.clientDropdown).should("be.visible").type(prefix);

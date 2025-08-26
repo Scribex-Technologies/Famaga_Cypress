@@ -31,13 +31,19 @@ class DealsPage {
   openCommercialOfferTab() {
     cy.contains("Commercial Offers").click();
   }
-  addCommercialOffer() {
+  addCommercialOffer(randomRecord: string) {
+    const prefix = randomRecord.slice(0, 6);
     cy.get(DealsPageElements.btn).contains("Add New").click();
-    cy.get(DealsPageElements.brandPurchaseDropdown).type(
-      "Brand for the Purchase{enter}"
-    );
+    cy.get(DealsPageElements.brandPurchaseDropdown)
+      .should("be.visible")
+      .click()
+      .type(prefix);
+    cy.get(DealsPageElements.brandPurchaseDropdown)
+      .contains(prefix)
+      .eq(0)
+      .click();
     cy.get(DealsPageElements.supplierOffer).click();
-    cy.contains("Purchase Supplier").click();
+    cy.contains(prefix).click();
     cy.get(DealsPageElements.checkMarkToSubmit).click();
     cy.get(DealsPageElements.btn).contains(/^Add$/).click();
   }

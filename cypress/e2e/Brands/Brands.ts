@@ -13,7 +13,7 @@ Given("I open the brands page", () => {
   brandsPage.openBrandPage();
 });
 When("I fill in all fields and submit", () => {
-  brandsPage.addNewBrand(generalTexts.secondGenRecordName);
+  brandsPage.addNewBrand(generalTexts.genRecordName);
 });
 
 Then("I see the Brand successfully added", () => {

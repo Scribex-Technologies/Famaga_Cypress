@@ -20,9 +20,10 @@ class BrandPage {
   openBrandDetailsPage() {
     cy.get(BrandPageElements.brandOpenEye).eq(0).click();
   }
-  addNewBrand(randomName: string) {
+  addNewBrand(randomRecord: string) {
+    const prefix = randomRecord.slice(0, 6);
     cy.get(BrandPageElements.btn).contains("Add New").click();
-    cy.get(BrandPageElements.brandName).should("be.visible").type(randomName);
+    cy.get(BrandPageElements.brandName).should("be.visible").type(randomRecord);
     cy.get(BrandPageElements.manufacturerWebsiteField)
       .should("be.visible")
       .type("example.com");
@@ -44,7 +45,7 @@ class BrandPage {
       .click();
     cy.get(BrandPageElements.addBtn).contains(/^Add$/).click();
     // Verification
-    cy.contains(randomName, { timeout: 5000 }).should("exist");
+    cy.contains(randomRecord, { timeout: 5000 }).should("exist");
   }
 }
 export default BrandPage;
