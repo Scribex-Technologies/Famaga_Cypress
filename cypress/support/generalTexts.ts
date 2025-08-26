@@ -3,7 +3,8 @@ const uuid = () => Cypress._.random(0, 9999);
 const id = uuid();
 const genRecordName = `Cypress Unicorn|${id}`;
 const secondGenRecordName = `Cypress Tater Tot|${id}`;
-const randomPrice = Math.floor(Math.random() * (1000 - 50 + 1)) + 50;
+const randomPrice = Math.floor(Math.random() * 9999) + 1;
+const randomQuantity = Math.floor(Math.random() * 10) + 1;
 
 const generalTexts = {
   invalidCredentialsMsg: "Email or password is invalid!",
@@ -14,6 +15,7 @@ const generalTexts = {
   emptyPasswordMsg: "Password is required.",
   genRecordName: genRecordName,
   randomPrice: randomPrice,
+  randomQuantity: randomQuantity,
   secondGenRecordName: secondGenRecordName,
   accountUpdatedMessage: "Success! Your account information has been updated.",
   successForgotPasswordMessage:

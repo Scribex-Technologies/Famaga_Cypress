@@ -20,6 +20,7 @@ const LeadsPageElements = {
   leadStatus: 'li[role="menuitem"]',
   clientReqNumber: "#clientRequestNumber",
   mainTableRows: "tr.ant-table-row",
+  contactPersonDropdownMenuItems: ":nth-child(6) > .ant-select-dropdown",
 };
 class LeadsPage {
   openLeadsPage() {
@@ -61,21 +62,22 @@ class LeadsPage {
     cy.get(LeadsPageElements.leadStatus).contains(status).click();
     cy.get(LeadsPageElements.btn).contains("Convert").click();
   }
-  createNewLead() {
+  createNewLead(randomRecord: string) {
+    const prefix = randomRecord.slice(0, 6); // f
     cy.get(LeadsPageElements.btn).contains("Add New").click();
     cy.get(LeadsPageElements.emlFileUpload).attachFile("EmlFileAutotest.eml");
-    cy.get(LeadsPageElements.clientDropdown)
-      .should("be.visible")
-      .type("Client for the Purchase");
-    cy.contains("Client for the Purchase").click();
+    cy.get(LeadsPageElements.clientDropdown).should("be.visible").type(prefix);
+    cy.contains(prefix).click();
     cy.get(LeadsPageElements.contactPersonDropdown)
       .should("be.visible")
-      .type("Purchase Contact Person");
-    cy.contains("Purchase Contact Person").click();
+      .click()
+      .type(prefix);
+    cy.get(LeadsPageElements.contactPersonDropdownMenuItems)
+      .contains(prefix)
+      .eq(0)
+      .click();
     cy.get(LeadsPageElements.clientReqNumber).type("req_55");
-    cy.get(LeadsPageElements.brandDropdown).type(
-      "Brand For The Purchase{enter}"
-    );
+    cy.get(LeadsPageElements.brandDropdown).type(prefix + "{enter}");
     cy.get(LeadsPageElements.checkMarkToSubmit).eq(0).click();
     cy.get(LeadsPageElements.attachmentType)
       .eq(5)

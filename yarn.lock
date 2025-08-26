@@ -2,6 +2,11 @@
 # yarn lockfile v1
 
 
+"22@^0.0.0":
+  version "0.0.0"
+  resolved "https://registry.yarnpkg.com/22/-/22-0.0.0.tgz#384b9aafe2df5d70386445d94153713c56d12ffc"
+  integrity sha512-MdBPNDaCFY4fZVpp14n3Mt4isZ2yS1DrIiOig/iMLljr4zDa0g/583xf/lFXNPwhxCfGKYvyWJSrYyS8jNk2mQ==
+
 "@ampproject/remapping@^2.2.0":
   version "2.3.0"
   resolved "https://registry.yarnpkg.com/@ampproject/remapping/-/remapping-2.3.0.tgz#ed441b6fa600072520ce18b43d2c8cc8caecc7f4"
@@ -1350,6 +1355,11 @@
   version "0.23.1"
   resolved "https://registry.yarnpkg.com/@esbuild/win32-x64/-/win32-x64-0.23.1.tgz#81fd50d11e2c32b2d6241470e3185b70c7b30699"
   integrity sha512-BHpFFeslkWrXWyUPnbKm+xYYVYruCinGcftSBaa8zoF9hZO4BcSCFUvHVTtzpIY6YzUnYtuEhZ+C9iEXjxnasg==
+
+"@faker-js/faker@9.2.0":
+  version "9.2.0"
+  resolved "https://registry.yarnpkg.com/@faker-js/faker/-/faker-9.2.0.tgz#269ee3a5d2442e88e10d984e106028422bcb9551"
+  integrity sha512-ulqQu4KMr1/sTFIYvqSdegHT8NIkt66tFAkugGnHA+1WAfEn6hMzNR+svjXGFRVLnapxvej67Z/LwchFrnLBUg==
 
 "@isaacs/cliui@^8.0.2":
   version "8.0.2"

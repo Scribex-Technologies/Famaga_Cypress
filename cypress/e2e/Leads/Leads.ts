@@ -13,7 +13,7 @@ Given("I open the Leads page", () => {
   leadsPage.openLeadsPage();
 });
 When("I fill in all fields and submit", () => {
-  leadsPage.createNewLead();
+  leadsPage.createNewLead(generalTexts.genRecordName);
 });
 Then("I see the Leads successfully added", () => {
   cy.popupMessageDisplayed(generalTexts.leadSuccessfulMsg);

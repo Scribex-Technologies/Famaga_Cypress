@@ -44,7 +44,9 @@ class ClientPage {
       .find(ClientPageElements.antSelectItem)
       .contains("Corporate")
       .click();
-    cy.get(ClientPageElements.clientCountry).should("be.visible").type("Italy");
+    cy.get(ClientPageElements.clientCountry)
+      .should("be.visible")
+      .type("Brazil");
     cy.get(ClientPageElements.antDropDown).should("be.visible");
     cy.get(ClientPageElements.antDropDown)
       .find(ClientPageElements.antSelectItem)

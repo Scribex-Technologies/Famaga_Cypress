@@ -2,7 +2,7 @@ Feature: Deals Page
 
  Background:
  Given I open the Deals page
- @skip
+
     @smoke
     Scenario: Add a new Commercial Offer to the deal
         When I open Commercial offer tab and add a new offer

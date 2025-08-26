@@ -4,8 +4,8 @@ const specs = [
   //  "cypress/e2e/ForgotPassword/ForgotPassword.feature",
   // "cypress/e2e/Clients/Clients.feature",
   //"cypress/e2e/Suppliers/Suppliers.feature",
-  //"cypress/e2e/Leads/Leads.feature",
-  // "cypress/e2e/Purchase Requests/PurchaseRequests.feature",
+  "cypress/e2e/Leads/Leads.feature",
+  "cypress/e2e/Purchase Requests/PurchaseRequests.feature",
   "cypress/e2e/WDeals/WDeals.feature",
   "cypress/e2e/Orders.ts/Orders.feature",
 ];

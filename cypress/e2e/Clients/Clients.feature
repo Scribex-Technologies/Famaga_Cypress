@@ -3,7 +3,6 @@ Feature: Client Page
  Background:
  Given I open the clients page
 
-    @skip
     @smoke
     Scenario: Add a new Client to the page
         When I fill in all fields and submit
