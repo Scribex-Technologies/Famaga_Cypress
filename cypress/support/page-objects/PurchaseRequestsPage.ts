@@ -324,13 +324,15 @@ class PurchasePage {
     cy.xpath(PurchasePageElements.itemQuantity).eq(1).click();
     cy.xpath(PurchasePageElements.itemQuantity)
       .eq(1)
-      .type(randomQuantity + "{enter}");
+      .type(randomQuantity + "{enter}")
+      .wait(100);
     cy.get("body").click(0, 0);
     cy.wait(2000);
     cy.xpath(PurchasePageElements.itemPurchaseRequestPrice).eq(1).click();
     cy.xpath(PurchasePageElements.itemPurchaseRequestPrice)
       .eq(1)
-      .type(randomPrice + "{enter}");
+      .type(randomPrice + "{enter}")
+      .wait(100);
     cy.get("body").click(0, 0);
   }
   openParentDeal() {

@@ -63,5 +63,6 @@ const generalTexts = {
   brandUpdateSuccessMessage: "The brand details were successfully updated.",
   brandSuccessMsg: "The brand was successfully created.",
   itemsSuccessMsg: "The item was successfully added",
+  requestPriceMsg: "Request Price was successfully sent.",
 };
 export default generalTexts;

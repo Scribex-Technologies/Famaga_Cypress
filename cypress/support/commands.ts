@@ -42,8 +42,12 @@ const CommandsElements = {
   editTrashIconsOnImage: "span > .buildhero-UnstyledButton-root",
   image: ".buildhero-Avatar-root img.buildhero-Avatar-image",
   titleOnSiteSettings: "#title",
-  contactPerson: "#contactPersonId",
+  contactPersonDropdown: "#contactPersonId",
   btn: 'button[type="button"]',
+  supplierDropdown: "#supplierId",
+  checkMarkToSubmit:
+    ".ant-btn.css-rrh4gt.ant-btn-primary.ant-btn-color-primary.ant-btn-variant-solid.ant-btn-icon-only",
+  contactPersonDropdownMenuItems: ":nth-child(5) > .ant-select-dropdown",
 };
 Cypress.Commands.add("login", () => {
   cy.session("login", () => {
@@ -158,9 +162,27 @@ Cypress.Commands.add("clickTrashIconOnImage", () => {
 });
 Cypress.Commands.add("sendOffer", (record: string) => {
   const prefix = record.slice(0, 7);
-  cy.get(CommandsElements.contactPerson).type(prefix + "{enter}");
+  cy.get(CommandsElements.contactPersonDropdown).type(prefix + "{enter}");
   cy.wait(1000);
   cy.get(CommandsElements.btn).contains("Send").scrollIntoView().click();
+});
+Cypress.Commands.add("requestPrice", (record: string) => {
+  const prefix = record.slice(0, 7);
+  cy.get(CommandsElements.supplierDropdown).type(prefix + "{enter}");
+  cy.get(CommandsElements.contactPersonDropdown)
+    .should("be.visible")
+    .click()
+    .type(prefix);
+  cy.get(CommandsElements.contactPersonDropdownMenuItems)
+    .contains(prefix)
+    .eq(0)
+    .click();
+  cy.get(CommandsElements.checkMarkToSubmit).eq(0).click();
+  cy.wait(500);
+  cy.get(CommandsElements.btn)
+    .contains("Send Request")
+    .scrollIntoView()
+    .click();
 });
 Cypress.Commands.add("checkTheUpdatedImage", (imageType) => {
   cy.get(CommandsElements.image)
