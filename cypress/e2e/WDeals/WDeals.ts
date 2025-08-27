@@ -50,7 +50,7 @@ When("I click actions button and choose the Send Offer option", () => {
   dealsPage.chooseAction("Commercial Offer Generated", "Send Commercial Offer");
 });
 When("I add a contact person and send a commercial offer", () => {
-  cy.sendOffer();
+  cy.sendOffer(generalTexts.genRecordName);
 });
 Then("I see the commercial offer was sent successfully", () => {
   cy.popupMessageDisplayed(generalTexts.commercialOfferSentMsg);
@@ -82,7 +82,7 @@ When("I click actions button and choose the Send Pre Invoice option", () => {
   dealsPage.chooseAction("Price Confirmed", "Send Pre-Invoice");
 });
 When("I add a contact person and send a Pre Invoice", () => {
-  cy.sendOffer();
+  cy.sendOffer(generalTexts.genRecordName);
 });
 Then("I see the Pre Invoice was sent successfully", () => {
   cy.popupMessageDisplayed(generalTexts.commercialOfferSentMsg);

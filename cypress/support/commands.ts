@@ -156,8 +156,9 @@ Cypress.Commands.add("clickTrashIconOnImage", () => {
     }
   });
 });
-Cypress.Commands.add("sendOffer", () => {
-  cy.get(CommandsElements.contactPerson).type("Purchase Contact Person{enter}");
+Cypress.Commands.add("sendOffer", (record: string) => {
+  const prefix = record.slice(0, 7);
+  cy.get(CommandsElements.contactPerson).type(prefix + "{enter}");
   cy.wait(1000);
   cy.get(CommandsElements.btn).contains("Send").scrollIntoView().click();
 });
