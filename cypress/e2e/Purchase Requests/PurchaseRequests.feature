@@ -10,8 +10,7 @@ Feature: Purchase Request Page
 
 Examples:
   | run |
-  | 1   |
-@skip        
+  | 1   |        
 
 @smoke
     Scenario: Add shipping information and fee and charges
@@ -25,7 +24,6 @@ Examples:
     Scenario: Fill in tables fields
         When I fill in items fields on the table
         Then I see all fields are saved after reload
-@skip
  @smoke
     Scenario: Delete Supplier Offer
         When I delete the supplier offer
