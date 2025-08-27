@@ -16,6 +16,7 @@ const DealsPageElements = {
   purchaseRequestStatuses: 'ul[role="menu"]',
   currentStatus:
     "[style='margin-left: -4px; margin-right: -4px;'] > :nth-child(1) > .ant-row",
+  antSelectDropdown: ".ant-select-dropdown",
 };
 
 class DealsPage {
@@ -38,12 +39,13 @@ class DealsPage {
       .should("be.visible")
       .click()
       .type(prefix);
-    cy.get(DealsPageElements.brandPurchaseDropdown)
-      .contains(prefix)
-      .eq(0)
-      .click();
+    cy.get(DealsPageElements.antSelectDropdown).contains(prefix).eq(0).click();
     cy.get(DealsPageElements.supplierOffer).click();
-    cy.contains(prefix).click();
+    cy.get(DealsPageElements.antSelectDropdown)
+      .eq(1)
+      .should("be.visible")
+      .contains(prefix)
+      .click();
     cy.get(DealsPageElements.checkMarkToSubmit).click();
     cy.get(DealsPageElements.btn).contains(/^Add$/).click();
   }
