@@ -20,7 +20,8 @@ const LeadsPageElements = {
   leadStatus: 'li[role="menuitem"]',
   clientReqNumber: "#clientRequestNumber",
   mainTableRows: "tr.ant-table-row",
-  contactPersonDropdownMenuItems: ":nth-child(6) > .ant-select-dropdown",
+  contactPersonDropdownMenuItems:
+    "div > div > div.rc-virtual-list > div > div > div",
 };
 class LeadsPage {
   openLeadsPage() {
@@ -72,7 +73,10 @@ class LeadsPage {
       .should("be.visible")
       .click()
       .type(prefix);
+    cy.wait(1000);
     cy.get(LeadsPageElements.contactPersonDropdownMenuItems)
+      .eq(1)
+      .should("exist")
       .contains(prefix)
       .eq(0)
       .click();

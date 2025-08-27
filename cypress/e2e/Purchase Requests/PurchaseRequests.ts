@@ -63,8 +63,8 @@ When("I delete the supplier offer", () => {
   purchasePage.openSupplierOffersTab();
   purchasePage.deleteSupplierOffer();
 });
-Then("I see the purchase request successfully deleted", () => {
-  cy.popupMessageDisplayed(generalTexts.deletionSupplierOfferMs);
+Then("I see the Supplier Offer is successfully deleted", () => {
+  cy.popupMessageDisplayed(generalTexts.deletionSupplierOfferMsg);
 });
 
 //Test-6

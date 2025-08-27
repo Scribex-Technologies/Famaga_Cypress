@@ -44,7 +44,7 @@ const generalTexts = {
   supplierSuccessfulMsg: "Supplier was successfully created.",
   successfulSupplierOfferCreationMsg:
     "Supplier Offer was successfully created.",
-  deletionSupplierOfferMs: "Supplier Offer was successfully deleted.",
+  deletionSupplierOfferMsg: "Supplier Offer was successfully deleted.",
   leadSuccessfulMsg: "The Lead was successfully added.",
   leadStatusProcessingMSg:
     "Lead status was successfully changed to processing.",

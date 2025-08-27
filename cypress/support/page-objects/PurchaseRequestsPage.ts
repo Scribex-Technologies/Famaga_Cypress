@@ -165,6 +165,9 @@ class PurchasePage {
       .contains(prefix)
       .eq(0)
       .click();
+    cy.get(PurchasePageElements.emlFileUpload).attachFile(
+      "EmlFileAutotest.eml"
+    );
     cy.get(PurchasePageElements.sourceDropdown).type("Email{enter}");
     cy.get(PurchasePageElements.offerNumberField).type(prefix);
     cy.get(PurchasePageElements.attachmentUpload).attachFile(
@@ -175,10 +178,6 @@ class PurchasePage {
       .click()
       .type("Option 1{enter}");
     cy.get(PurchasePageElements.attachmentTypeSubmitBtn).click();
-    cy.get(PurchasePageElements.emlFileUpload).attachFile(
-      "EmlFileAutotest.eml"
-    );
-    cy.wait(1000);
     cy.get(PurchasePageElements.addBtn).click();
   } //update
   addLeadWeight() {

@@ -10,7 +10,8 @@ Feature: Purchase Request Page
 
 Examples:
   | run |
-  | 1   |        
+  | 1   | 
+  | 2   |       
 
 @smoke
     Scenario: Add shipping information and fee and charges
@@ -27,7 +28,7 @@ Examples:
  @smoke
     Scenario: Delete Supplier Offer
         When I delete the supplier offer
-        Then I see the purchase request successfully deleted
+        Then I see the Supplier Offer is successfully deleted
 @smoke
     Scenario: Publish the Supplier Offer
         When I publish the Supplier offer
