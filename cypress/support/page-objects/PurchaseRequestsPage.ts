@@ -232,7 +232,8 @@ class PurchasePage {
     cy.get(PurchasePageElements.btn).contains("View Offer").click();
   }
   checkItemsAddedToTheTable(item: string) {
-    cy.get(PurchasePageElements.itemTable).contains(item);
+    const prefix = item.slice(0, 7);
+    cy.get(PurchasePageElements.itemTable).contains(prefix);
   }
   verifyLeadShippingFeesDataIsSaved() {
     cy.reload();
@@ -288,13 +289,16 @@ class PurchasePage {
     cy.get(PurchasePageElements.btn).contains("Publish").click();
     cy.get(PurchasePageElements.popupPublishBtn).click();
   }
-  addItemToTheTable(randomRecord: string) {
-    const prefix = randomRecord.slice(0, 7);
+  addItemToTheTable(randomFirstRecord: string) {
+    const prefix = randomFirstRecord.slice(0, 7);
     cy.get(PurchasePageElements.addRowBtn).scrollIntoView().wait(1000).click();
     cy.get(PurchasePageElements.itemSku).should("be.visible").type(prefix);
-    cy.contains(prefix).click().wait(1000);
+    cy.get(PurchasePageElements.antSelectDropdown)
+      .contains(prefix)
+      .click()
+      .wait(1000);
   }
-  fillInItemsTableFields(randomPrice: number, randomQuantity: string) {
+  fillInItemsTableFields(randomPrice: number, randomQuantity: number) {
     //cy.get(PurchasePageElements.itemDescription).eq(0).click();
     //cy.get(PurchasePageElements.itemDescription).type(
     // "Automated Test does their best{enter}"

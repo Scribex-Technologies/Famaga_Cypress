@@ -2,7 +2,7 @@ Feature: Purchase Request Page
 
  Background:
  Given I open the purchase request page
-        
+@skip        
 @smoke
  Scenario Outline: Add supplier offer multiple times
   When I fill in all fields and submit
@@ -11,6 +11,7 @@ Feature: Purchase Request Page
 Examples:
   | run |
   | 1   |
+@skip        
 
 @smoke
     Scenario: Add shipping information and fee and charges

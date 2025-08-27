@@ -51,7 +51,7 @@ When("I fill in items fields on the table", () => {
   purchasePage.openSupplierOffer();
   purchasePage.fillInItemsTableFields(
     generalTexts.randomPrice,
-    generalTexts.secondGenRecordName
+    generalTexts.randomQuantity
   );
 });
 Then("I see all fields are saved after reload", () => {

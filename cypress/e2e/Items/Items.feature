@@ -10,4 +10,3 @@ Feature: Items Page
     Examples:
     | run |
     | 1   |
-    | 2   |

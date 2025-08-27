@@ -14,6 +14,7 @@ Given("I open the Items page", () => {
 });
 When("I fill in all fields and submit", () => {
   const { itemFirstName, itemSecondName } = generalTexts.generateRandomNames();
+  itemsPage.addNewItems(itemFirstName, itemFirstName);
   itemsPage.addNewItems(itemFirstName, itemSecondName);
 });
 
