@@ -21,7 +21,6 @@ class BrandPage {
     cy.get(BrandPageElements.brandOpenEye).eq(0).click();
   }
   addNewBrand(randomRecord: string) {
-    const prefix = randomRecord.slice(0, 6);
     cy.get(BrandPageElements.btn).contains("Add New").click();
     cy.get(BrandPageElements.brandName).should("be.visible").type(randomRecord);
     cy.get(BrandPageElements.manufacturerWebsiteField)

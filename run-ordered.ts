@@ -8,7 +8,7 @@ const specs = [
   "cypress/e2e/Items/Items.feature",
   "cypress/e2e/Leads/Leads.feature",
   "cypress/e2e/Purchase Requests/PurchaseRequests.feature",
-  "cypress/e2e/WDeals/WDeals.feature",
+  "cypress/e2e/Deals/Deals.feature",
   "cypress/e2e/Orders.ts/Orders.feature",
   "cypress/e2e/PurchaseOrders.ts/PurchaseOrders.feature",
 ];
