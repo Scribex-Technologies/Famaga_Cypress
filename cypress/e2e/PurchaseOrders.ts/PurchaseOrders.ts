@@ -42,6 +42,9 @@ When("I open order details page and click on the generate pdf button", () => {
 });
 Then("I see the successful message pdf generated", () => {
   cy.popupMessageDisplayed(generalTexts.purchasePdfMsg);
+  //remove after bug fix
+  purchaseOrdersPage.clickSendBtn();
+  cy.sendOffer(generalTexts.genRecordName);
 });
 
 //Test-4

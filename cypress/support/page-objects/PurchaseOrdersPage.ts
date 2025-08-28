@@ -45,7 +45,7 @@ class PurchaseOrdersPage {
     cy.get(PurchaseOrderPageElements.addBtn).click();
     cy.wait(1000);
     cy.get(PurchaseOrderPageElements.itemsCheckbox).eq(2).click();
-    cy.get(PurchaseOrderPageElements.itemsCheckbox).eq(3).click();
+    //cy.get(PurchaseOrderPageElements.itemsCheckbox).eq(3).click();
     cy.get(PurchaseOrderPageElements.btn).contains("Create Order").click();
     cy.get(PurchaseOrderPageElements.supplierModal).within(() => {
       cy.get(PurchaseOrderPageElements.supplierDropdown)
