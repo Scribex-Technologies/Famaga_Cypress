@@ -45,6 +45,7 @@ const CommandsElements = {
   checkMarkToSubmit:
     ".ant-btn.css-rrh4gt.ant-btn-primary.ant-btn-color-primary.ant-btn-variant-solid.ant-btn-icon-only",
   contactPersonDropdownMenuItems: ":nth-child(5) > .ant-select-dropdown",
+  sendOrderBtn: ".ant-row > .ant-btn-primary",
 };
 Cypress.Commands.add("login", () => {
   cy.session("login", () => {
@@ -166,21 +167,10 @@ Cypress.Commands.add("sendOffer", (record: string) => {
 Cypress.Commands.add("requestPrice", (record: string) => {
   const prefix = record.slice(0, 7);
   cy.get(CommandsElements.supplierDropdown).type(prefix + "{enter}");
-  cy.get(CommandsElements.contactPersonDropdown)
-    .should("be.visible")
-    .click()
-    .type(prefix);
-  cy.get(CommandsElements.contactPersonDropdownMenuItems)
-    .should("exist")
-    .contains(prefix)
-    .eq(0)
-    .click();
+  cy.get(CommandsElements.contactPersonDropdown).type(prefix + "{enter}");
   cy.get(CommandsElements.checkMarkToSubmit).eq(0).click();
-  cy.wait(500);
-  cy.get(CommandsElements.btn)
-    .contains("Send Request")
-    .scrollIntoView()
-    .click();
+  cy.wait(1000);
+  cy.get(CommandsElements.sendOrderBtn).eq(1).scrollIntoView().click();
 });
 Cypress.Commands.add("checkTheUpdatedImage", (imageType) => {
   cy.get(CommandsElements.image)
