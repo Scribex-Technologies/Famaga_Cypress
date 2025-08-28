@@ -174,6 +174,7 @@ Cypress.Commands.add("requestPrice", (record: string) => {
     .click()
     .type(prefix);
   cy.get(CommandsElements.contactPersonDropdownMenuItems)
+    .should("exist")
     .contains(prefix)
     .eq(0)
     .click();

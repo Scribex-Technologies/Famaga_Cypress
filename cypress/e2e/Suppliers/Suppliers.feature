@@ -2,7 +2,7 @@ Feature: Suppliers Page
 
  Background:
  Given I open the suppliers page
-@skip
+
     @smoke
     Scenario: Add a new Supplier to the page
         When I fill in all fields and submit

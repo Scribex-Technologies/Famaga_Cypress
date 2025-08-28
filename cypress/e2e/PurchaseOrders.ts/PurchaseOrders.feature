@@ -2,7 +2,7 @@ Feature: Purchase Orders Page
 
  Background:
  Given I open the Purchase Orders page
-    @skip
+ 
     @smoke
     Scenario: Add a new purchase order 
         When I open the add new page select items and create an order
