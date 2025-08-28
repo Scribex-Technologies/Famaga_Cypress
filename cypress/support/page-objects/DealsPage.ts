@@ -6,7 +6,7 @@ const DealsPageElements = {
   brandPurchaseDropdown: "#relationBrand",
   supplierOffer: "#relationSupplierOffer",
   generalIcon: ".ant-btn-icon",
-  dealsOpenEye: ".ant-table-cell-fix-right > .ant-btn > .ant-btn-icon",
+  openEye: ".ant-table-cell-fix-right > .ant-btn > .ant-btn-icon",
   itemSku: "#sku",
   checkMarkToSubmit:
     ".ant-btn.css-rrh4gt.ant-btn-primary.ant-btn-color-primary.ant-btn-variant-solid.ant-btn-icon-only",
@@ -24,7 +24,7 @@ class DealsPage {
     cy.get(DealsPageElements.dealsPage).click();
   }
   openDealsDetailsPage() {
-    cy.get(DealsPageElements.dealsOpenEye).eq(0).click();
+    cy.get(DealsPageElements.openEye).eq(0).click();
   }
   openCommunicationTab() {
     cy.contains("Communication Hub").click();

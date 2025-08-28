@@ -15,7 +15,7 @@ const LeadsPageElements = {
   generalIcon: ".ant-btn-icon",
   checkMarkToSubmit:
     ".ant-btn.css-rrh4gt.ant-btn-primary.ant-btn-color-primary.ant-btn-variant-solid.ant-btn-icon-only",
-  leadsOpenEye: ".ant-table-cell-fix-right > .ant-btn > .ant-btn-icon",
+  openEye: ".ant-table-cell-fix-right > .ant-btn > .ant-btn-icon",
   itemSku: "#sku",
   leadStatus: 'li[role="menuitem"]',
   clientReqNumber: "#clientRequestNumber",

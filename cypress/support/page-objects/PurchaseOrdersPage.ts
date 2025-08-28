@@ -3,7 +3,7 @@ const PurchaseOrderPageElements = {
   tabs: ".ant-col.ant-col-24.css-rrh4gt",
   btn: 'button[type="button"]',
   addBtn: ".ant-row > .ant-btn-primary",
-  dealsOpenEye: ".ant-table-cell-fix-right > .ant-btn > .ant-btn-icon",
+  openEye: ".ant-table-cell-fix-right > .ant-btn > .ant-btn-icon",
   currentStatus:
     "[style='margin-left: -4px; margin-right: -4px;'] > :nth-child(1) > .ant-row",
   mainTableRows: "tr.ant-table-row",

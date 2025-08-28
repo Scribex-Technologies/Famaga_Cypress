@@ -13,7 +13,7 @@ const ClientPageElements = {
   contactPersonValue: "#value",
   contactTypeSubmitBtn:
     ".ant-btn.css-rrh4gt.ant-btn-primary.ant-btn-color-primary.ant-btn-variant-solid.ant-btn-icon-only",
-  clientOpenEye: ".ant-table-cell-fix-right > .ant-btn > .ant-btn-icon",
+  openEye: ".ant-table-cell-fix-right > .ant-btn > .ant-btn-icon",
   contactInfoEditBtn: "button[title='Edit']",
   contactPersonEditIcon:
     ":nth-child(1) > .margin-b-20 > [style='row-gap: 4px;'] > :nth-child(1) > .ant-row-space-between > :nth-child(2) > .ant-row > :nth-child(2)",
@@ -30,7 +30,7 @@ class ClientPage {
     cy.get(ClientPageElements.clientsPage).click();
   }
   openClientDetailsPage() {
-    cy.get(ClientPageElements.clientOpenEye).eq(0).click();
+    cy.get(ClientPageElements.openEye).eq(0).click();
   }
 
   addNewClient(randomName: string) {

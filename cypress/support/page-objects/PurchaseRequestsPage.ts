@@ -16,7 +16,7 @@ const PurchasePageElements = {
   generalIcon: ".ant-btn-icon",
   attachmentTypeSubmitBtn:
     ".ant-btn.css-rrh4gt.ant-btn-primary.ant-btn-color-primary.ant-btn-variant-solid.ant-btn-icon-only",
-  purchaseOpenEye: ".ant-table-cell-fix-right > .ant-btn > .ant-btn-icon",
+  openEye: ".ant-table-cell-fix-right > .ant-btn > .ant-btn-icon",
   minLeadTime: "#shippingInformation_leadTimeMin",
   maxLeadTime: "#shippingInformation_leadTimeMax",
   leadDayWeek: "#shippingInformation_leadTime",

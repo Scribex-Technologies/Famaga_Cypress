@@ -15,7 +15,7 @@ const SupplierPageElements = {
   contactPersonValue: "#value",
   contactTypeSubmitBtn:
     ".ant-btn.css-rrh4gt.ant-btn-primary.ant-btn-color-primary.ant-btn-variant-solid.ant-btn-icon-only",
-  supplierOpenEye: ".ant-table-cell-fix-right > .ant-btn > .ant-btn-icon",
+  openEye: ".ant-table-cell-fix-right > .ant-btn > .ant-btn-icon",
   contactInfoEditBtn: "button[title='Edit']",
   contactPersonEditIcon:
     ":nth-child(1) > .margin-b-20 > [style='row-gap: 4px;'] > :nth-child(1) > .ant-row-space-between > :nth-child(2) > .ant-row > :nth-child(2)",
@@ -31,7 +31,7 @@ class SupplierPage {
     cy.get(SupplierPageElements.suppliersPage).click();
   }
   openSupplierDetailsPage() {
-    cy.get(SupplierPageElements.supplierOpenEye).eq(0).click();
+    cy.get(SupplierPageElements.openEye).eq(0).click();
   }
   addNewSupplier(randomName: string) {
     cy.get(SupplierPageElements.btn).contains("Add New").click();

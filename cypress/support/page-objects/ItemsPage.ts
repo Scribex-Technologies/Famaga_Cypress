@@ -7,7 +7,7 @@ const ItemsPageElements = {
   itemsIndustry: "#industryId",
   mainLanguage: "#mainLanguageId",
   contactPersonLanguage: "#languageId",
-  itemsOpenEye: ".ant-table-cell-fix-right > .ant-btn > .ant-btn-icon",
+  openEye: ".ant-table-cell-fix-right > .ant-btn > .ant-btn-icon",
   manufacturerWebsiteField: "#manufacturerWebSiteUrl",
   verifiedCheckbox: ".ant-checkbox-label > .ant-typography",
   antDropDown: ".ant-select-dropdown",
@@ -19,7 +19,7 @@ class ItemsPage {
     cy.get(ItemsPageElements.itemsPage).click();
   }
   openItemsDetailsPage() {
-    cy.get(ItemsPageElements.itemsOpenEye).eq(0).click();
+    cy.get(ItemsPageElements.openEye).eq(0).click();
   }
   addNewItems(randomRecord: string, randomName: string) {
     const prefix = randomRecord.slice(0, 8);

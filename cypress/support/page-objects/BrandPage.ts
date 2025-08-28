@@ -7,7 +7,7 @@ const BrandPageElements = {
   brandIndustry: "#industryId",
   mainLanguage: "#mainLanguageId",
   contactPersonLanguage: "#languageId",
-  brandOpenEye: ".ant-table-cell-fix-right > .ant-btn > .ant-btn-icon",
+  openEye: ".ant-table-cell-fix-right > .ant-btn > .ant-btn-icon",
   manufacturerWebsiteField: "#manufacturerWebSiteUrl",
   verifiedCheckbox: ".ant-checkbox-label > .ant-typography",
   antDropDown: ".ant-select-dropdown",
@@ -18,7 +18,7 @@ class BrandPage {
     cy.get(BrandPageElements.brandPage).click();
   }
   openBrandDetailsPage() {
-    cy.get(BrandPageElements.brandOpenEye).eq(0).click();
+    cy.get(BrandPageElements.openEye).eq(0).click();
   }
   addNewBrand(randomRecord: string) {
     cy.get(BrandPageElements.btn).contains("Add New").click();
