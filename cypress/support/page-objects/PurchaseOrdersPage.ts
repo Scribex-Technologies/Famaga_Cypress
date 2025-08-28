@@ -44,7 +44,7 @@ class PurchaseOrdersPage {
     cy.get(PurchaseOrderPageElements.addBtn).click();
     cy.get(PurchaseOrderPageElements.itemsCheckbox).eq(2).click();
     cy.get(PurchaseOrderPageElements.btn).contains("Request Price").click();
-    cy.wait(100);
+    cy.wait(1000);
   }
   //Update with the statuses
   openPurchaseOrderDetailsPage() {
