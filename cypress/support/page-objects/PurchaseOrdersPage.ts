@@ -3,15 +3,19 @@ const PurchaseOrderPageElements = {
   tabs: ".ant-col.ant-col-24.css-rrh4gt",
   btn: 'button[type="button"]',
   addBtn: ".ant-row > .ant-btn-primary",
-  openEye: ".ant-table-cell-fix-right > .ant-btn > .ant-btn-icon",
-  currentStatus:
-    "[style='margin-left: -4px; margin-right: -4px;'] > :nth-child(1) > .ant-row",
   mainTableRows: "tr.ant-table-row",
   statusMenuItem: "li[role='menuitem']",
   itemsCheckbox: ".ant-checkbox-input",
   supplierDropdown: "#supplierId",
   antSelectDropdown: ".ant-select-dropdown",
   supplierModal: ".ant-modal-content",
+  datePicker: "#shippingDate",
+  statusBadge:
+    ".ant-row-space-between > :nth-child(1) > .ant-row > .ant-typography",
+  eyeIcon: ".ant-table-cell-fix-right ",
+  calendar: ".ant-picker-body",
+  calendarNextBtn: ".ant-picker-header-next-btn",
+  calendarNowBtn: ".ant-picker-now-btn",
 };
 
 class PurchaseOrdersPage {
@@ -23,6 +27,18 @@ class PurchaseOrdersPage {
   }
   clickAddNewBtn() {
     cy.get(PurchaseOrderPageElements.addBtn).click();
+  }
+  clickSendBtn() {
+    cy.get(PurchaseOrderPageElements.btn).contains("Send Order").click();
+    cy.wait(1000);
+  }
+  changeStatusToConfirmedWithShippingDate(status: string) {
+    cy.get(PurchaseOrderPageElements.btn).contains("Change Status").click();
+    cy.get(PurchaseOrderPageElements.statusMenuItem).contains(status).click();
+    cy.get(PurchaseOrderPageElements.datePicker).click();
+    cy.get(PurchaseOrderPageElements.calendarNowBtn).click();
+    cy.get(PurchaseOrderPageElements.btn).contains("Save").click();
+    cy.get(PurchaseOrderPageElements.statusBadge).eq(0).contains(status);
   }
   createPurchaseOrder(randomRecord: string) {
     const prefix = randomRecord.slice(0, 7);
@@ -47,26 +63,27 @@ class PurchaseOrdersPage {
     cy.wait(1000);
   }
   //Update with the statuses
-  openPurchaseOrderDetailsPage() {
-    const targetStatus = "Pending Payment";
+  openPurchaseOrderDetailsPage(status: string) {
+    const targetStatus = status;
 
     cy.get("tr.ant-table-row")
       .filter((_, row) => {
         const statusText = row
-          .querySelectorAll("td")[6] // adjust index if status column changes
+          .querySelectorAll("td")[3] // ✅ Status is column index 3
           ?.innerText.replace(/\s+/g, " ")
           .trim()
           .toLowerCase();
+
         return statusText === targetStatus.toLowerCase();
       })
       .first()
       .then(($row) => {
         if ($row.length) {
           cy.wrap($row)
-            .find("button") // action button at the end
+            .find(PurchaseOrderPageElements.eyeIcon) // last column action button
             .first()
             .scrollIntoView()
-            .click({ force: true });
+            .click();
 
           cy.log(`Opened row with status "${targetStatus}"`);
         } else {
@@ -74,9 +91,13 @@ class PurchaseOrdersPage {
         }
       });
   }
+  generatePdf() {
+    cy.get(PurchaseOrderPageElements.btn).contains("Generate PDF").click();
+  }
   changeOrdersStatus(status: string) {
     cy.get(PurchaseOrderPageElements.btn).contains("Change Status").click();
     cy.get(PurchaseOrderPageElements.statusMenuItem).contains(status).click();
+    cy.get(PurchaseOrderPageElements.statusBadge).eq(0).contains(status);
   }
 }
 export default PurchaseOrdersPage;

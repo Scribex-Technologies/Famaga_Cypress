@@ -64,5 +64,10 @@ const generalTexts = {
   brandSuccessMsg: "The brand was successfully created.",
   itemsSuccessMsg: "The item was successfully added",
   requestPriceMsg: "Request Price was successfully sent.",
+  purchasePdfMsg: "PDF has been generated successfully.",
+  purchaseOrderSent: "Purchase Order sent successfully!",
+  purchaseOrderStatusChangeMsg:
+    "Purchase Order status was successfully updated.",
+  purchaseOrderCreatedMsg: "The Purchase Order was successfully created",
 };
 export default generalTexts;
