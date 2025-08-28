@@ -16,7 +16,7 @@
         "@cypress/browserify-preprocessor": "^3.0.2",
         "@types/cypress": "^1.1.3",
         "@types/node": "^20.4.1",
-        "cypress": "^14.5.2",
+        "cypress": "^15.0.0",
         "cypress-file-upload": "^5.0.8",
         "cypress-xpath": "^2.0.1",
         "husky": "^8.0.1",
