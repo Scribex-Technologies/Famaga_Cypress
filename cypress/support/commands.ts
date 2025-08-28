@@ -27,17 +27,10 @@ const CommandsElements = {
   leftNav: "nav.mantine-AppShell-navbar",
   popMessage: ".ant-notification-notice-message",
   errorMsg: ".ant-form-item-explain-error",
-  creationWindow:
-    ".buildhero-Paper-root.buildhero-Modal-content.buildhero-Modal-content.buildhero-chy3l8",
   nameField: "#name",
   descField: "#description",
-  createUploadBtn: ".buildhero-Button-root.buildhero-17i4eyq",
   uploadBtn: "input[type=file]",
-  imageUploadFileMsg: ".buildhero-Text-root.buildhero-1of4r85",
-  saveBtn: "div.buildhero-Grid-col.buildhero-1xs3cx4 > button",
   notificationMsg: ".notification > span",
-  editTrashIconsOnImage: "span > .buildhero-UnstyledButton-root",
-  image: ".buildhero-Avatar-root img.buildhero-Avatar-image",
   titleOnSiteSettings: "#title",
   contactPersonDropdown: "#contactPersonId",
   btn: 'button[type="button"]',
@@ -46,6 +39,8 @@ const CommandsElements = {
     ".ant-btn.css-rrh4gt.ant-btn-primary.ant-btn-color-primary.ant-btn-variant-solid.ant-btn-icon-only",
   contactPersonDropdownMenuItems: ":nth-child(5) > .ant-select-dropdown",
   sendOrderBtn: ".ant-row > .ant-btn-primary",
+  image: "UpdateTate",
+  editTrashIconsOnImage: "UpdateTate",
 };
 Cypress.Commands.add("login", () => {
   cy.session("login", () => {
@@ -70,22 +65,6 @@ Cypress.Commands.add("popupMessageDisplayed", (message: string) => {
 });
 Cypress.Commands.add("emptyFieldMsgIsDisplayed", (message: string) => {
   cy.get(CommandsElements.errorMsg).contains(message);
-});
-Cypress.Commands.add("checkTheWindowClosed", () => {
-  cy.get(CommandsElements.creationWindow).should("not.exist");
-});
-Cypress.Commands.add("clickCreateUploadBtn", () => {
-  cy.get(CommandsElements.createUploadBtn).click();
-});
-Cypress.Commands.add("uploadImage", (imageType) => {
-  const imagePath = `cypress/fixtures/images/picture.${imageType}`;
-  cy.get(CommandsElements.uploadBtn).selectFile(imagePath, { force: true });
-});
-Cypress.Commands.add("verifyErrorMessage", (expectedMessage) => {
-  cy.get(CommandsElements.imageUploadFileMsg).should(
-    "contain",
-    expectedMessage
-  );
 });
 Cypress.Commands.add("fillInFields", (text: string) => {
   cy.get(CommandsElements.nameField).clear().type(text);
@@ -119,9 +98,6 @@ Cypress.Commands.add("checkAccessToken", () => {
       cy.log("Access token not found in local storage.");
     }
   });
-});
-Cypress.Commands.add("clickSaveBtn", () => {
-  cy.get(CommandsElements.saveBtn).click();
 });
 Cypress.Commands.add("checkNotificationMessage", (message: string) => {
   cy.get(CommandsElements.notificationMsg).contains(message);

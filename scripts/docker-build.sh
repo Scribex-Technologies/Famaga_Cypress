@@ -1,1 +1,1 @@
-docker build -t cypress-buildhero-e2e .
+docker build -t cypress-famaga-e2e .

@@ -8,7 +8,7 @@ export default defineConfig({
   viewportWidth: 1280,
   viewportHeight: 720,
   defaultCommandTimeout: 20000,
-  //retries: 1,
+  retries: 1,
   env: {
     testEnv: "comingsoon",
     stageEnv: "comingsoon",

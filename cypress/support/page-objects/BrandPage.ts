@@ -27,7 +27,7 @@ class BrandPage {
     cy.get(BrandPageElements.manufacturerWebsiteField)
       .should("be.visible")
       .type("example.com");
-    //Brand Cuuntry
+    //Brand Country
     cy.get(BrandPageElements.brandCountry).should("be.visible").type("Brazil");
     cy.get(BrandPageElements.antDropDown)
       .find(BrandPageElements.antSelectItem)
