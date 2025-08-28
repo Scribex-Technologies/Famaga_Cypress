@@ -19,10 +19,7 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
-
-import generalTexts from "./generalTexts";
 import "cypress-file-upload";
-
 const CommandsElements = {
   email: "#username",
   password: "#password",
