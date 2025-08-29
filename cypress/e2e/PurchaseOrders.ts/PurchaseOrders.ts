@@ -2,7 +2,6 @@ import { Given, When, Then } from "@badeball/cypress-cucumber-preprocessor";
 
 import generalTexts from "../../support/generalTexts";
 import SignInPage from "../../support/page-objects/SignInPage";
-import OrdersPage from "../../support/page-objects/OrdersPage";
 import PurchaseOrdersPage from "../../support/page-objects/PurchaseOrdersPage";
 const signInPage = new SignInPage();
 const purchaseOrdersPage = new PurchaseOrdersPage();
@@ -42,9 +41,6 @@ When("I open order details page and click on the generate pdf button", () => {
 });
 Then("I see the successful message pdf generated", () => {
   cy.popupMessageDisplayed(generalTexts.purchasePdfMsg);
-  //remove after bug fix
-  purchaseOrdersPage.clickSendBtn();
-  cy.sendOffer(generalTexts.genRecordName);
 });
 
 //Test-4
