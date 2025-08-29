@@ -45,7 +45,7 @@ Then("I see the successful message pdf generated", () => {
 
 //Test-4
 When("I open order details page and click on the send order button", () => {
-  purchaseOrdersPage.openPurchaseOrderDetailsPage("Order Sent");
+  purchaseOrdersPage.openPurchaseOrderDetailsPage("Processing");
   purchaseOrdersPage.clickSendBtn();
 });
 Then(
