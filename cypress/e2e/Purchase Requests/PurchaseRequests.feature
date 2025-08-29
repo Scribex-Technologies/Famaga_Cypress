@@ -12,19 +12,15 @@ Examples:
   | run |
   | 1   | 
   | 2   |       
-
+       
+@smoke
+    Scenario: Add items with quantity and prices to the table
+        When I add items quantity and prices to the table
+        Then I see the items are saved after reload
 @smoke
     Scenario: Add shipping information and fee and charges
         When I add a shipping information and fee and charges
-        Then I see the changes are saved after reload        
-@smoke
-    Scenario: Add items to the table
-        When I add items to the table
-        Then I see the items are saved after reload
-@smoke
-    Scenario: Fill in tables fields
-        When I fill in items fields on the table
-        Then I see all fields are saved after reload
+        Then I see the changes are saved after reload 
  @smoke
     Scenario: Delete Supplier Offer
         When I delete the supplier offer

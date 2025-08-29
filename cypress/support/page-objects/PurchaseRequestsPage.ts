@@ -166,10 +166,7 @@ class PurchasePage {
       .contains(prefix)
       .eq(0)
       .click();
-    cy.get(PurchasePageElements.emlFileUpload).attachFile(
-      "EmlFileAutotest.eml"
-    );
-    cy.get(PurchasePageElements.sourceDropdown).type("Email{enter}");
+    cy.get(PurchasePageElements.sourceDropdown).type("Price list{enter}");
     cy.get(PurchasePageElements.offerNumberField).type(prefix);
     cy.get(PurchasePageElements.attachmentUpload).attachFile(
       "AutomatedFile.pdf"
@@ -274,7 +271,7 @@ class PurchasePage {
   }
   changePurchaseRequestStatus() {
     const clicks = 3; // number of status changes needed
-    const waitTime = 500; // milliseconds to wait between clicks
+    const waitTime = 1000; // milliseconds to wait between clicks
 
     for (let i = 0; i < clicks; i++) {
       cy.get(PurchasePageElements.btn).contains("Change Status").click();
@@ -313,17 +310,17 @@ class PurchasePage {
     cy.get("body").click(0, 0).wait(1000);
   }
   fillInItemsTableFields(randomPrice: number, randomQuantity: number) {
-    //cy.get(PurchasePageElements.itemDescription).eq(0).click();
-    //cy.get(PurchasePageElements.itemDescription).type(
-    // "Automated Test does their best{enter}"
-    //);
-    // cy.get("body").click(0, 0);
-    //cy.get(PurchasePageElements.itemDiscount).click();
-    //cy.get(PurchasePageElements.itemDiscount).type("1{enter}");
-    //cy.get(PurchasePageElements.itemTable).scrollTo("left");
-    //cy.get(PurchasePageElements.itemNotes).click();
-    //cy.get(PurchasePageElements.itemNotes).type("Note is Automated{enter}");
-    //cy.get("body").click(0, 0);
+    cy.get(PurchasePageElements.itemDescription).eq(0).click();
+    cy.get(PurchasePageElements.itemDescription).type(
+      "Automated Test does their best{enter}"
+    );
+    cy.get("body").click(0, 0);
+    cy.get(PurchasePageElements.itemDiscount).click();
+    cy.get(PurchasePageElements.itemDiscount).type("1{enter}");
+    cy.get(PurchasePageElements.itemTable).scrollTo("left");
+    cy.get(PurchasePageElements.itemNotes).click();
+    cy.get(PurchasePageElements.itemNotes).type("Note is Automated{enter}");
+    cy.get("body").click(0, 0);
   }
   openParentDeal() {
     cy.get(PurchasePageElements.parentDeal).contains("Parent Deal").click();

@@ -20,19 +20,9 @@ When("I fill in all fields and submit", () => {
 Then("I see the purchase request successfully added", () => {
   cy.popupMessageDisplayed(generalTexts.successfulSupplierOfferCreationMsg);
 });
+
 //Test-2
-When("I add a shipping information and fee and charges", () => {
-  purchasePage.openSupplierOffersTab();
-  purchasePage.openSupplierOffer();
-  purchasePage.addLeadWeight();
-  purchasePage.addShippingCost();
-  purchasePage.addFeeAndCharges();
-});
-Then("I see the changes are saved after reload", () => {
-  purchasePage.verifyLeadShippingFeesDataIsSaved();
-});
-//Test-3
-When("I add items to the table", () => {
+When("I add items quantity and prices to the table", () => {
   const { itemFirstName, itemSecondName } = generalTexts.generateRandomNames();
   purchasePage.openSupplierOffersTab();
   purchasePage.openSupplierOffer();
@@ -54,6 +44,17 @@ Then("I see the items are saved after reload", () => {
   purchasePage.checkItemsAddedToTheTable(itemSecondName);
 });
 
+//Test-3
+When("I add a shipping information and fee and charges", () => {
+  purchasePage.openSupplierOffersTab();
+  purchasePage.openSupplierOffer();
+  purchasePage.addLeadWeight();
+  purchasePage.addShippingCost();
+  purchasePage.addFeeAndCharges();
+});
+Then("I see the changes are saved after reload", () => {
+  purchasePage.verifyLeadShippingFeesDataIsSaved();
+});
 //Test-4
 When("I fill in items fields on the table", () => {
   purchasePage.openSupplierOffersTab();
