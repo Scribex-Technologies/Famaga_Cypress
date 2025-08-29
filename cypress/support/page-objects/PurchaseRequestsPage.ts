@@ -1,4 +1,5 @@
 import { waitForDebugger } from "inspector";
+import generalTexts from "../generalTexts";
 
 const PurchasePageElements = {
   purchasesPage: 'a[href="/admin/purchase-request"]',
@@ -288,14 +289,28 @@ class PurchasePage {
     cy.get(PurchasePageElements.btn).contains("Publish").click();
     cy.get(PurchasePageElements.popupPublishBtn).click();
   }
-  addItemToTheTable(randomFirstRecord: string) {
-    const prefix = randomFirstRecord.slice(0, 7);
+  addItemToTheTable(
+    randomRecord: string,
+    randomPrice: number,
+    randomQuantity: number
+  ) {
+    const prefix = randomRecord.slice(0, 7);
     cy.get(PurchasePageElements.addRowBtn).scrollIntoView().wait(1000).click();
     cy.get(PurchasePageElements.itemSku).should("be.visible").type(prefix);
     cy.get(PurchasePageElements.antSelectDropdown)
       .contains(prefix)
       .click()
       .wait(1000);
+    cy.xpath(PurchasePageElements.itemQuantity).eq(0).click();
+    cy.xpath(PurchasePageElements.itemQuantity)
+      .eq(0)
+      .type(randomQuantity + "{enter}");
+    cy.get("body").click(0, 0).wait(1000);
+    cy.xpath(PurchasePageElements.itemPurchaseRequestPrice).eq(0).click();
+    cy.xpath(PurchasePageElements.itemPurchaseRequestPrice)
+      .eq(0)
+      .type(randomPrice + "{enter}");
+    cy.get("body").click(0, 0).wait(1000);
   }
   fillInItemsTableFields(randomPrice: number, randomQuantity: number) {
     //cy.get(PurchasePageElements.itemDescription).eq(0).click();
@@ -309,31 +324,6 @@ class PurchasePage {
     //cy.get(PurchasePageElements.itemNotes).click();
     //cy.get(PurchasePageElements.itemNotes).type("Note is Automated{enter}");
     //cy.get("body").click(0, 0);
-    cy.xpath(PurchasePageElements.itemQuantity).eq(0).click();
-    cy.xpath(PurchasePageElements.itemQuantity)
-      .eq(0)
-      .type(randomQuantity + "{enter}");
-    cy.get("body").click(0, 0);
-    cy.wait(2000);
-    cy.xpath(PurchasePageElements.itemPurchaseRequestPrice).eq(0).click();
-    cy.xpath(PurchasePageElements.itemPurchaseRequestPrice)
-      .eq(0)
-      .type(randomPrice + "{enter}");
-    cy.get("body").click(0, 0);
-    cy.wait(2000);
-    cy.xpath(PurchasePageElements.itemQuantity).eq(1).click();
-    cy.xpath(PurchasePageElements.itemQuantity)
-      .eq(1)
-      .type(randomQuantity + "{enter}")
-      .wait(100);
-    cy.get("body").click(0, 0);
-    cy.wait(2000);
-    cy.xpath(PurchasePageElements.itemPurchaseRequestPrice).eq(1).click();
-    cy.xpath(PurchasePageElements.itemPurchaseRequestPrice)
-      .eq(1)
-      .type(randomPrice + "{enter}")
-      .wait(100);
-    cy.get("body").click(0, 0);
   }
   openParentDeal() {
     cy.get(PurchasePageElements.parentDeal).contains("Parent Deal").click();

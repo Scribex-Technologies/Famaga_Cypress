@@ -36,8 +36,17 @@ When("I add items to the table", () => {
   const { itemFirstName, itemSecondName } = generalTexts.generateRandomNames();
   purchasePage.openSupplierOffersTab();
   purchasePage.openSupplierOffer();
-  purchasePage.addItemToTheTable(itemFirstName);
-  purchasePage.addItemToTheTable(itemSecondName);
+  purchasePage.addItemToTheTable(
+    itemFirstName,
+    generalTexts.randomPrice,
+    generalTexts.randomQuantity
+  );
+  purchasePage.addItemToTheTable(
+    itemSecondName,
+    generalTexts.randomPrice,
+    generalTexts.randomQuantity
+  );
+  //purchasePage.addItemToTheTable(itemSecondName);
 });
 Then("I see the items are saved after reload", () => {
   const { itemFirstName, itemSecondName } = generalTexts.generateRandomNames();

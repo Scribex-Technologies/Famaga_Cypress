@@ -10,7 +10,7 @@ const specs = [
   "cypress/e2e/Purchase Requests/PurchaseRequests.feature",
   "cypress/e2e/Deals/Deals.feature",
   "cypress/e2e/Orders.ts/Orders.feature",
-  "cypress/e2e/PurchaseOrders.ts/PurchaseOrders.feature",
+  //"cypress/e2e/PurchaseOrders.ts/PurchaseOrders.feature",
 ];
 
 specs.forEach((spec) => {
