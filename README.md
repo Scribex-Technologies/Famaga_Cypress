@@ -21,4 +21,4 @@
 # running one particular feature file with the chosen tag in Chrome browser - yarn cypress run --env TAGS='@smoke' --spec "cypress/e2e/Signin/Signin.feature" --headless --browser chrome
 
 # running all tests features with the particular tag in chrome browser - For example - yarn cypress run --env TAGS='@smoke' --headless --browser chrome
- # For the desired ordered feature files run command -  node run-ordered.js -> can be checked here run-ordered.ts
+ # For the desired ordered feature files run command -  node run-ordered.ts -> can be checked here run-ordered.ts
