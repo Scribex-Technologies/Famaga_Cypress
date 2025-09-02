@@ -23,7 +23,14 @@ Then("I see the purchase request successfully added", () => {
 
 //Test-2
 When("I add items quantity and prices to the table", () => {
-  const { itemFirstName, itemSecondName } = generalTexts.generateRandomNames();
+  const {
+    itemFirstName,
+    itemSecondName,
+    itemThirdName,
+    itemForthName,
+    itemFifthName,
+    itemSixthName,
+  } = generalTexts.generateRandomNames();
   purchasePage.openSupplierOffersTab();
   purchasePage.openSupplierOffer();
   purchasePage.addItemToTheTable(
@@ -36,12 +43,43 @@ When("I add items quantity and prices to the table", () => {
     generalTexts.randomPrice,
     generalTexts.randomQuantity
   );
+  purchasePage.addItemToTheTable(
+    itemThirdName,
+    generalTexts.randomPrice,
+    generalTexts.randomQuantity
+  );
+  purchasePage.addItemToTheTable(
+    itemForthName,
+    generalTexts.randomPrice,
+    generalTexts.randomQuantity
+  );
+  purchasePage.addItemToTheTable(
+    itemFifthName,
+    generalTexts.randomPrice,
+    generalTexts.randomQuantity
+  );
+  purchasePage.addItemToTheTable(
+    itemSixthName,
+    generalTexts.randomPrice,
+    generalTexts.randomQuantity
+  );
   //purchasePage.addItemToTheTable(itemSecondName);
 });
 Then("I see the items are saved after reload", () => {
-  const { itemFirstName, itemSecondName } = generalTexts.generateRandomNames();
+  const {
+    itemFirstName,
+    itemSecondName,
+    itemThirdName,
+    itemFifthName,
+    itemForthName,
+    itemSixthName,
+  } = generalTexts.generateRandomNames();
   purchasePage.checkItemsAddedToTheTable(itemFirstName);
   purchasePage.checkItemsAddedToTheTable(itemSecondName);
+  purchasePage.checkItemsAddedToTheTable(itemThirdName);
+  purchasePage.checkItemsAddedToTheTable(itemForthName);
+  purchasePage.checkItemsAddedToTheTable(itemFifthName);
+  purchasePage.checkItemsAddedToTheTable(itemSixthName);
 });
 
 //Test-3

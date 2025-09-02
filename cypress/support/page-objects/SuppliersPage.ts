@@ -1,3 +1,5 @@
+import generalTexts from "../generalTexts";
+
 const SupplierPageElements = {
   suppliersPage: 'a[href="/admin/suppliers"]',
   btn: 'button[type="button"]',
@@ -34,6 +36,8 @@ class SupplierPage {
     cy.get(SupplierPageElements.openEye).eq(0).click();
   }
   addNewSupplier(randomName: string) {
+    const country = generalTexts.getRandomCountry(); // pick ONCE
+    const language = generalTexts.getRandomLanguage(); // pick ONCE
     cy.get(SupplierPageElements.btn).contains("Add New").click();
     cy.get(SupplierPageElements.supplierName)
       .should("be.visible")
@@ -44,20 +48,20 @@ class SupplierPage {
     // Main Language
     cy.get(SupplierPageElements.mainLanguage)
       .should("be.visible")
-      .type("Arabic");
+      .type(language);
     cy.get(SupplierPageElements.antDropDown)
       .should("be.visible")
       .find(SupplierPageElements.antSelectItem)
-      .contains("Arabic")
+      .contains(language)
       .should("be.visible")
       .click();
     //Supplier Cuuntry
     cy.get(SupplierPageElements.supplierCountry)
       .should("be.visible")
-      .type("Brazil");
+      .type(country);
     cy.get(SupplierPageElements.antDropDown)
       .find(SupplierPageElements.antSelectItem)
-      .contains("Brazil")
+      .contains(country)
       .should("be.visible")
       .click();
     // Supplier Type
@@ -85,9 +89,12 @@ class SupplierPage {
     cy.contains(randomName, { timeout: 5000 }).should("exist");
   }
   addNewContactPerson(randomName: string) {
+    const language = generalTexts.getRandomLanguage(); // pick ONCE
     cy.get(SupplierPageElements.btn).contains("Add New").click();
     cy.get(SupplierPageElements.contactPersonName).type(randomName);
-    cy.get(SupplierPageElements.contactPersonLanguage).type("Italian{enter}");
+    cy.get(SupplierPageElements.contactPersonLanguage).type(
+      language + "{enter}"
+    );
     cy.get(SupplierPageElements.contactPersonDepartment).type(randomName);
     cy.get(SupplierPageElements.contactPersonRole).type(randomName);
     cy.get(SupplierPageElements.contactPersonType).type("Instagram{enter}");

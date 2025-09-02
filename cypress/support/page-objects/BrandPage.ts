@@ -1,3 +1,5 @@
+import generalTexts from "../generalTexts";
+
 const BrandPageElements = {
   brandPage: 'a[href="/admin/brands"]',
   btn: 'button[type="button"]',
@@ -21,16 +23,17 @@ class BrandPage {
     cy.get(BrandPageElements.openEye).eq(0).click();
   }
   addNewBrand(randomRecord: string) {
+    const country = generalTexts.getRandomCountry(); // pick ONCE
     cy.get(BrandPageElements.btn).contains("Add New").click();
     cy.get(BrandPageElements.brandName).should("be.visible").type(randomRecord);
     cy.get(BrandPageElements.manufacturerWebsiteField)
       .should("be.visible")
       .type("example.com");
     //Brand Country
-    cy.get(BrandPageElements.brandCountry).should("be.visible").type("Brazil");
+    cy.get(BrandPageElements.brandCountry).should("be.visible").type(country);
     cy.get(BrandPageElements.antDropDown)
       .find(BrandPageElements.antSelectItem)
-      .contains("Brazil")
+      .contains(country)
       .should("be.visible")
       .click();
     // Brand Industry

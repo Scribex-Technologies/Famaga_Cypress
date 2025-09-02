@@ -1,3 +1,5 @@
+import generalTexts from "../generalTexts";
+
 const ClientPageElements = {
   btn: 'button[type="button"]',
   addNewBtn: ".ant-row > .ant-btn-primary",
@@ -34,6 +36,8 @@ class ClientPage {
   }
 
   addNewClient(randomName: string) {
+    const country = generalTexts.getRandomCountry(); // pick ONCE
+    const language = generalTexts.getRandomLanguage(); // pick ONCE
     cy.get(ClientPageElements.btn).contains("Add New").click();
     cy.get(ClientPageElements.clientName).type(randomName);
     cy.get(ClientPageElements.clientType)
@@ -44,13 +48,11 @@ class ClientPage {
       .find(ClientPageElements.antSelectItem)
       .contains("Corporate")
       .click();
-    cy.get(ClientPageElements.clientCountry)
-      .should("be.visible")
-      .type("Brazil");
+    cy.get(ClientPageElements.clientCountry).should("be.visible").type(country);
     cy.get(ClientPageElements.antDropDown).should("be.visible");
     cy.get(ClientPageElements.antDropDown)
       .find(ClientPageElements.antSelectItem)
-      .contains("Brazil")
+      .contains(country)
       .should("be.visible")
       .click();
     // Contact person info
@@ -59,8 +61,8 @@ class ClientPage {
       .type(randomName);
     cy.get(ClientPageElements.contactPersonLanguage)
       .should("be.visible")
-      .type("Arabic");
-    cy.contains("Arabic").click();
+      .type(language);
+    cy.contains(language).click();
     cy.get(ClientPageElements.contactPersonDepartment).type(randomName);
     cy.get(ClientPageElements.contactPersonRole).type(randomName);
     cy.get(ClientPageElements.contactPersonType)
@@ -80,9 +82,10 @@ class ClientPage {
   }
 
   addNewContactPerson(randomName: string) {
+    const language = generalTexts.getRandomLanguage(); // pick ONCE
     cy.get(ClientPageElements.btn).contains("Add New").click();
     cy.get(ClientPageElements.contactPersonName).type(randomName);
-    cy.get(ClientPageElements.contactPersonLanguage).type("Italian{enter}");
+    cy.get(ClientPageElements.contactPersonLanguage).type(language + "{enter}");
     cy.get(ClientPageElements.contactPersonDepartment).type(randomName);
     cy.get(ClientPageElements.contactPersonRole).type(randomName);
     cy.get(ClientPageElements.contactPersonType).type("Instagram{enter}");
