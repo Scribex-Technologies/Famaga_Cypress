@@ -1,5 +1,4 @@
 const DealsPageElements = {
-  dealsPage: 'a[href="/admin/deals"]',
   tabs: ".ant-col.ant-col-24.css-rrh4gt",
   btn: 'button[type="button"]',
   addBtn: ".ant-row > .ant-btn-primary",
@@ -20,9 +19,6 @@ const DealsPageElements = {
 };
 
 class DealsPage {
-  openDealsPage() {
-    cy.get(DealsPageElements.dealsPage).click();
-  }
   openDealsDetailsPage() {
     cy.get(DealsPageElements.openEye).eq(0).click();
   }
@@ -94,7 +90,7 @@ class DealsPage {
   }
   changePurchaseRequestStatus() {
     const clicks = 2; // number of status changes needed
-    const waitTime = 1500; // milliseconds to wait between clicks
+    const waitTime = 2000; // milliseconds to wait between clicks
     for (let i = 0; i < clicks; i++) {
       cy.get(DealsPageElements.btn).contains("Change Status").click();
       cy.get(DealsPageElements.purchaseRequestStatuses).click();

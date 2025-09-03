@@ -10,7 +10,7 @@ const clientPage = new ClientPage();
 Given("I open the clients page", () => {
   signInPage.navigate();
   signInPage.signIn(generalTexts.mainEmail, generalTexts.mainPassword);
-  clientPage.openClientsPage();
+  cy.openEntity("clients");
 });
 When("I fill in all fields and submit", () => {
   clientPage.addNewClient(generalTexts.genRecordName);

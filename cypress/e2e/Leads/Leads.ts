@@ -10,7 +10,7 @@ const leadsPage = new LeadsPage();
 Given("I open the Leads page", () => {
   signInPage.navigate();
   signInPage.signIn(generalTexts.mainEmail, generalTexts.mainPassword);
-  leadsPage.openLeadsPage();
+  cy.openEntity("leads");
 });
 When("I fill in all fields and submit", () => {
   leadsPage.createNewLead(generalTexts.genRecordName);

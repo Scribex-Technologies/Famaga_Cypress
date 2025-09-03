@@ -1,5 +1,4 @@
 const PurchaseOrderPageElements = {
-  purchaseOrderPage: 'a[href="/admin/purchase-order"]',
   tabs: ".ant-col.ant-col-24.css-rrh4gt",
   btn: 'button[type="button"]',
   addBtn: ".ant-row > .ant-btn-primary",
@@ -19,9 +18,6 @@ const PurchaseOrderPageElements = {
 };
 
 class PurchaseOrdersPage {
-  openPurchaseOrderPage() {
-    cy.get(PurchaseOrderPageElements.purchaseOrderPage).click();
-  }
   openAttachmentsTab() {
     cy.contains("Attachments").click();
   }

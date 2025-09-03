@@ -1,7 +1,6 @@
 import generalTexts from "../generalTexts";
 
 const SupplierPageElements = {
-  suppliersPage: 'a[href="/admin/suppliers"]',
   btn: 'button[type="button"]',
   addBtn: '[style="row-gap: 20px;"] > .ant-col > .ant-row > .ant-btn-primary',
   supplierName: "#name",
@@ -29,9 +28,6 @@ const SupplierPageElements = {
   antSelectItem: ".ant-select-item",
 };
 class SupplierPage {
-  openSupplierPage() {
-    cy.get(SupplierPageElements.suppliersPage).click();
-  }
   openSupplierDetailsPage() {
     cy.get(SupplierPageElements.openEye).eq(0).click();
   }

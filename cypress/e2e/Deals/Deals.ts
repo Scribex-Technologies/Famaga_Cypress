@@ -12,7 +12,7 @@ const purchasePage = new PurchasePage();
 Given("I open the Deals page", () => {
   signInPage.navigate();
   signInPage.signIn(generalTexts.mainEmail, generalTexts.mainPassword);
-  dealsPage.openDealsPage();
+  cy.openEntity("deals");
 });
 When("I open Commercial offer tab and add a new offer", () => {
   dealsPage.openDealsDetailsPage();

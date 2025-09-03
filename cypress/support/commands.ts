@@ -51,6 +51,10 @@ Cypress.Commands.add("login", () => {
     cy.get(CommandsElements.leftNav).should("be.visible");
   });
 });
+Cypress.Commands.add("openEntity", (page: string) => {
+  cy.get(`a[href="/admin/${page}"]`).click();
+  cy.wait(1000);
+});
 //Update this in the future- Tatevik
 Cypress.on("uncaught:exception", (err, runnable) => {
   if (err.message.includes("Request failed with status code 400")) {

@@ -19,6 +19,7 @@ declare namespace Cypress {
     emptyFieldMsgIsDisplayed(message: string): Chainable<undefined>;
     checkTheWindowClosed(): Chainable<undefined>;
     fillInFields(message: string): Chainable<undefined>;
+    openEntity(page: string): Chainable<undefined>;
     clickCreateUploadBtn(): Chainable<undefined>;
     uploadImage(imageType): Chainable<undefined>;
     verifyErrorMessage(ExpectedMessage): Chainable<undefined>;

@@ -10,7 +10,7 @@ const itemsPage = new ItemsPage();
 Given("I open the Items page", () => {
   signInPage.navigate();
   signInPage.signIn(generalTexts.mainEmail, generalTexts.mainPassword);
-  itemsPage.openItemsPage();
+  cy.openEntity("items");
 });
 When("I fill in all fields and submit", () => {
   const {

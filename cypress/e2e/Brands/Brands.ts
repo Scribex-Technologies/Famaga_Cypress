@@ -10,7 +10,7 @@ const brandsPage = new BrandsPage();
 Given("I open the brands page", () => {
   signInPage.navigate();
   signInPage.signIn(generalTexts.mainEmail, generalTexts.mainPassword);
-  brandsPage.openBrandPage();
+  cy.openEntity("brands");
 });
 When("I fill in all fields and submit", () => {
   brandsPage.addNewBrand(generalTexts.genRecordName);

@@ -1,5 +1,4 @@
 const OrderPageElements = {
-  orderPage: 'a[href="/admin/orders"]',
   tabs: ".ant-col.ant-col-24.css-rrh4gt",
   btn: 'button[type="button"]',
   addBtn: ".ant-row > .ant-btn-primary",
@@ -11,9 +10,6 @@ const OrderPageElements = {
 };
 
 class OrdersPage {
-  openOrderPage() {
-    cy.get(OrderPageElements.orderPage).click();
-  }
   openAttachmentsTab() {
     cy.contains("Attachments").click();
   }

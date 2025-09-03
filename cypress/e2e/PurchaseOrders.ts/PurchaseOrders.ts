@@ -10,7 +10,7 @@ const purchaseOrdersPage = new PurchaseOrdersPage();
 Given("I open the Purchase Orders page", () => {
   signInPage.navigate();
   signInPage.signIn(generalTexts.mainEmail, generalTexts.mainPassword);
-  purchaseOrdersPage.openPurchaseOrderPage();
+  cy.openEntity("purchase-order");
 });
 When("I open the add new page select items and create an order", () => {
   purchaseOrdersPage.createPurchaseOrder(generalTexts.genRecordName);

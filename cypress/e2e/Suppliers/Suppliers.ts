@@ -10,7 +10,7 @@ const suppliersPage = new SupplierPage();
 Given("I open the suppliers page", () => {
   signInPage.navigate();
   signInPage.signIn(generalTexts.mainEmail, generalTexts.mainPassword);
-  suppliersPage.openSupplierPage();
+  cy.openEntity("suppliers");
 });
 When("I fill in all fields and submit", () => {
   suppliersPage.addNewSupplier(generalTexts.genRecordName);

@@ -1,7 +1,6 @@
 import generalTexts from "../generalTexts";
 
 const BrandPageElements = {
-  brandPage: 'a[href="/admin/brands"]',
   btn: 'button[type="button"]',
   addBtn: '[style="row-gap: 20px;"] > .ant-col > .ant-row > .ant-btn-primary',
   brandName: "#name",
@@ -16,9 +15,6 @@ const BrandPageElements = {
   antSelectItem: ".ant-select-item",
 };
 class BrandPage {
-  openBrandPage() {
-    cy.get(BrandPageElements.brandPage).click();
-  }
   openBrandDetailsPage() {
     cy.get(BrandPageElements.openEye).eq(0).click();
   }

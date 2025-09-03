@@ -2,7 +2,6 @@ import { waitForDebugger } from "inspector";
 import generalTexts from "../generalTexts";
 
 const PurchasePageElements = {
-  purchasesPage: 'a[href="/admin/purchase-request"]',
   tabs: ".ant-col.ant-col-24.css-rrh4gt",
   btn: 'button[type="button"]',
   addBtn: ".ant-row > .ant-btn-primary",
@@ -63,9 +62,6 @@ const PurchasePageElements = {
   antSelectDropdown: ".ant-select-dropdown",
 };
 class PurchasePage {
-  openPurchasePage() {
-    cy.get(PurchasePageElements.purchasesPage).click();
-  }
   openPurchaseDetailsPage() {
     cy.get(PurchasePageElements.mainTableRows)
       .filter((_, row) => {

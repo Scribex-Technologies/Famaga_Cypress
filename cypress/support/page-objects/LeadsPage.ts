@@ -1,5 +1,4 @@
 const LeadsPageElements = {
-  leadsPage: 'a[href="/admin/leads"]',
   tabs: ".ant-col.ant-col-24.css-rrh4gt",
   btn: 'button[type="button"]',
   addBtn: ".ant-row > .ant-btn-primary",
@@ -24,9 +23,6 @@ const LeadsPageElements = {
     "div > div > div.rc-virtual-list > div > div > div",
 };
 class LeadsPage {
-  openLeadsPage() {
-    cy.get(LeadsPageElements.leadsPage).click();
-  }
   openLeadsDetailsPage() {
     cy.get(LeadsPageElements.mainTableRows)
       .filter((_, row) => {

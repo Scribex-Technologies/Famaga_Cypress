@@ -10,7 +10,7 @@ const ordersPage = new OrdersPage();
 Given("I open the Orders page", () => {
   signInPage.navigate();
   signInPage.signIn(generalTexts.mainEmail, generalTexts.mainPassword);
-  ordersPage.openOrderPage();
+  cy.openEntity("orders");
 });
 When("I open the order details page and change the status", () => {
   ordersPage.openOrderDetailsPage();

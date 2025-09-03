@@ -10,7 +10,7 @@ const purchasePage = new PurchasePage();
 Given("I open the purchase request page", () => {
   signInPage.navigate();
   signInPage.signIn(generalTexts.mainEmail, generalTexts.mainPassword);
-  purchasePage.openPurchasePage();
+  cy.openEntity("purchase-request");
   purchasePage.openPurchaseDetailsPage();
 });
 When("I fill in all fields and submit", () => {

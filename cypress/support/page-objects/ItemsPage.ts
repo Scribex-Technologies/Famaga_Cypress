@@ -1,5 +1,4 @@
 const ItemsPageElements = {
-  itemsPage: 'a[href="/admin/items"]',
   btn: 'button[type="button"]',
   addBtn: '[style="row-gap: 20px;"] > .ant-col > .ant-row > .ant-btn-primary',
   itemSku: "#itemSKU",
@@ -15,9 +14,6 @@ const ItemsPageElements = {
   brandDropdown: "#brandId",
 };
 class ItemsPage {
-  openItemsPage() {
-    cy.get(ItemsPageElements.itemsPage).click();
-  }
   openItemsDetailsPage() {
     cy.get(ItemsPageElements.openEye).eq(0).click();
   }
