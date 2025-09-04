@@ -303,5 +303,11 @@ class PurchaseOrdersPage {
       randomPrice
     );
   }
+  publishSupplierOffer() {
+    cy.get(PurchaseOrderPageElements.btn).contains("Publish").click();
+    cy.get(PurchaseOrderPageElements.supplierModal).within(() => {
+      cy.get(PurchaseOrderPageElements.btn).contains("Publish").click();
+    });
+  }
 }
 export default PurchaseOrdersPage;

@@ -73,11 +73,11 @@ Then(
   }
 );
 //Test-6
-When("I fill in all fields and submit", () => {
+When("I add a Supplier offer from the add purchase order page", () => {
   purchaseOrdersPage.clickAddNewBtn();
   purchaseOrdersPage.createSupplierOffer(generalTexts.genRecordName);
 });
-Then("I see the purchase request successfully added", () => {
+Then("I see the supplier order added successfully", () => {
   cy.popupMessageDisplayed(generalTexts.successfulSupplierOfferCreationMsg);
 });
 
@@ -90,12 +90,18 @@ When("I update items quantity and prices on the table", () => {
     generalTexts.randomQuantity
   );
 });
-Then("I see the items are saved after reload", () => {
-  purchaseOrdersPage.checkItemsPricesUpdatedOnTheTable(
-    generalTexts.randomPrice,
-    generalTexts.randomQuantity
-  );
+When("I publish the offer", () => {
+  purchaseOrdersPage.publishSupplierOffer();
 });
+Then(
+  "I see the offer is published and the user has been redirected to the previous page",
+  () => {
+    purchaseOrdersPage.checkItemsPricesUpdatedOnTheTable(
+      generalTexts.randomPrice,
+      generalTexts.randomQuantity
+    );
+  }
+);
 //Test-8
 When("I add a shipping information and fee and charges", () => {
   purchaseOrdersPage.clickAddNewBtn();

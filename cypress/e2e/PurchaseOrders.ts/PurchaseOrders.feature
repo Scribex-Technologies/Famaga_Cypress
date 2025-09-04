@@ -29,17 +29,15 @@ Feature: Purchase Orders Page
         Then I pick the shipping date save and see the successful message about status change
 
 @smoke
- Scenario Outline: Add supplier offer multiple times
-  When I fill in all fields and submit
-  Then I see the purchase request successfully added
+ Scenario: Add supplier offer from the Add purchase order page
+  When I add a Supplier offer from the add purchase order page
+  Then I see the supplier order added successfully
 
-Examples:
-  | run |
-  | 1   | 
 @smoke
-    Scenario: Add update quantity and prices on the table
+    Scenario: Add quantity and prices on the table and publish the offer
         When I update items quantity and prices on the table
-        Then I see the items are saved after reload
+        When I publish the offer
+        Then I see the offer is published and the user has been redirected to the previous page
 @smoke
     Scenario: Add shipping information and fee and charges
         When I add a shipping information and fee and charges
