@@ -93,20 +93,8 @@ When("I add a shipping information and fee and charges", () => {
 Then("I see the changes are saved after reload", () => {
   purchasePage.verifyLeadShippingFeesDataIsSaved();
 });
-//Test-4
-When("I fill in items fields on the table", () => {
-  purchasePage.openSupplierOffersTab();
-  purchasePage.openSupplierOffer();
-  purchasePage.fillInItemsTableFields(
-    generalTexts.randomPrice,
-    generalTexts.randomQuantity
-  );
-});
-Then("I see all fields are saved after reload", () => {
-  //purchasePage.verifyItemsTableFieldsSaved();
-});
 
-//Test-5
+//Test-4
 When("I delete the supplier offer", () => {
   purchasePage.openSupplierOffersTab();
   purchasePage.deleteSupplierOffer();
@@ -115,7 +103,7 @@ Then("I see the Supplier Offer is successfully deleted", () => {
   cy.popupMessageDisplayed(generalTexts.deletionSupplierOfferMsg);
 });
 
-//Test-6
+//Test-5
 When("I publish the Supplier offer", () => {
   purchasePage.openSupplierOffersTab();
   purchasePage.publishSupplierOffer();
@@ -124,7 +112,7 @@ Then("I see the offer published and the success message", () => {
   cy.popupMessageDisplayed(generalTexts.supplierOfferPublishedMsg);
 });
 
-//Test-7
+//Test-6
 When("I change the Supplier offer status", () => {
   purchasePage.openSupplierOffersTab();
   purchasePage.changePurchaseRequestStatus();
@@ -133,7 +121,7 @@ Then("I see the status changed and the success message", () => {
   cy.popupMessageDisplayed(generalTexts.purchaseRequestStatusChangeMsg);
 });
 
-//Test-8
+//Test-7
 When("I create items alternative", () => {
   purchasePage.openSupplierOffersTab();
   purchasePage.openSupplierOffer();
@@ -141,7 +129,7 @@ When("I create items alternative", () => {
 });
 Then("I see the alternative is created", () => {});
 
-//Test-9
+//Test-8
 When("I create substitute", () => {
   purchasePage.openSupplierOffersTab();
   purchasePage.openSupplierOffer();

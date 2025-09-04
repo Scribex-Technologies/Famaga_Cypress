@@ -8,7 +8,7 @@ export default defineConfig({
   chromeWebSecurity: false,
   viewportWidth: 1280,
   viewportHeight: 720,
-  defaultCommandTimeout: 20000,
+  defaultCommandTimeout: 10000,
   // retries: 1,
   env: {
     testEnv: "comingsoon",

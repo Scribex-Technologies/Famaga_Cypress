@@ -27,3 +27,20 @@ Feature: Purchase Orders Page
     Scenario: Change the Purchase order status to Confirmed
         When I open order details page and click the change status to Confirmed
         Then I pick the shipping date save and see the successful message about status change
+
+@smoke
+ Scenario Outline: Add supplier offer multiple times
+  When I fill in all fields and submit
+  Then I see the purchase request successfully added
+
+Examples:
+  | run |
+  | 1   | 
+@smoke
+    Scenario: Add update quantity and prices on the table
+        When I update items quantity and prices on the table
+        Then I see the items are saved after reload
+@smoke
+    Scenario: Add shipping information and fee and charges
+        When I add a shipping information and fee and charges
+        Then I see the changes are saved after reload 

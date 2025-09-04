@@ -72,3 +72,38 @@ Then(
     cy.popupMessageDisplayed(generalTexts.purchaseOrderStatusChangeMsg);
   }
 );
+//Test-6
+When("I fill in all fields and submit", () => {
+  purchaseOrdersPage.clickAddNewBtn();
+  purchaseOrdersPage.createSupplierOffer(generalTexts.genRecordName);
+});
+Then("I see the purchase request successfully added", () => {
+  cy.popupMessageDisplayed(generalTexts.successfulSupplierOfferCreationMsg);
+});
+
+//Test-7
+When("I update items quantity and prices on the table", () => {
+  purchaseOrdersPage.clickAddNewBtn();
+  purchaseOrdersPage.createSupplierOffer(generalTexts.genRecordName);
+  purchaseOrdersPage.editItemOnTheTable(
+    generalTexts.randomPrice,
+    generalTexts.randomQuantity
+  );
+});
+Then("I see the items are saved after reload", () => {
+  purchaseOrdersPage.checkItemsPricesUpdatedOnTheTable(
+    generalTexts.randomPrice,
+    generalTexts.randomQuantity
+  );
+});
+//Test-8
+When("I add a shipping information and fee and charges", () => {
+  purchaseOrdersPage.clickAddNewBtn();
+  purchaseOrdersPage.createSupplierOffer(generalTexts.genRecordName);
+  purchaseOrdersPage.addLeadWeight();
+  purchaseOrdersPage.addShippingCost();
+  purchaseOrdersPage.addFeeAndCharges();
+});
+Then("I see the changes are saved after reload", () => {
+  purchaseOrdersPage.verifyLeadShippingFeesDataIsSaved();
+});

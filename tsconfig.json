@@ -1,16 +1,23 @@
-
 {
   "compilerOptions": {
     "target": "es6",
     "lib": ["es6", "dom"],
-    "types": ["cypress"],
+    "types": [
+      "cypress",
+      "@badeball/cypress-cucumber-preprocessor"
+    ],
     "esModuleInterop": true,
-    "isolatedModules": false,
     "moduleResolution": "node",
     "skipLibCheck": true,
     "strict": true,
-    "forceConsistentCasingInFileNames": true
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true
   },
-  "include": ["cypress/**/*.ts"],
-  "exclude": ["node_modules"]
+  "include": [
+    "cypress/**/*.ts",
+    "cypress/**/*.d.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
 }
