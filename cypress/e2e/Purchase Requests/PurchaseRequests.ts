@@ -25,7 +25,6 @@ Then("I see the purchase request successfully added", () => {
 When("I add items quantity and prices to the table", () => {
   const {
     itemFirstName,
-    itemSecondName,
     itemThirdName,
     itemForthName,
     itemFifthName,
@@ -35,11 +34,6 @@ When("I add items quantity and prices to the table", () => {
   purchasePage.openSupplierOffer();
   purchasePage.addItemToTheTable(
     itemFirstName,
-    generalTexts.randomPrice,
-    generalTexts.randomQuantity
-  );
-  purchasePage.addItemToTheTable(
-    itemSecondName,
     generalTexts.randomPrice,
     generalTexts.randomQuantity
   );
@@ -68,14 +62,12 @@ When("I add items quantity and prices to the table", () => {
 Then("I see the items are saved after reload", () => {
   const {
     itemFirstName,
-    itemSecondName,
     itemThirdName,
     itemFifthName,
     itemForthName,
     itemSixthName,
   } = generalTexts.generateRandomNames();
   purchasePage.checkItemsAddedToTheTable(itemFirstName);
-  purchasePage.checkItemsAddedToTheTable(itemSecondName);
   purchasePage.checkItemsAddedToTheTable(itemThirdName);
   purchasePage.checkItemsAddedToTheTable(itemForthName);
   purchasePage.checkItemsAddedToTheTable(itemFifthName);

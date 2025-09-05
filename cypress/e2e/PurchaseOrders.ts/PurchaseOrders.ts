@@ -75,16 +75,19 @@ Then(
 //Test-6
 When("I add a Supplier offer from the add purchase order page", () => {
   purchaseOrdersPage.clickAddNewBtn();
+  purchaseOrdersPage.clickCheckbox();
   purchaseOrdersPage.createSupplierOffer(generalTexts.genRecordName);
 });
-Then("I see the supplier order added successfully", () => {
+Then("I see the supplier offer added successfully", () => {
   cy.popupMessageDisplayed(generalTexts.successfulSupplierOfferCreationMsg);
 });
 
 //Test-7
 When("I update items quantity and prices on the table", () => {
   purchaseOrdersPage.clickAddNewBtn();
+  purchaseOrdersPage.clickCheckbox();
   purchaseOrdersPage.createSupplierOffer(generalTexts.genRecordName);
+  purchaseOrdersPage.clickBrandSection();
   purchaseOrdersPage.editItemOnTheTable(
     generalTexts.randomPrice,
     generalTexts.randomQuantity
@@ -103,8 +106,47 @@ Then(
   }
 );
 //Test-8
+When("I add new items with quantity and prices to the table", () => {
+  purchaseOrdersPage.clickAddNewBtn();
+  purchaseOrdersPage.clickCheckbox();
+  purchaseOrdersPage.createSupplierOffer(generalTexts.genRecordName);
+  const {
+    itemFirstName,
+    itemSecondName,
+    itemThirdName,
+    itemForthName,
+    itemFifthName,
+    itemSixthName,
+  } = generalTexts.generateRandomNames();
+  purchaseOrdersPage.clickBrandSection();
+  purchaseOrdersPage.addItemToTheTable(
+    itemThirdName,
+    generalTexts.randomPrice,
+    generalTexts.randomQuantity
+  );
+  purchaseOrdersPage.addItemToTheTable(
+    itemSecondName,
+    generalTexts.randomPrice,
+    generalTexts.randomQuantity
+  );
+});
+Then("I see the items are saved after reload", () => {
+  const {
+    itemFirstName,
+    itemSecondName,
+    itemThirdName,
+    itemFifthName,
+    itemForthName,
+    itemSixthName,
+  } = generalTexts.generateRandomNames();
+  purchaseOrdersPage.checkItemsAddedToTheTable(itemThirdName);
+  purchaseOrdersPage.checkItemsAddedToTheTable(itemSecondName);
+});
+
+//Test-8
 When("I add a shipping information and fee and charges", () => {
   purchaseOrdersPage.clickAddNewBtn();
+  purchaseOrdersPage.clickCheckbox();
   purchaseOrdersPage.createSupplierOffer(generalTexts.genRecordName);
   purchaseOrdersPage.addLeadWeight();
   purchaseOrdersPage.addShippingCost();
@@ -113,3 +155,43 @@ When("I add a shipping information and fee and charges", () => {
 Then("I see the changes are saved after reload", () => {
   purchaseOrdersPage.verifyLeadShippingFeesDataIsSaved();
 });
+
+//Test-10
+When("I add a Supplier offer from the purchase order general tab", () => {
+  purchaseOrdersPage.openPurchaseOrderDetailsPage("Processing");
+  purchaseOrdersPage.createSupplierOffer(generalTexts.genRecordName);
+  cy.checkNotificationMessage(generalTexts.successfulSupplierOfferCreationMsg);
+});
+When("I fill in item quantity and price and publish", () => {
+  purchaseOrdersPage.clickBrandSection();
+  purchaseOrdersPage.editItemOnTheTable(
+    generalTexts.randomPrice,
+    generalTexts.randomQuantity
+  );
+  purchaseOrdersPage.publishSupplierOffer();
+});
+Then("I see the supplier offer saved and published successfully", () => {
+  cy.checkNotificationMessage(generalTexts.supplierOfferPublishedMsg);
+});
+
+//Test-11
+When("I open the order details page and change the statuses", () => {
+  purchaseOrdersPage.openPurchaseOrderDetailsPage("Processing");
+  purchaseOrdersPage.generatePdf();
+  purchaseOrdersPage.clickSendBtn();
+  cy.sendOffer(generalTexts.genRecordName);
+  purchaseOrdersPage.changeOrdersStatus("Pending Payment");
+  purchaseOrdersPage.changeOrdersStatus("Paid");
+  purchaseOrdersPage.checkButtonDisabled();
+  purchaseOrdersPage.changeStatusToConfirmedWithShippingDate("Order Confirmed");
+  purchaseOrdersPage.checkButtonDisabled();
+});
+Then(
+  "I see if the status is confirmed and next of it the create supplier offer button is disabled",
+  () => {
+    purchaseOrdersPage.changeOrdersStatus("Shipped");
+    purchaseOrdersPage.checkButtonDisabled();
+    purchaseOrdersPage.changeOrdersStatus("In Warehouse");
+    purchaseOrdersPage.checkButtonDisabled();
+  }
+);

@@ -30,7 +30,7 @@ const CommandsElements = {
   nameField: "#name",
   descField: "#description",
   uploadBtn: "input[type=file]",
-  notificationMsg: ".notification > span",
+  notificationMsg: ".ant-notification-notice",
   titleOnSiteSettings: "#title",
   contactPersonDropdown: "#contactPersonId",
   btn: 'button[type="button"]',

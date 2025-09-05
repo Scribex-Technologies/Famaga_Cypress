@@ -7,7 +7,7 @@ const generateRandomNames = () => {
   const id5 = Cypress._.random(0, 9999); // different id
   const id6 = Cypress._.random(0, 9999); // different id
   return {
-    itemFirstName: `TatevsSupplier Offer Unicorn|${id1}`,
+    itemFirstName: `Scribex Offer Corp|${id1}`,
     itemSecondName: `Automated Item|${id2}`,
     itemThirdName: `Third Item|${id3}`,
     itemForthName: `Forth Item|${id4}`,
@@ -17,7 +17,7 @@ const generateRandomNames = () => {
 };
 const uuid = () => Cypress._.random(0, 9999);
 const id = uuid();
-const genRecordName = `TatevsSupplier Offer Unicorn|${id}`;
+const genRecordName = `Scribex Offer Corp|${id}`;
 const secondGenRecordName = `Automated Unicorn|${id}`;
 const randomPrice = Math.floor(Math.random() * 999) + 1;
 const randomQuantity = Math.floor(Math.random() * 10) + 1;

@@ -38,9 +38,7 @@ const PurchaseOrderPageElements = {
   clearanceFee: "#fee_customsClearance",
   minOrderFee: "#fee_minimumOrder",
   itemSku: "#sku",
-  //update
-  addRowBtn:
-    "#root > div > div > div > div > div.ant-col.styles_content_bar__XHMPB.css-rrh4gt > div > div:nth-child(2) > div > div:nth-child(2) > div.ant-row.css-rrh4gt > button",
+  addRowBtn: ".ant-btn > :nth-child(2)",
   itemDescription: "#description",
   itemQuantity: "#quantity",
   itemPurchaseRequestPrice: "#purchasePricePerPiece",
@@ -69,6 +67,7 @@ const PurchaseOrderPageElements = {
   contactPersonDropdownMenuItems: ":nth-child(6) > .ant-select-dropdown",
   brandSectionCollapsed: ".ant-collapse-header",
   header: ".ant-typography.reset-title.font-weight-800.center.css-rrh4gt",
+  priceWindow: "ant-drawer-body",
 };
 
 class PurchaseOrdersPage {
@@ -152,16 +151,19 @@ class PurchaseOrdersPage {
     cy.get(PurchaseOrderPageElements.statusMenuItem).contains(status).click();
     cy.get(PurchaseOrderPageElements.statusBadge).eq(0).contains(status);
   }
+  clickCheckbox() {
+    cy.get(PurchaseOrderPageElements.itemsCheckbox).eq(2).click();
+  }
   createSupplierOffer(randomRecord: string) {
     const prefix = randomRecord.slice(0, 8);
-    cy.get(PurchaseOrderPageElements.itemsCheckbox).eq(2).click();
     cy.get(PurchaseOrderPageElements.btn)
       .contains("Create Supplier Offer")
       .click();
     cy.get(PurchaseOrderPageElements.supplierModal).within(() => {
       cy.get(PurchaseOrderPageElements.supplierDropdown)
-        .click()
         .should("be.visible")
+        .click()
+        .wait(1000)
         .type(prefix + "{enter}");
     });
     cy.get(PurchaseOrderPageElements.contactPersonDropdown)
@@ -185,11 +187,6 @@ class PurchaseOrdersPage {
       .should("be.visible")
       .click()
       .type("Central Africa{enter}");
-    cy.get(PurchaseOrderPageElements.attachmentType)
-      .eq(14)
-      .click()
-      .type("Option 1{enter}");
-    cy.get(PurchaseOrderPageElements.attachmentTypeSubmitBtn).click();
     cy.get(PurchaseOrderPageElements.addBtn).contains("Add").click();
   } //update
   addLeadWeight() {
@@ -224,15 +221,18 @@ class PurchaseOrdersPage {
     cy.get(PurchaseOrderPageElements.brandSectionCollapsed).click();
     cy.get(PurchaseOrderPageElements.itemTable).contains(prefix);
   }
+  clickBrandSection() {
+    cy.wait(1000);
+    cy.get(PurchaseOrderPageElements.brandSectionCollapsed)
+      .scrollIntoView()
+      .click();
+  }
   addItemToTheTable(
     randomRecord: string,
     randomPrice: number,
     randomQuantity: number
   ) {
     const prefix = randomRecord.slice(0, 7);
-    cy.get(PurchaseOrderPageElements.brandSectionCollapsed)
-      .scrollIntoView()
-      .click();
     cy.get(PurchaseOrderPageElements.addRowBtn)
       .scrollIntoView()
       .wait(1000)
@@ -257,9 +257,6 @@ class PurchaseOrdersPage {
     cy.get(PurchaseOrderPageElements.header)
       .should("be.visible")
       .contains("Update Supplier Offer");
-    cy.get(PurchaseOrderPageElements.brandSectionCollapsed)
-      .scrollIntoView()
-      .click();
     cy.get(PurchaseOrderPageElements.itemQuantity).eq(0).click();
     cy.get(PurchaseOrderPageElements.itemQuantity)
       .eq(0)
@@ -304,10 +301,24 @@ class PurchaseOrdersPage {
     );
   }
   publishSupplierOffer() {
-    cy.get(PurchaseOrderPageElements.btn).contains("Publish").click();
-    cy.get(PurchaseOrderPageElements.supplierModal).within(() => {
-      cy.get(PurchaseOrderPageElements.btn).contains("Publish").click();
-    });
+    cy.get(PurchaseOrderPageElements.btn)
+      .contains("Publish", { timeout: 20000 })
+      .click();
+    cy.get(PurchaseOrderPageElements.supplierModal, { timeout: 20000 })
+      .should("be.visible")
+      .within(() => {
+        // Also wait until Publish button is visible & enabled
+        cy.contains(PurchaseOrderPageElements.btn, "Publish", {
+          timeout: 10000,
+        })
+          .should("be.visible")
+          .and("not.be.disabled")
+          .click();
+      });
+  }
+  checkButtonDisabled() {
+    cy.get(PurchaseOrderPageElements.btn);
+    cy.contains("button", "Create Supplier Offer").should("be.disabled");
   }
 }
 export default PurchaseOrdersPage;

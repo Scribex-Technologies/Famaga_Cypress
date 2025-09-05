@@ -22,7 +22,7 @@ Feature: Suppliers Page
     Scenario: Edit Contact Person of the Supplier
         When I edit the contact person's fields and submit
         Then I see the contact person successfully updated
-
+        
     @smoke
     Scenario: Delete contact contact person of the Supplier
         When I delete the contact person
