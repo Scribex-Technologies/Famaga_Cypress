@@ -19,7 +19,7 @@ class BrandPage {
     cy.get(BrandPageElements.openEye).eq(0).click();
   }
   addNewBrand(randomRecord: string) {
-    const country = generalTexts.getRandomCountry(); // pick ONCE
+    const country = generalTexts.getRandomCountry() ?? ""; // pick ONCE, fallback to empty string
     cy.get(BrandPageElements.btn).contains("Add New").click();
     cy.get(BrandPageElements.brandName).should("be.visible").type(randomRecord);
     cy.get(BrandPageElements.manufacturerWebsiteField)

@@ -44,20 +44,20 @@ class SupplierPage {
     // Main Language
     cy.get(SupplierPageElements.mainLanguage)
       .should("be.visible")
-      .type(language);
+      .type(language ?? "");
     cy.get(SupplierPageElements.antDropDown)
       .should("be.visible")
       .find(SupplierPageElements.antSelectItem)
-      .contains(language)
+      .contains(language ?? "")
       .should("be.visible")
       .click();
     //Supplier Cuuntry
     cy.get(SupplierPageElements.supplierCountry)
       .should("be.visible")
-      .type(country);
+      .type(country ?? "");
     cy.get(SupplierPageElements.antDropDown)
       .find(SupplierPageElements.antSelectItem)
-      .contains(country)
+      .contains(country ?? "")
       .should("be.visible")
       .click();
     // Supplier Type

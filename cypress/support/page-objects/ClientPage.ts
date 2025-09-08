@@ -32,8 +32,8 @@ class ClientPage {
   }
 
   addNewClient(randomName: string) {
-    const country = generalTexts.getRandomCountry(); // pick ONCE
-    const language = generalTexts.getRandomLanguage(); // pick ONCE
+    const country = generalTexts.getRandomCountry() ?? ""; // pick ONCE, fallback to empty string
+    const language = generalTexts.getRandomLanguage() ?? ""; // pick ONCE, fallback to empty string
     cy.get(ClientPageElements.btn).contains("Add New").click();
     cy.get(ClientPageElements.clientName).type(randomName);
     cy.get(ClientPageElements.clientType)

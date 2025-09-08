@@ -45,7 +45,7 @@ class DealsPage {
     cy.get(DealsPageElements.checkMarkToSubmit).click();
     cy.get(DealsPageElements.btn).contains(/^Add$/).click();
   }
-  chooseAction(targetStatus, actionName) {
+  chooseAction(targetStatus: string, actionName: string | number | RegExp) {
     cy.get(DealsPageElements.offerCard)
       .filter((_, card) => {
         // Normalize text
