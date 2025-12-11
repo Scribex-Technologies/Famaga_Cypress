@@ -23,7 +23,7 @@ const randomPrice = Math.floor(Math.random() * 999) + 1;
 const randomQuantity = Math.floor(Math.random() * 10) + 1;
 
 const generalTexts = {
-  countries: ["Armenia", "China", "Argentina", "Brazil", "Albania"],
+  countries: ["Armenia", "China", "Argentina", "Brazil", "Canada"],
   languages: ["Armenian", "English", "Portuguese", "Serbian", "Chinese"],
   getRandomCountry() {
     return Cypress._.sample(this.countries);

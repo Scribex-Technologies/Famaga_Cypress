@@ -32,6 +32,7 @@ When("I add items quantity and prices to the table", () => {
   } = generalTexts.generateRandomNames();
   purchasePage.openSupplierOffersTab();
   purchasePage.openSupplierOffer();
+  purchasePage.addClientSupplierOfferValidity();
   purchasePage.addItemToTheTable(
     itemFirstName,
     generalTexts.randomPrice,
@@ -81,6 +82,7 @@ When("I add a shipping information and fee and charges", () => {
   purchasePage.addLeadWeight();
   purchasePage.addShippingCost();
   purchasePage.addFeeAndCharges();
+  purchasePage.addClientSupplierOfferValidity();
 });
 Then("I see the changes are saved after reload", () => {
   purchasePage.verifyLeadShippingFeesDataIsSaved();

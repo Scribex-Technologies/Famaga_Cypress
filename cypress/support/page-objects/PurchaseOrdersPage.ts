@@ -9,15 +9,13 @@ const PurchaseOrderPageElements = {
   antSelectDropdown: ".ant-select-dropdown",
   supplierModal: ".ant-modal-content",
   datePicker: "#shippingDate",
+  expectedArrivalDate: "#expectedArrivalDate",
   statusBadge:
     ".ant-row-space-between > :nth-child(1) > .ant-row > .ant-typography",
   eyeIcon: ".ant-table-cell-fix-right ",
   calendar: ".ant-picker-body",
   calendarNextBtn: ".ant-picker-header-next-btn",
-  calendarNowBtn: ".ant-picker-now-btn",
   supplierOfferBtn: "",
-  destinationRegion: "#destinationRegion",
-  destinationSubRegion: "#destinationSubRegion",
   sourceDropdown: "#source",
   contactPersonDropdown: "#contactPersonId",
   offerNumberField: "#offerNumber",
@@ -64,10 +62,12 @@ const PurchaseOrderPageElements = {
     "[style='margin-left: -4px; margin-right: -4px;'] > :nth-child(1) > .ant-row",
   supplierCardPrice:
     "span.ant-typography.font-size-30.font-weight-700.css-rrh4gt",
-  contactPersonDropdownMenuItems: ":nth-child(6) > .ant-select-dropdown",
   brandSectionCollapsed: ".ant-collapse-header",
   header: ".ant-typography.reset-title.font-weight-800.center.css-rrh4gt",
   priceWindow: "ant-drawer-body",
+  contactPersonDropdownMenuItems: ".ant-select-item-option",
+  antSelectDrpNotHidden:
+    ".ant-select-dropdown:not(.ant-select-dropdown-hidden)",
 };
 
 class PurchaseOrdersPage {
@@ -87,8 +87,10 @@ class PurchaseOrdersPage {
   changeStatusToConfirmedWithShippingDate(status: string) {
     cy.get(PurchaseOrderPageElements.btn).contains("Change Status").click();
     cy.get(PurchaseOrderPageElements.statusMenuItem).contains(status).click();
-    cy.get(PurchaseOrderPageElements.datePicker).click();
-    cy.get(PurchaseOrderPageElements.calendarNowBtn).click();
+    cy.get(PurchaseOrderPageElements.datePicker).type("2029-12-31{enter}");
+    cy.get(PurchaseOrderPageElements.expectedArrivalDate).type(
+      "2029-12-31{enter}"
+    );
     cy.get(PurchaseOrderPageElements.btn).contains("Save").click();
     cy.get(PurchaseOrderPageElements.statusBadge).eq(0).contains(status);
   }
@@ -97,22 +99,38 @@ class PurchaseOrdersPage {
     cy.get(PurchaseOrderPageElements.addBtn).click();
     cy.wait(1000);
     cy.get(PurchaseOrderPageElements.itemsCheckbox).eq(2).click();
-    //cy.get(PurchaseOrderPageElements.itemsCheckbox).eq(3).click();
+
     cy.get(PurchaseOrderPageElements.btn).contains("Create Order").click();
-    cy.get(PurchaseOrderPageElements.supplierModal).within(() => {
-      cy.get(PurchaseOrderPageElements.supplierDropdown)
-        .click()
-        .should("be.visible")
-        .click()
-        .type(prefix + "{enter}");
-    });
+    cy.get(".ant-modal-wrap:visible")
+      .last()
+      .find(".ant-modal-content")
+      .then(($modal) => {
+        const continueBtn = $modal
+          .find("button")
+          .filter((i, el) => el.innerText.trim() === "Continue");
+
+        if (continueBtn.length > 0) {
+          cy.wrap(continueBtn).click();
+          cy.log("Clicked Continue on Mixed Status Items modal");
+        } else {
+          cy.log("No Continue button found — skipping");
+        }
+      });
+    cy.get(".ant-modal-wrap:visible")
+      .last()
+      .find(PurchaseOrderPageElements.supplierDropdown)
+      .should("be.visible")
+      .click()
+      .type(prefix + "{enter}");
+
     cy.get(PurchaseOrderPageElements.btn).contains("Save").click();
   }
+
   clickRequestPrice() {
     cy.get(PurchaseOrderPageElements.addBtn).click();
     cy.get(PurchaseOrderPageElements.itemsCheckbox).eq(2).click();
     cy.get(PurchaseOrderPageElements.btn).contains("Request Price").click();
-    cy.wait(1000);
+    cy.wait(2000);
   }
   //Update with the statuses
   openPurchaseOrderDetailsPage(status: string) {
@@ -167,26 +185,17 @@ class PurchaseOrdersPage {
         .type(prefix + "{enter}");
     });
     cy.get(PurchaseOrderPageElements.contactPersonDropdown)
-      .should("be.visible")
       .click()
       .type(prefix);
-    cy.get(PurchaseOrderPageElements.contactPersonDropdownMenuItems)
+    cy.get(PurchaseOrderPageElements.antSelectDrpNotHidden)
+      .find(PurchaseOrderPageElements.contactPersonDropdownMenuItems)
       .contains(prefix)
-      .eq(0)
       .click();
     cy.get(PurchaseOrderPageElements.sourceDropdown).type("Price list{enter}");
     cy.get(PurchaseOrderPageElements.offerNumberField).type(prefix);
     cy.get(PurchaseOrderPageElements.attachmentUpload).attachFile(
       "AutomatedFile.pdf"
     );
-    cy.get(PurchaseOrderPageElements.destinationRegion)
-      .should("be.visible")
-      .click()
-      .type("Africa{enter}");
-    cy.get(PurchaseOrderPageElements.destinationSubRegion)
-      .should("be.visible")
-      .click()
-      .type("Central Africa{enter}");
     cy.get(PurchaseOrderPageElements.addBtn).contains("Add").click();
   } //update
   addLeadWeight() {

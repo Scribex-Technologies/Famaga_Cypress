@@ -29,8 +29,7 @@ const PurchasePageElements = {
   minOrderFee: "#fee_minimumOrder",
   itemSku: "#sku",
   //update
-  addRowBtn:
-    "#root > div > div > div > div > div.ant-col.styles_content_bar__XHMPB.css-rrh4gt > div > div:nth-child(2) > div > div:nth-child(2) > div.ant-row.css-rrh4gt > button",
+  addRowBtn: "button[type=button]",
   itemDescription: "#description",
   itemQuantity: "//*[@id='quantity']",
   itemPurchaseRequestPrice: '//*[@id="purchasePricePerPiece"]',
@@ -58,8 +57,12 @@ const PurchasePageElements = {
   mainTableRows: "tr.ant-table-row",
   supplierCardPrice:
     "span.ant-typography.font-size-30.font-weight-700.css-rrh4gt",
-  contactPersonDropdownMenuItems: ":nth-child(6) > .ant-select-dropdown",
+  contactPersonDropdownMenuItems: ".ant-select-item-option",
+  antSelectDrpNotHidden:
+    ".ant-select-dropdown:not(.ant-select-dropdown-hidden)",
   antSelectDropdown: ".ant-select-dropdown",
+  supplierOfferValidity: "#supplierOfferValidity",
+  clientOfferValidity: "#clientOfferValidity",
 };
 class PurchasePage {
   openPurchaseDetailsPage() {
@@ -149,18 +152,17 @@ class PurchasePage {
     cy.get(PurchasePageElements.supplierDropdown)
       .should("be.visible")
       .click()
-      .type(prefix);
+      .type(prefix)
+      .eq(0)
+      .click();
     cy.get(PurchasePageElements.antSelectDropdown)
       .contains(prefix)
       .eq(0)
       .click();
-    cy.get(PurchasePageElements.contactPersonDropdown)
-      .should("be.visible")
-      .click()
-      .type(prefix);
-    cy.get(PurchasePageElements.contactPersonDropdownMenuItems)
+    cy.get(PurchasePageElements.contactPersonDropdown).click().type(prefix);
+    cy.get(PurchasePageElements.antSelectDrpNotHidden)
+      .find(PurchasePageElements.contactPersonDropdownMenuItems)
       .contains(prefix)
-      .eq(0)
       .click();
     cy.get(PurchasePageElements.sourceDropdown).type("Price list{enter}");
     cy.get(PurchasePageElements.offerNumberField).type(prefix);
@@ -200,6 +202,12 @@ class PurchasePage {
     cy.get("body").click(0, 0).wait(1000);
     cy.get(PurchasePageElements.minOrderFee).clear().type("10{enter}");
     cy.get("body").click(0, 0).wait(1000);
+  }
+  addClientSupplierOfferValidity() {
+    cy.get(PurchasePageElements.supplierOfferValidity).type(
+      "2029-12-31{enter}"
+    );
+    cy.get(PurchasePageElements.clientOfferValidity).type("2029-12-31{enter}");
   }
   deleteSupplierOffer() {
     cy.get(PurchasePageElements.supplierCard).each(($card) => {
@@ -288,7 +296,11 @@ class PurchasePage {
     randomQuantity: number
   ) {
     const prefix = randomRecord.slice(0, 7);
-    cy.get(PurchasePageElements.addRowBtn).scrollIntoView().wait(1000).click();
+    cy.get(PurchasePageElements.addRowBtn)
+      .contains("Add Row")
+      .scrollIntoView()
+      .wait(1000)
+      .click();
     cy.get(PurchasePageElements.itemSku).should("be.visible").type(prefix);
     cy.get(PurchasePageElements.antSelectDropdown)
       .contains(prefix)
